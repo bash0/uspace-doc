@@ -14,3 +14,10 @@
 *.lot
 .DS_Store
 *.run.xml
+
+/EPS (Electrical Power System)/USPACE-EPS-PDR/USPACE-PDR-PWR-blx.bib
+/EPS (Electrical Power System)/USPACE-EPS-PDR/USPACE-PDR-PWR.bbl
+/EPS (Electrical Power System)/USPACE-EPS-PDR/USPACE-PDR-PWR.blg
+/EPS (Electrical Power System)/USPACE-EPS-PDR/USPACE-PDR-PWR.uncited
+/EPS (Electrical Power System)/USPACE-EPS-PDR/figures/Drawing1.pdf
+/EPS (Electrical Power System)/USPACE-EPS-PDR/figures/fig_KellyCosine_Reference.txt
