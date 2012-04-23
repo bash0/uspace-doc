@@ -1,0 +1,111 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+\usepackage[english]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[sorting=none]{biblatex}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage[textfont={small,it},labelfont=bf,labelsep=endash]{caption}
+\usepackage[table]{xcolor}
+\usepackage{verbatim}
+\usepackage[toc,page]{appendix}
+\usepackage{amsmath}
+\usepackage{multicol}	% allow multi column environemnt
+%\usepackage{mathtools}
+%\usepackage[framed,numbered]{mcode}
+\usepackage{acronym}
+\usepackage{rotating}
+\usepackage{titling}
+\usepackage{bibcheck}
+%\usepackage{pdfpages}
+%\usepackage[pdfpagemode=FullScreen,pdfstartview=FitH,pdfborder={0 0 0},pdftitle={My report},bookmarks,pdfauthor={Morten Olsen}]{hyperref}
+\usepackage{memhfixc}
+%\usepackage{maplestd2e}
+
+
+\definecolor{tableshade}{HTML}{E8E8E8}
+\linespread{1.3}
+
+
+\fancyhead{}
+\fancyhead[RE,RO]{\parbox[b]{10cm}{\raggedleft U-SPACE\\ \today}}
+\fancyhead[LE,LO]{\parbox[b]{10cm}{\docreference \\ \title }}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhfoffset{1cm}
+\addtolength{\headheight}{1cm}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\bibliography{references}
+%\bibliography{books}
+%\bibliography{phdthesis}
+%\bibliography{standards}
+%\bibliography{miscellaenous}
+
+
+
+% PLEASE FILL IN THE RELEVANT INFORMATION BELOW:
+%
+\def\authors{
+Zhou \textsc{Hao}\\
+Dries \textsc{Agten}\\
+Morten \textsc{Olsen}
+}
+\def\docversion{Review}					% Possible versions are: DRAFT, REVIEW or RELEASED
+\def\docreference{USPACE-PDR-PWR-A1}	% -00 = DRAFT,  -A1 = 1st release,  -A2 = 1st release with minor updates, -B1, = 2nd release
+\def\title{Preliminary Design Report}
+\def\subtitle{Electrical Power System}
+
+
+
+\begin{document}
+
+\input{titlepage}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\include{acronyms}
+
+\markboth{List of Figures}{List of Figures}
+\addcontentsline{toc}{section}{\protect\numberline{}List of Figures}
+\listoffigures
+\newpage
+
+\markboth{List of Tables}{List of Tables}
+\addcontentsline{toc}{section}{\protect\numberline{}List of Tables}
+\listoftables
+\newpage
+
+\tableofcontents
+\newpage
+\acresetall	%reset acronyms which is otherwise used in list of figures or tables
+\clearpage %reset page numbers
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\input{introduction}
+\newpage
+\input{requirements}
+\newpage
+\input{preliminary_design}
+\newpage
+\input{test_verification}
+\newpage
+\input{resources_scheduling}
+\newpage
+\printbibliography
+\markboth{Bibliography}{Bibliography}
+\addcontentsline{toc}{section}{\protect\numberline{}References}
+\newgeometry{margin=1.5cm}
+\pagestyle{plain}
+
+%\input{appendices}
+
+%\includepdf{figures/bagside}
+
+\end{document}
