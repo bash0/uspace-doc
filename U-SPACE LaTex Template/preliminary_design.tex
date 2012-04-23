@@ -1,0 +1,117 @@
+\section{Preliminary Design}
+\label{sec:preliminary_design}
+
+\subsection{Preliminary Design Explanation}
+%Explain the preliminary design including block diagrams, schematics, drawings, etc.
+
+some text...
+
+\begin{figure}[bht]
+\centering
+\includegraphics[scale=0.5]{figures/Drawing1}
+\caption{Design diagrams}
+\label{fig:some_reference}
+\end{figure}
+
+\subsection{Software Structure}
+%Explain the software structure (if relevant), including block diagrams, flowcharts, hierarchical structure, etc.
+
+some text...
+
+\begin{figure}[bht]
+\centering
+\includegraphics[scale=0.5]{figures/Drawing1}
+\caption{Software structure}
+\label{fig:some_reference}
+\end{figure}
+
+
+\subsection{Trade-Off Analysis of Concepts}
+%Which design concepts are considered? - What are the advantages/disadvantages for each concept?
+
+some text...
+
+\begin{center}
+\begin{table}[bht]
+\rowcolors{3}{tableshade}{white}
+\begin{tabular}{||m{0.2\textwidth}m{0.2\textwidth}m{0.2\textwidth}m{0.2\textwidth}l||}
+\hline\hline
+\textbf{SA Regulator Concepts:} &  \textbf{MPPT} & \textbf{Shunt-Regulator} & \textbf{Zener-diode Regulation} & \textbf{Etc...}\\ 
+\hline
+Costs & Medium(some ICs required) & Medium(some ICs required) & Low(simple components) & ... \\
+Performance and efficiency & High($90-98\%$) & Medium($70-90\%$) & Low($50-70\%$) & ... \\
+Etc... & ... & ... & ... & ... \\
+\hline
+\end{tabular}
+\caption{Trade off analysis}
+\label{tab:TradeOff}
+\end{table}
+\end{center}
+
+
+
+\subsection{Argumentation for Chosen Concept(s)}
+%Why is the chosen concept selected?
+
+
+some text...
+
+\subsection{Feasibility Study of Concept(s)}
+%How feasible is it to successfully implement the chosen concept? – Which potential issues/challenges might occur?
+
+some text...
+
+\subsection{Telemetry and Telecommands}
+%What telemetries/telecommands are required/useful for the subsystem? – What data rates/sizes are required?
+
+some text...
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Telemetry} & \textbf{Data rate/frequency} & \textbf{Data size} \\
+\hline
+Battery voltage & Every 30 sec & 1 byte \\
+\hline
+Solar array temperature & Every 30 sec & 1 byte\\
+\hline
+Solar array voltage & Every 20 msec(MPP tracking) & 2 bytes(MPP tracking)\\
+\hline
+Etc... & ... & ... \\
+\hline
+%\end{tabular}
+%\vspace{5mma}
+%\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Telecommands} & \textbf{Parameters} & \textbf{Valid input range}\\
+set-output-voltage & $<voltage>[1 byte]$ & $0;255 (=7...9V$)\\
+\hline
+Etc... & ... & ...\\
+\hline
+\end{tabular}
+\caption{Telemetry and telecommands}
+\label{tab:Telemetry_Telecommands}
+\end{table}
+
+\subsection{External Interfaces}
+%How are the external interfaces implemented for the mechanics, power, communication etc.?
+
+some text...
+
+\begin{table}[bht]
+\centering
+\begin{tabular}{m{0.45\textwidth}m{0.45\textwidth}}
+\hline
+\textbf{External interface} & \textbf{Implementation}\\
+\hline
+Solar array mounting to rigid ballon structure & Screws and bolts\\[2mm]
+DC-DC regulators & Mounted on PCB which sists in system housing\\[2mm]
+Voltage/current sensor telemetry & Analog signals to Microcontroller\\[2mm]
+Etc... & ... \\
+\hline
+\end{tabular}
+\caption{External interfaces}
+\label{tab:external_interfaces}
+\end{table}
+
