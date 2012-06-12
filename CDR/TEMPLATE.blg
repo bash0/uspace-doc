@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: TEMPLATE.aux
+The style file: biblatex.bst
+A level-1 auxiliary file: acronyms.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: TEMPLATE-blx.bib
+Database file #2: references.bib
+You're missing a field name---line 1 of file references.bib
+ : @article{CitationReference1, 
+ :                              %use this keyword in latex to cite this article
+I'm skipping whatever remains of this entry
+You're missing a field name---line 15 of file references.bib
+ : @article{CitationReference2, 
+ :                              %use this keyword in latex to cite this article
+I'm skipping whatever remains of this entry
+Biblatex version: 1.5
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 7 entries,
+            5995 wiz_defined-function locations,
+            1142 strings with 8549 characters,
+and the built_in function-call counts, 14476 in all, are:
+= -- 548
+> -- 394
+< -- 108
++ -- 132
+- -- 129
+* -- 701
+:= -- 931
+add.period$ -- 0
+call.type$ -- 7
+change.case$ -- 47
+chr.to.int$ -- 37
+cite$ -- 12
+duplicate$ -- 1639
+empty$ -- 1731
+format.name$ -- 217
+if$ -- 3352
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 0
+newline$ -- 115
+num.names$ -- 173
+pop$ -- 1964
+preamble$ -- 1
+purify$ -- 58
+quote$ -- 0
+skip$ -- 865
+stack$ -- 0
+substring$ -- 272
+swap$ -- 447
+text.length$ -- 109
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 253
+warning$ -- 0
+while$ -- 115
+width$ -- 0
+write$ -- 107
+(There were 2 error messages)
