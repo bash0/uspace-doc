@@ -69,7 +69,7 @@ The BeagleBoard is a microcontroller board running a TI OMAP3530 ARM Cortex-A8
 system on a chip (SoC). It provides 256~MB RAM and several high and low level
 interfaces. For this project the main interfaces used are the I2C and UART for
 communication with the sensors (gyroscope, magnetometer, accelerometer) and
-the GPS-receiver and radio-transmitter module (E-TAG) respectively. The camera
+the GPS-receiver and radio-transmitter module (E-TAG) respectively.
 The used high level interface is the USB-host adapter to connect the camera
 to. The operating system with the control program as well as the image files
 are stored onto an 8~GB class 10 sd-card.
@@ -94,7 +94,6 @@ webcam with a resolution of several megapixels will be connected to the USB-port
 of the main board. It is intended to buy a camera which is supported by the
 Linux operating system running on the main board.
 
-\subsection{Attitude Determination System}
 
 
 \FloatBarrier
@@ -114,7 +113,7 @@ the newest sensor data from the accelerometer, magnetometer and gyroscope
 from the I2C interface and fuse them to accurate position and attitude
 representations. It is running at a comparably high frequency (>50 Hz, the final
 frequency is not defined yet). More about the algorithm for sensor fusing is
-explained in section ????. A second thread is polling for new GPS data from
+explained in section \ref{attitude_determination}. A second thread is polling for new GPS data from
 the E-TAG via serial line. As the GPS-chip only updates the positional data
 around once per second this thread can run at a much lower frequency.
 A third thread is responsible to control the camera. If it is active it will
@@ -132,6 +131,7 @@ developments it could be beneficial to use a real-time Linux kernel.
 
 \FloatBarrier
 \section{Attitude Determination System}
+\label{attitude_determination}
 
 \FloatBarrier
 \section{Electrical Circuits}
