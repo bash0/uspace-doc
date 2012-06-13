@@ -1,0 +1,83 @@
+\newpage
+\section{Functional and Technical Requirements}
+\label{sec:requirements}
+
+\subsection{Functional Requirements}
+%What function(s) does the subsystem have to fulfill?
+%
+Below are listed the primary functional requirements for the \ac{EPS}:
+%
+\begin{itemize}
+\item Provide adequate power to motors and payload
+\item Proof that flying on solar energy is possible i.e more power produced than consumed
+\end{itemize}
+%
+Additional desired requirements are:
+%
+\begin{itemize}
+\item Scalability to higher power levels
+\item Flexible and robust design, allowing flight in more extreme conditions (altitude, weather etc.)
+\item Provide adequate protection circuits for battery and loads
+\item Optimal design and high performance to increase power capability and minimize system mass
+\end{itemize}
+%
+%
+\subsection{Technical Requirements}
+%What technical requirements constrain the subsystem design? - e.g. mass, power, strength, stability etc.
+%
+The \ac{EPS} technical requirements are listed in table \ref{tab:technical_requirements}.
+%
+\begin{table}[H]
+\centering
+\caption{Technical requirements for the \ac{EPS}}
+\label{tab:technical_requirements}
+\begin{minipage}{\textwidth}
+\begin{tabular}{p{0.4\textwidth}p{0.4\textwidth}}
+\hline
+Minimum power output & $40\,W$\\
+Maximum mass & $1000\,g$(including solar arrays)\\
+Maximum cost & $5000\,SEK$\footnote{Initial budget for 2 students.}\\
+%Maximum internal power dissipation & $<500\,mW$\\
+Output voltages & $6.0-9.2\,V$(un-regulated), $5\,V$( regulated)\\
+Maximum output current (worst case) & $10.5\,A$\\
+Regulator phase margin & $60\,deg$\\
+Regulator gain margin & $10\,dB$\\
+Control loop bandwidth & $>10\,kHz$\\
+Operational temperature & $-20^{\circ}C\,to +25^{\circ}C$\\
+Battery capacity & $>5\,Wh$\\
+\hline
+\end{tabular}\par
+\vspace{-0.75\skip\footins}
+\renewcommand{\footnoterule}{}
+\end{minipage}
+\end{table}
+%
+%\subsection{Mission and Environmental Constraints}
+%\label{subsec:environmental_requirements}
+%This section discusses some of the challenges opposed by the mission and the parameters of operation environment and how these will influence the \ac{EPS} design constraints.
+%
+%\subsubsection*{Solar Array Temperature}
+%Temperature variation of the solar panels, significantly changes the solar panels characteristics and of main importance the location of the \ac{MPP}. In \cite{PDR} using the temperature coefficient of the open-circuit voltage of a proposed solar cell, the decrease in power output from the cell when the temperature goes from $-20^{\circ}C$ to $+25^{\circ}C$ was estimated to around $15-20\%$. The temperature characteristics of the chosen solar cells [reference] are not provided by the manufacturer, hence these should be tested in order to estimate the solar cell sensitivity to temperature changes. To mitigate this issue, a \ac{MPPT} is applied which will be explained in section [reference].
+%
+%
+\subsection{Expected Performance}
+%What are the expected performances of the subsystem, as related to the requirements above? (maybe including some margins)
+%
+\begin{table}[H]
+\centering
+\caption{Expected performance of the \ac{EPS}}
+\label{tab:expected_performance}
+\begin{minipage}{\textwidth}
+\begin{tabular}{p{0.55\textwidth}p{0.35\textwidth}}
+\hline
+Power conversion efficiency(overall) & $80-90\%$\\
+Power output(overall) & $\sim 57-65\,W$\\
+Battery capacity & $7.3\,Wh$\\
+Mass & $\sim910\,g$\\
+Total cost & $\sim12000\,SEK$\footnote{Solar cells are significantly more expensive than anticipated. A request for more funds is under preparation.}\\
+\hline
+\end{tabular}\par
+\vspace{-0.75\skip\footins}
+\renewcommand{\footnoterule}{}
+\end{minipage}
+\end{table}

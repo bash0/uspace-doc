@@ -1,0 +1,130 @@
+% Description: 	Template for U-SPACE documentation
+% Author:		Morten Olsen
+
+% HOW TO USE THIS TEMPLATE?
+%
+% 1. Go to line 78 in this document and fill in the relevant information
+%
+% 2. Open and edit the following files: 
+%		- introduction.tex
+%		- requirements.tex
+%		- preliminary_design.tex
+%		- text_verification.tex
+%		- resources_schedule.tex
+%
+% 3. Compile the report from this file (TEMPLATE.tex), using the following sequence:
+%		a. PDFLaTex
+%		b. BibTex
+%		c. PDFLaTex
+%		d. PDFLaTex
+% 
+% 4. Rename the output pdf-file, according to the document reference number (line 78 in this file)
+%
+% 5. Enjoy the outcome! :-)
+%
+% If you experience problems, try to search on Google or contact Morten Olsen
+%
+\documentclass[a4paper,11pt,titlepage]{article}
+\usepackage[english]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[sorting=none]{biblatex}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[textfont={small,it},labelfont=bf,labelsep=endash]{caption}
+\usepackage[table]{xcolor}
+\usepackage{verbatim}
+\usepackage[toc,page]{appendix}
+\usepackage{amsmath}
+\usepackage{multicol}	% allow multi column environemnt
+\usepackage{float} % forced position of figures/tables etc.
+%\usepackage{mathtools}
+%\usepackage[framed,numbered]{mcode}
+%\usepackage{URL}
+\usepackage{acronym}
+\usepackage{rotating}
+\usepackage{titling}
+\usepackage{bibcheck}
+%\usepackage{pdfpages}
+%\usepackage[pdfpagemode=FullScreen,pdfstartview=FitH,pdfborder={0 0 0},pdftitle={My report},bookmarks,pdfauthor={Morten Olsen}]{hyperref}
+\usepackage{memhfixc}
+%\usepackage{maplestd2e}
+
+\graphicspath{{./figures/}}	% look for graphic files in the "figures" subfolder
+
+\definecolor{tableshade}{HTML}{E8E8E8}
+\linespread{1.3}
+
+% define the page headers and footers
+\fancyhead{}
+\fancyhead[RE,RO]{\parbox[b]{10cm}{\raggedleft U-SPACE\\ \today}}
+\fancyhead[LE,LO]{\parbox[b]{10cm}{\docreference \\ \title }}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhfoffset{1cm}
+\addtolength{\headheight}{1cm}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\bibliography{references} % include .bib file for citations
+
+
+% PLEASE FILL IN THE RELEVANT INFORMATION BELOW:
+%
+\def\authors{
+Zhou \textsc{Hao}\\
+Dries \textsc{Agten}\\
+Morten \textsc{Olsen}
+}
+\def\docversion{DRAFT}					% Possible versions are: DRAFT, REVIEW or RELEASED
+\def\docreference{USPACE-CDR-EPS-00}	% -00 = DRAFT,  -A1 = 1st release,  -A2 = 1st release with minor updates, -B1, = 2nd release
+\def\title{Critical Design Report}
+\def\subtitle{Electrical Power System}
+
+
+
+\begin{document}
+
+\input{titlepage}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\include{normative_references}
+\include{acronyms}
+
+\markboth{List of Figures}{List of Figures}
+\addcontentsline{toc}{section}{\protect\numberline{}List of Figures}
+\listoffigures
+\newpage
+
+\markboth{List of Tables}{List of Tables}
+\addcontentsline{toc}{section}{\protect\numberline{}List of Tables}
+\listoftables
+\newpage
+
+\tableofcontents
+\newpage
+\acresetall	%reset acronyms which is otherwise used in list of figures or tables
+\clearpage %reset page numbers
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\input{introduction}
+\input{requirements}
+\input{critical_design}
+\input{test_verification}
+\input{resources_scheduling}
+
+\newpage
+\printbibliography
+\markboth{Bibliography}{Bibliography}
+\addcontentsline{toc}{section}{\protect\numberline{}References}
+\newgeometry{margin=1.5cm}
+\pagestyle{plain}
+
+%\input{appendices}
+
+\end{document}

@@ -1,0 +1,27 @@
+\newpage
+\section{Introduction}
+\label{sec:introduction}
+%short description of the subsystem as related to the overall project (purpose of subsystem)
+
+The \ac{EPS} will provide sufficient power to the motors, communication system and payloads. Power is generated from solar cells and stored in batteries. DC-DC regulators are used to control the operating voltage of the solar cell and to provide regulated voltages to payloads and onboard computers.
+%
+\subsection{Changes from PDR to CDR}
+\label{sec:changes_pdr_to_cdr}
+%
+The U-SPACE \ac{PDR} for the \ac{EPS} is documented in \cite{PDR}. Table \ref{tab:pdr_to_cdr} lists the major \ac{EPS} design changes between the \ac{PDR} and the \ac{CDR} and the argumentations behind these design changes.
+
+\begin{table}[H]
+\centering
+\caption{U-SPACE \ac{EPS} design changes from PDR to CDR}
+\label{tab:pdr_to_cdr}
+\begin{tabular}{p{0.25\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+\hline
+\textbf{Area of change }& \textbf{Changed parameter }& \textbf{Argumentation for change}\\
+\hline
+Total power budget & increased to $>40\,W$ & Increased airship total mass and size\\
+Solar cells & New part & Old solar cell was much heavier than listed in manufacturer datasheet due to a glass cover\\
+Total system cost & increased to $>12000\,SEK$ & Increased power requirements and new light-weight solar cells are more expensive\\
+Solar cell mounting & New part & New solar cell is flexible instead of rigid and can be mounted with \ac{PSA}\\
+\hline
+\end{tabular}
+\end{table} 
