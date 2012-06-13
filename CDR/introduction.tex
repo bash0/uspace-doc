@@ -2,17 +2,35 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-\ac{U-SPACE} is a student project at the Rymdcampus of the \ac{LTU} in Kiruna under the supervision of Kjell Lundin and Alf Wikström. It is supported by the \ac{IRF} and \ac{LTU}. The goal of the project is to prove the concept of a small scale student-built unmanned \ac{SPA} powered by solar cells. The solar cells are mounted on a gas-filled envelope, with forward propulsion being achieved by propellers mounted on the same envelope. The airship communicates over a wireless connection with a ground station or controller. This connection enables  control over the airship, together with retrieval of housekeeping and scientific payload data.
+\ac{U-SPACE} is a student project at the Rymdcampus of the \ac{LTU} in Kiruna under the supervision of Kjell Lundin and Alf Wikström. It is supported by the \ac{IRF} and \ac{LTU}. The goal of the project is to prove the concept of a small scale student-built unmanned \ac{SPA} powered by solar cells. The solar cells are mounted on a gas-filled envelope, with forward propulsion being achieved by propellers mounted on the same envelope. The airship communicates over two separate wireless connections with a ground station and a controller. These connections enable control over the airship, together with retrieval of housekeeping and scientific payload data. The scientific payload data consists of data from several sensors (magnetometer, GPS, etc.) and images taken by an onboard camera. On the ground station, the images and the sensor data are used to construct an aerial map.
 \\
 \\
-The same concept of a \ac{SPA} has attracted major interest in recent years \cite{website:ravenaerostar, website:gaya, poster:saba, report:colozza2004}. Such an airship could be used for a wide variety of applications, ranging from passenger and cargo transport \cite{website:gaya} over scientific research \cite{poster:saba} to planetary exploration \cite{report:colozza2004}. These applications all benefit greatly from the advantages of a solar-powered airship: simple flight control, reduced fossil fuel consumption and access to long duration flights. Apart from these inherent strong points, other advantages of \ac{SPA}s are the possibility for autonomous take-off and landing, the elimination of large infrastructures like airports and minimal weather constraints. Even though many researchers have investigated the possibilities of \ac{SPA}'s, few student-driven projects exist. \textbf{EXAMPLES OF STUDENT PROJECTS?} The above-mentioned advantages of \ac{SPA}'s and the fact that few student projects exist, were the main drivers for the creation of the \ac{U-SPACE} project.
+The same concept of a \ac{SPA} has attracted major interest in recent years \cite{website:ravenaerostar, website:gaya, poster:saba, report:colozza2004}. Such an airship could be used for a wide variety of applications, ranging from passenger and cargo transport \cite{website:gaya} over scientific research \cite{poster:saba} to planetary exploration \cite{report:colozza2004}. These applications all benefit greatly from the advantages of a solar-powered airship: simple flight control, reduced fossil fuel consumption and access to long duration flights. Apart from these inherent strong points, other advantages of \ac{SPA}s are the possibility for autonomous take-off and landing, the elimination of large infrastructures like airports and minimal weather constraints. Even though many researchers have investigated the possibilities of \ac{SPA}'s, few student-driven projects exist \cite{website:solr}. The above-mentioned advantages of \ac{SPA}'s and the fact that few student projects exist, were the main drivers for the creation of the \ac{U-SPACE} project. %\textbf{EXAMPLES OF STUDENT PROJECTS?}
 
 \section{Hardware}
 \label{sec:intro_hardware}
 
-Description of the hardware, including a block diagram
+The \ac{U-SPACE} project hardware consists of four subsystems, each with their own set of smaller hardware units. The \ac{MSE} subsystem forms the main mechanical structure of the airship. It includes the gas-filled envelope, a payload bay and structures to mount both the solar cells and the motors with the propellers. The second subsystem, the \ac{EPS}, is responsible for generating solar power, distributing this power to all other subsystems and storing the energy when necessary. The third subsystem, \ac{MCC}, takes care of the forward propulsion of the airship by using propellers mounted on motors. The motors are controlled via a wireless connection, which is also the responsibility of this subsystem. The final subsystem, the \ac{ITPU}, forms the scientific payload of the \ac{SPA}. It consists of several different sensors (including a magnetometer, an accelerometer and a GPS) mounted inside the payload bay. The data from the sensors is processed with the help of a microcontroller. The payload bay also contains a camera which can take pictures from the ground and save them onboard. The sensor data is sent to the ground station via a separate wireless connection.
+\\
+\\
+The ground station hardware forms a separate set of hardware required for the project. It consists of receivers for both wireless connections and a means to visualize the data obtained from the \ac{ITPU}. It also contains a transmitter to control the motors of the \ac{MCC} subsystem via a wireless link.
+\\
+\\
+\textit{Block diagrams will be added in the final version...}
 
 \section{Software}
 \label{sec:intro_software}
 
-Description of software, including operational modes
+The software in the \ac{U-SPACE} project is mainly built around the scientific payload unit (\ac{ITPU}) and the ground station. The subsystem onboard the airship is able to read data from several sensors (magnetometer, GPS, accelerometer) and fuses the data to obtain more accurate information. This data can also be sent to the ground station via a wireless link, for which software is required as well. The third function of the \ac{ITPU} is to take pictures of the ground. These pictures are saved onboard and can later be read out when the airship is retrieved.
+\\
+\\
+The ground station software is required to receive sensor data from the airship. Apart from this function, the ground station software is also responsible for running the algorhythm that combines the sensor data and the images taken with the camera to obtain a complete aerial map of the surroundings.
+\\
+\\
+The operational software modes are listed below:
+
+\begin{enumerate}
+\item Reading sensor data and fusing it
+\item Taking pictures from the ground
+\item Combination of mode 1 and mode 2
+\end{enumerate}
