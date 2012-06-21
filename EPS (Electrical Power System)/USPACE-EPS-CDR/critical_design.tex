@@ -114,7 +114,9 @@ R_{T2}&=2\dfrac{R_{cold}R_{hot}}{R_{cold}-3R_{hot}}=47.8\,k\Omega
 %
 \subsubsection{Battery Discharge Current Limiter}
 %
-The selected MOSFET has a typical gate threshold voltage of $V_{Gth}=550\,mV$. The chosen \ac{BJT} has a typical collector-emitter voltage drop of $V_{CE}=120\,mV$. The battery is rated for a maximum discharge current of $I_{discharge}=1.455\,A$. The required current sense resistor is then calculated as 
+The battery in \cite{panasonic} has a maximum discharge rate current of $I_{discharge}=1.455\,A$. A discharge current limiter circuit has been added as shown in Figure \ref{fig:EPS_diagram_detailed}. In normal conditions, the MOSFET is off making the base pin of the \ac{PNP} \ac{BJT} low and hence the BJT is fully conducting. When the current through the sense resistor increases, the voltage on the PNP MOSFET gate starts to drop and at the current limit point begins to conduct. When this happens, the base of the BJT is pulled up on the device starts to limit the current.
+
+The selected MOSFET has a typical gate threshold voltage of $V_{Gth}=550\,mV$. The chosen \ac{BJT} has a typical collector-emitter voltage drop of $V_{CE}=120\,mV$. The required current sense resistor is then calculated as 
 %
 \begin{equation}
 \begin{split}
@@ -123,7 +125,7 @@ R_{sense}&=\dfrac{V_{sense}}{I_{discharge}}=\dfrac{430\,mV}{1.455\,A}=295\,m\Ome
 \end{split}
 \end{equation}
 %
-The exact required resistance must be determined by testing the precise parameters of the discrete components.
+The exact required resistance must be determined by testing the precise parameters of the discrete components. The $500\,\Omega$ resistor value is chosen as a compromise between the power loss from current drawn in current limitation mode $P_{loss}\approx V_{bat}^2/R_2$ and the requirement that the resistor must allow about $10\,mA$ (base current) to be drawn at the lowest voltage across the resistor which is about $5\,V$.
 %
 %
 %
