@@ -57,7 +57,26 @@ V_{panel,out}=14.4\,V
 %
 \subsection{Battery Design}
 %
-Two Panasonic PA-L60.K02 \cite{panasonic} Li-ion batteries are used. The battery has the following important specifications:
+%Two Panasonic PA-L60.K02 \cite{panasonic} Li-ion batteries are used. The battery has the following important specifications:
+An Ansmann \ac{LiPo} Racing Pack 2S1P 30C battery is selected. 
+%
+%\begin{table}[H]
+%\centering
+%\caption{Specification of chosen battery}
+%\label{tab:proposed_battery}
+%\begin{tabular}{ll}
+%\hline
+%Chemistry & Li-ion\\
+%Nominal voltage & $3.6\,V$\\
+%Capacity & $1.03\,Ah$ / $3.61\,Wh$\\
+%Weight & $25\,g$\\
+%Dimensions & $56\,mm\:\times\:34.2\,mm\:\times\:5.8\,mm$\\
+%Maximum charge current & $970\,mA$\\
+%Maximum discharge current (continuous) & $1.455\,A$\\
+%\hline
+%\end{tabular}
+%\end{table}
+%
 %
 \begin{table}[H]
 \centering
@@ -65,68 +84,72 @@ Two Panasonic PA-L60.K02 \cite{panasonic} Li-ion batteries are used. The battery
 \label{tab:proposed_battery}
 \begin{tabular}{ll}
 \hline
-Chemistry & Li-ion\\
-Nominal voltage & $3.6\,V$\\
-Capacity & $1.03\,Ah$ / $3.61\,Wh$\\
-Weight & $25\,g$\\
-Dimensions & $56\,mm\:\times\:34.2\,mm\:\times\:5.8\,mm$\\
-Maximum charge current & $970\,mA$\\
-Maximum discharge current (continuous) & $1.455\,A$\\
+Chemistry & Li-Polymer\\
+Nominal voltage & $7.4\,V$\\
+Capacity & $2.1\,Ah$ / $15.54\,Wh$\\
+Weight & $122\,g$\\
+Dimensions & $105\,mm\:\times\:35.2\,mm\:\times\:17\,mm$\\
+Maximum fast charge current & $3\,A$\\
+Maximum discharge current (continuous) & $63\,A$\\
 \hline
 \end{tabular}
 \end{table}
 %
 %
-\subparagraph*{Future Recommendations}
-%
-The chosen type of Li-ion battery supports only a relative low charge- and discharge rate of about $1\,C$. For bigger battery capacity and higher loads, it is recommended to use a battery like \cite{rcflight_battery} which provides much higher discharge rates ($>20\,C$) and also cheaper price per Wh. Only disadvantage  is a mass increase of around $15-25\%$.
+%\subparagraph*{Future Recommendations}
+%%
+%The chosen type of Li-ion battery supports only a relative low charge- and discharge rate of about $1\,C$. For bigger battery capacity and higher loads, it is recommended to use a battery like \cite{rcflight_battery} which provides much higher discharge rates ($>20\,C$) and also cheaper price per Wh. Only disadvantage  is a mass increase of around $15-25\%$.
 %
 \subsubsection{Battery Charge Regulator}
 %
-From the battery datasheet, maximum charge current is $I_{REG}=970\,mA$. From the \ac{BCR} datasheet, the minimum current sense resistor value is calculated as
+From the battery datasheet, maximum charge current is $I_{REG}=3\,A$. From the \ac{BCR} datasheet, the minimum current sense resistor value is calculated as
 %
 \begin{equation}
 \begin{split}
 R_{sense}=&\dfrac{V_{FCS}}{I_{REG}}\\
-R_{sense}=&\dfrac{120\,mV}{970\,mA}=123\,m\Omega
+R_{sense}=&\dfrac{120\,mV}{3\,mA}=40\,m\Omega
 \end{split}
 \end{equation}
+%
+A $50\m \Omega$ current sense resistor is selected leading to a charge current of $2.4\,A$.
 %
 The required thermal rating of the pass transistor is calculated as
 %
 \begin{equation}
-P_{max}=(V_{in,max}-V_{bat,min})\cdot I_{charge}=(9.5\,V-5.5\,V)\cdot 970\,mA=3.88\,W
+P_{max}=(V_{in,max}-V_{bat,min})\cdot I_{charge}=(9.5\,V-5.5\,V)\cdot 2.4\,A=9.6\,W
 \end{equation}
 %
-\subsubsection{Battery Temperature Monitoring}
+A TPCA8102 P-channel MOSFET is selected as charge transistor. It has a peak power dissipation rating of $42\,W$ and $1.6\,W$ continuous ($10\,s$) and $R_{DS(ON)}=4.5\,m \Omega$. At $2.4\,A$ charge current, the heat dissipation is well below the maximum allowed value.
 %
-The \ac{BCR} chip includes a temperature monitoring feature. The battery is rated, in charge-mode, to temperature in the interval $10-45^{\circ}C$. The maximum allowed temperature is set slightly lower to $40^{\circ}C$. The Li-ion battery has a build-in \ac{NTC} thermistor with $B=3980\,K$ and $R_{25}=10k\,\Omega$. The required restance values of the temperature control resistors are determined from the \ac{BCR} chip datasheet as 
-%
-\begin{equation}
-\begin{split}
-R_{cold}&=R_{25}e^{B(\dfrac{1}{T}-\dfrac{1}{T_0}}=10\,k\Omega e^{3980\,K(\dfrac{1}{283	\,K}-\dfrac{1}{298\,K})}=20.3\,k\Omega\\
-R_{hot}&=10\,k\Omega e^{3980\,K(\dfrac{1}{313	\,K}-\dfrac{1}{298\,K})}=5.3\,k\Omega\\
-R_{T1}&=2\dfrac{R_{cold}R_{hot}}{R_{cold}-R_{hot}}=14.2\,k\Omega\\
-R_{T2}&=2\dfrac{R_{cold}R_{hot}}{R_{cold}-3R_{hot}}=47.8\,k\Omega
-\end{split}
-\end{equation}
+%\subsubsection{Battery Temperature Monitoring}
+%%
+%The \ac{BCR} chip includes a temperature monitoring feature. The battery is rated, in charge-mode, to temperature in the interval $10-45^{\circ}C$. The maximum allowed temperature is set slightly lower to $40^{\circ}C$. The Li-ion battery has a build-in \ac{NTC} thermistor with $B=3980\,K$ and $R_{25}=10k\,\Omega$. The required restance values of the temperature control resistors are determined from the \ac{BCR} chip datasheet as 
+%%
+%\begin{equation}
+%\begin{split}
+%R_{cold}&=R_{25}e^{B(\dfrac{1}{T}-\dfrac{1}{T_0}}=10\,k\Omega e^{3980\,K(\dfrac{1}{283	\,K}-\dfrac{1}{298\,K})}=20.3\,k\Omega\\
+%R_{hot}&=10\,k\Omega e^{3980\,K(\dfrac{1}{313	\,K}-\dfrac{1}{298\,K})}=5.3\,k\Omega\\
+%R_{T1}&=2\dfrac{R_{cold}R_{hot}}{R_{cold}-R_{hot}}=14.2\,k\Omega\\
+%R_{T2}&=2\dfrac{R_{cold}R_{hot}}{R_{cold}-3R_{hot}}=47.8\,k\Omega
+%\end{split}
+%\end{equation}
 
 %
-\subsubsection{Battery Discharge Current Limiter}
+%\subsubsection{Battery Discharge Current Limiter}
+%%
+%The battery in \cite{panasonic} has a maximum discharge rate current of $I_{discharge}=1.455\,A$. A discharge current limiter circuit has been added as shown in Figure \ref{fig:EPS_diagram_detailed}. In normal conditions, the MOSFET is off making the base pin of the \ac{PNP} \ac{BJT} low and hence the BJT is fully conducting. When the current through the sense resistor increases, the voltage on the PNP MOSFET gate starts to drop and at the current limit point begins to conduct. When this happens, the base of the BJT is pulled up on the device starts to limit the current.
 %
-The battery in \cite{panasonic} has a maximum discharge rate current of $I_{discharge}=1.455\,A$. A discharge current limiter circuit has been added as shown in Figure \ref{fig:EPS_diagram_detailed}. In normal conditions, the MOSFET is off making the base pin of the \ac{PNP} \ac{BJT} low and hence the BJT is fully conducting. When the current through the sense resistor increases, the voltage on the PNP MOSFET gate starts to drop and at the current limit point begins to conduct. When this happens, the base of the BJT is pulled up on the device starts to limit the current.
-
-The selected MOSFET has a typical gate threshold voltage of $V_{Gth}=550\,mV$. The chosen \ac{BJT} has a typical collector-emitter voltage drop of $V_{CE}=120\,mV$. The required current sense resistor is then calculated as 
-%
-\begin{equation}
-\begin{split}
-V_{sense}&=V_{Gth}-V_{CE}=550\,mV-120\,mV=430\,mV \Rightarrow\\
-R_{sense}&=\dfrac{V_{sense}}{I_{discharge}}=\dfrac{430\,mV}{1.455\,A}=295\,m\Omega
-\end{split}
-\end{equation}
-%
-The exact required resistance must be determined by testing the precise parameters of the discrete components. The $500\,\Omega$ resistor value is chosen as a compromise between the power loss from current drawn in current limitation mode $P_{loss}\approx V_{bat}^2/R_2$ and the requirement that the resistor must allow about $10\,mA$ (base current) to be drawn at the lowest voltage across the resistor which is about $5\,V$.
-%
+%The selected MOSFET has a typical gate threshold voltage of $V_{Gth}=550\,mV$. The chosen \ac{BJT} has a typical collector-emitter voltage drop of $V_{CE}=120\,mV$. The required current sense resistor is then calculated as 
+%%
+%\begin{equation}
+%\begin{split}
+%V_{sense}&=V_{Gth}-V_{CE}=550\,mV-120\,mV=430\,mV \Rightarrow\\
+%R_{sense}&=\dfrac{V_{sense}}{I_{discharge}}=\dfrac{430\,mV}{1.455\,A}=295\,m\Omega
+%\end{split}
+%\end{equation}
+%%
+%The exact required resistance must be determined by testing the precise parameters of the discrete components. The $500\,\Omega$ resistor value is chosen as a compromise between the power loss from current drawn in current limitation mode $P_{loss}\approx V_{bat}^2/R_2$ and the requirement that the resistor must allow about $10\,mA$ (base current) to be drawn at the lowest voltage across the resistor which is about $5\,V$.
+%%
 %
 %
 \subsection{Maximum Power Point Tracking Regulator}
@@ -155,13 +178,13 @@ When the full \ac{MPPTU} is implemented, it will operate in three different oper
 %
 
 
-\subsubsection{Mainbus Under Voltage Protection}
+%\subsubsection{Mainbus Under Voltage Protection}
+%%
+%The power from battery and solar cells is limited. It is thus possible that the motors will try to draw more current than what can be delivered. If this happens, the output capacitor of the \ac{APR} will quickly discharge and the main output voltage drops out. To prevent this situation, an \ac{UVP} circuit is added. This is implemented using an $STN888$ PNP \ac{BJT} along with two resistors, $R3$ and $R4$ as shown in Figure \ref{fig:EPS_diagram_detailed}. When the main output voltage is around $6.2\,V$ the Base-Emitter voltage drop is close to $1.2\,V$ and the \ac{BJT} is fully conducting and effectively works as a short circuit. If the output voltage drops significantly below $6.2\,V$ the \ac{BJT} will begin to decrease the output current until the output voltage stabilizes. The current gain of $STN888$ is about $100$, hence to allow an maximum output current of $10\,A$, the resistors $R3$ and $R4$ must be designed to pass $100\,mA$ at $6.2\,V$ output voltage. To minimize efficiency it is important that the forward voltage drop of the \ac{BJT} is kept as low as possible.
 %
-The power from battery and solar cells is limited. It is thus possible that the motors will try to draw more current than what can be delivered. If this happens, the output capacitor of the \ac{APR} will quickly discharge and the main output voltage drops out. To prevent this situation, an \ac{UVP} circuit is added. This is implemented using an $STN888$ PNP \ac{BJT} along with two resistors, $R3$ and $R4$ as shown in Figure \ref{fig:EPS_diagram_detailed}. When the main output voltage is around $6.2\,V$ the Base-Emitter voltage drop is close to $1.2\,V$ and the \ac{BJT} is fully conducting and effectively works as a short circuit. If the output voltage drops significantly below $6.2\,V$ the \ac{BJT} will begin to decrease the output current until the output voltage stabilizes. The current gain of $STN888$ is about $100$, hence to allow an maximum output current of $10\,A$, the resistors $R3$ and $R4$ must be designed to pass $100\,mA$ at $6.2\,V$ output voltage. To minimize efficiency it is important that the forward voltage drop of the \ac{BJT} is kept as low as possible.
-
-\subparagraph*{Further Recommendations}
-%
-It is hard to find suitable \acp{BJT} rated for much more than $5\,A$. If the power output is increased in future designs, it is suggested to either parallel connect several \acp{BJT} however this might cause issues with thermal runaway. Alternatively high current \acp{IGBT} can be used, however they have higher forward voltage drops and thus they are more suitable for a design with a higher output voltage.
+%\subparagraph*{Further Recommendations}
+%%
+%It is hard to find suitable \acp{BJT} rated for much more than $5\,A$. If the power output is increased in future designs, it is suggested to either parallel connect several \acp{BJT} however this might cause issues with thermal runaway. Alternatively high current \acp{IGBT} can be used, however they have higher forward voltage drops and thus they are more suitable for a design with a higher output voltage.
 
 
 %
