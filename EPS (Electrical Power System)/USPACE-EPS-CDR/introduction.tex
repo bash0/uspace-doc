@@ -1,26 +1,25 @@
 \newpage
 \section{Introduction}
 \label{sec:introduction}
-%short description of the subsystem as related to the overall project (purpose of subsystem)
 
-The \ac{EPS} will provide sufficient power to the motors, communication system and payloads. Power is generated from solar cells and stored in batteries. DC-DC regulators are used to control the operating voltage of the solar cell and to provide regulated voltages to payloads and onboard computers.
-%
+The \ac{EPS} provides power to motors, the on-board computer, communication system and payloads. Power is mainly supplied from solar cells but can also be supplied from a battery, when solar power is not available or insufficient. 
+
 \subsection{Changes from PDR to CDR}
 \label{sec:changes_pdr_to_cdr}
 %
-The U-SPACE \ac{PDR} for the \ac{EPS} is documented in \cite{PDR}. Table \ref{tab:pdr_to_cdr} lists the major \ac{EPS} design changes between the \ac{PDR} and the \ac{CDR} and the argumentations behind these design changes.
+Table \ref{tab:pdr_to_cdr} lists major design changes from the \ac{EPS} \ac{PDR} report.
 
 \begin{table}[H]
 \centering
 \caption{U-SPACE \ac{EPS} design changes from PDR to CDR}
 \label{tab:pdr_to_cdr}
-\begin{tabular}{p{0.25\textwidth}p{0.25\textwidth}p{0.5\textwidth}}
+\begin{tabular}{p{0.25\textwidth}p{0.2\textwidth}p{0.45\textwidth}}
 \hline
-\textbf{Area of change }& \textbf{Changed parameter }& \textbf{Argumentation for change}\\
+\textbf{Area of change} & \textbf{Changed parameter } & \textbf{Argumentation for change}\\
 \hline
-Total power budget & increased to $>40\,W$ & Increased airship total mass and size\\
+Total power budget & Increased to $>40\,W$ & Airship total mass and size are increased thus requiring much more power for the motors\\
 Solar cells & New part & Old solar cell was much heavier than listed in manufacturer datasheet due to a glass cover\\
-Total system cost & increased to $>12000\,SEK$ & Increased power requirements and new light-weight solar cells are more expensive\\
+Total system cost & Increased to $>12000\,SEK$ & Increased power and new light-weight solar cells are more expensive\\
 Solar cell mounting & New part & New solar cell is flexible instead of rigid and can be mounted with \ac{PSA}\\
 \hline
 \end{tabular}
