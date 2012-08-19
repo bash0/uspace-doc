@@ -1,53 +1,37 @@
 \chapter{Test and Verification of Design}
 \label{chap:test_verification}
 
-This chapter describes the test procedures of the \ac{U-SPACE} project. Objectives and responsibilities are introduced in section \ref{sec:ver_plan},together with the main test procedures. Section \ref{sec:test_matrices} describes the different test matrices of the subsystems.
-
 \section{Design Verification Plan}
 \label{sec:ver_plan}
 
+In order to verify that the goals of the \ac{U-SPACE} project (as set forth in chapter \ref{chap:goals_constraints}) are truly satisfied after the realization of a prototype, it is very important to perform a series of design verification procedures with this prototype. Both verification by analysis and verification by test exist.
+
 \subsection{Objectives and Responsibilities}
 
-\textit{Will be included in the final version...}
-%Why and who?
+A complete design verification plan is an essential element of a successful project. The first main objective of having such a plan is the availability of a structure that allows to systematically verify the quality of the work delivered during the project. It is also important because it makes it possible to check exactly where problems occur and to find clues towards the solution of these problems.
+\\
+\\
+The responsibility of defining and performing the appropriate design verification procedures for each subsystem lies with the team members responsible for that subsystem. They report to the quality manager and the project manager, who can then define test verification procedures for combinations of subsystems, possibly testing each combination individually. When satisfactory results are achieved the entire prototype can be verified by a final series of procedures.
 
-%\subsection{Verification By Analysis}
+\subsection{Verification By Analysis}
 
-%N/A, but comment on it briefly...
+A first verification method is verification by analysis. This method uses theoretical calculations and simulations to check if the goals of the subsystem and/or project can be realized with the current hardware and software combination \cite{ECSS_verification}. For the \ac{U-SPACE} project these calculations could for example consist of a theoretical analysis of the maximum payload weight based on the characteristics of the \ac{SPA} structure or a comparison of the forces on the structure to evaluate the maximum forward velocities caused by the motors. Simulations could also be performed for the \ac{EPS} to check the stability of the provided power or the power consumption of each subsystem. Comparing the prototype with previously used solution concepts (verification by similarity) can be considered as a subset of this verification method. However, since there are very few examples of a \ac{SPA} of this type, this specific subset is not used during the project verification phase.
+\\
+\\
+Although calculations and simulations are used extensively during the design phase of the project they are not an essential means to verify the final quality of the subsystem and/or prototype. This type of calculations is very difficult and requires a clear insight in the underlying principles. Since the experience in the team is limited in this respect, the principal verification method is verification by test, which is treated below.
 
 \subsection{Verification By Test}
 
-%Write about test procedures...
+The second and most important verification method during the \ac{U-SPACE} project is verification by test. As the name implies this method consists of monitoring the performance and functionality of the subsystem and/or prototype in a simulated test environment \cite{ECSS_verification}. Detailed test procedures and test matrices have to be defined for each subsystem, including such topics as stable basic performance, compliance with other subsystems and extreme conditions. The subsystem or prototype has to achieve satisfactory results in all test procedures to be considered as a successful realization of the project goals.
 
-To test and verify the proposed design concepts throughout the project, four methods are considered \cite{ECSS_verification}, as listed in table \ref{tab:verification_methods}.
+\subsection{Verification By Inspection}
 
-\begin{table}[h]
-\centering
-\caption{Design verification methods}
-\label{tab:verification_methods}
-\begin{tabular}{p{0.3\textwidth}p{0.6\textwidth}}
-\hline
-\textbf{Method} & \textbf{Description}\\
-\hline
-Testing & Monitoring of system performance and functionality in a simulated test environment.\\[2mm]
-Analysis/Simulation & Theoretical calculations and simulations. Also includes verification by similarity, i.e. previously used solution concepts.\\[2mm]
-Review of Design & Using records, drawings, schematics, etc. that unambiguously show fulfilment of the system requirements\\[2mm]
-Inspection & Visual inspection of hardware/software for good workmanship as well as compliance to industry/design standards\\
-\hline
-\end{tabular}
-\end{table}
-
-\noindent
-To test the complete \ac{SPA}, a \ac{DM} will be built and subjected to flight testing. A 3-4 week launch campaign is scheduled for the start of autumn. The planned launch site is the old balloon launch site at \ac{IRF} near the \ac{LTU} Rymdcampus or a location at the Esrange Space Center (in cooperation with the \ac{SSC}).
-
-%\subsection{Verification Control System}
-
-%Not sure if this is applicable, but if yes, then the answer should be github I guess...
+The final verification method is verification by inspection. It is defined as the visual inspection of hardware and software for good workmanship and compliance to industry or design standards \cite{ECSS_verification}. This method is a very simple method that can give the first clues regarding the successful design of a subsystem, but which always has to be corroborated by means of test procedures. It is therefore only a minor element in the complete design verification plan.
 
 \section{Subsystem Test Matrices}
-\label{sec:test_matrices}
+%\label{sec:test_matrices}
 
-\textit{Will be included in the final version...}
+The design verification plan of the \ac{U-SPACE} project includes test matrices for each subsystem, presenting all tests and their (future) results. These matrices can be used to check the progress of the test procedures and are also useful to identify problems with the subsystem. More details regarding the test procedures for each subsystem can be found in the dedicated sections of the specific chapters.
+%The design verification plan of the \ac{U-SPACE} project includes test matrices for each subsystem, presenting all possible tests and their (future) results. These matrices can be used to check the progress of the test procedures and are also useful to identify problems with the subsystem.
 
-%Different tests presented as a matrix/table: rows are test modules, columns are possible testing techniques. Maybe one per subsystem? Also limited life time elements could be included here...
-
+%\subsection{Mechanical Structure and Envelope}
