@@ -39,22 +39,21 @@
 \usepackage[textfont={small,it},labelfont=bf,labelsep=endash]{caption}
 \usepackage[table]{xcolor}
 \usepackage{verbatim}
-%\usepackage[toc]{appendix}
+\usepackage[toc,page]{appendix}
+\usepackage{url}
 \usepackage{amsmath}
 \usepackage{multicol}	% allow multi column environemnt
 \usepackage{float} % forced position of figures/tables etc.
-%\usepackage{mathtools}
-%\usepackage[framed,numbered]{mcode}
 \usepackage{acronym}
 \usepackage{rotating}
 \usepackage{titling}
 \usepackage{bibcheck}
 \usepackage[center]{subfigure} % make it possible to include more than one captioned figure/table in a single float
-%\usepackage{pdfpages}
-%\usepackage[pdfpagemode=FullScreen,pdfstartview=FitH,pdfborder={0 0 0},pdftitle={My report},bookmarks,pdfauthor={Morten Olsen}]{hyperref}
+%\usepackage[pdfstartview=FitH,pdfborder={0 0 0},bookmarks]{hyperref}
 \usepackage{memhfixc}
-%\usepackage{maplestd2e}
 \usepackage{placeins}
+\usepackage{longtable} % multi-page table environment
+
 
 \graphicspath{{./figures/}}	% look for graphic files in the "figures" subfolder
 
@@ -117,7 +116,6 @@ Tiago \textsc{Rebelo} \\
 \pagenumbering{arabic}
 \pagestyle{fancy}
 
-%\input{latex_basics}
 \input{introduction}
 \input{requirements}
 \input{mse}
@@ -133,11 +131,9 @@ Tiago \textsc{Rebelo} \\
 \printbibliography
 \markboth{Bibliography}{Bibliography}
 \addcontentsline{toc}{chapter}{\protect\numberline{}References}
-% \newgeometry{margin=1.5cm}
+\newgeometry{margin=1.5cm}
 \pagestyle{plain}
 
-%\input{appendices}
-
-%\includepdf{figures/bagside}
+\input{appendices}
 
 \end{document}
