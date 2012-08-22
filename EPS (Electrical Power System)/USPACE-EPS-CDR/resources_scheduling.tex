@@ -37,54 +37,74 @@ TBD...
 %\end{table}
 
 \subsection{Parts List and Costs}
-
-TBD...
-
-%The preliminary parts list for the \ac{EPS} is listed in table \ref{tab:parts_list}.
-
-%\begin{table}[H]
-%\centering
-%\caption{Main \ac{EPS} design and implementation tasks}
-%\label{tab:parts_list}
-%\begin{minipage}{\textwidth}
-%\centering
-%\begin{tabular}{|m{0.25\textwidth}|m{0.3\textwidth} |m{0.15\textwidth}|m{0.2\textwidth}|}
-%\hline
-%\textbf{Part} & \textbf{Part No.} & \textbf{Cost[SEK]}\footnote{cost per piece, hence total cost may be significant higher, depending on required quantity} & \textbf{Reference} \\
-%\hline
-%Solar cells & MC-SP0.8-NF-GCS & 61 kr & www.farnell.com\\
-%Battery & PA-LN19 & 326 kr & www.farnell.com\\
-%PWM controller & \ac{TBD} & - & - \\
-%Power MOSFET & TBD & - & - \\
-%Power diode & TBD & - & - \\
-%MOSFET gate driver (high side) & TBD & - & - \\
-%OpAmps (feedback regulators) & LT1498 & 92 kr & www.farnell.com \\
-%Main bus capacitors & CKG45NX7R1H335M & 38 kr & www.farnell.com \\
-%COTS DC-DC converter & IK1205SA & 39 kr & www.farnell.com\\
-%Inductor core(s) & TBD & - & -\\
-%Current sensor & TBD & - & -\\
-%PCB & TBD & - & - \\
-%%\hline\hline
-%%Total & & ??? & \\
-%\hline
-%\end{tabular}\par
-%\vspace{-0.75\skip\footins}
-%\renewcommand{\footnoterule}{}
-%\end{minipage}
-%\end{table}
-
-\subsection{Electronics Ground Support Equipment (EGSE)}
+Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order which is expected to be placed in the near future). The calculated costs does not including invoicing or shipping costs.
 %
-TBD...
-%%
-%%
-%\begin{itemize}
-%\item Laboratory equipment, i.e. Network Analyzer, Digital Oscilloscope, power supplies, multi-meters
-%\item \ac{TV} chamber
-%\end{itemize}
-%%
-%\subsection{Mechanical Ground Support Equipment (MGSE)}
-%%
-%\begin{itemize}
-%\item \ac{PCB} manufacturing facilities, i.e. UV light source, etching facility, punch-through hole machine, photo-resist
-%\end{itemize}
+%
+\begin{center}
+\begin{longtable}[H]
+{p{0.4\textwidth}p{0.25\textwidth}p{0.12\textwidth}rc}
+\caption{EPS Parts List}\\
+\label{tab:parts_list}\\[-0.5cm]
+\hline
+\textbf{Part} & \textbf{Part Name} & \textbf{Supplier} & \textbf{Cost\footnotemark[1]} & \textbf{Qty.}\\
+\hline
+\endhead
+\footnotetext[1]{Unit price in SEK. Actual price may differ due to currency variations}
+SAR current sense resistor & FCSL110R010FER & Farnell(US) & $31.52$ & 2\\
+SAR power diode & MBR3050CT & Farnell & $9.24$ & 3\\
+SAR power MOSFET & IPI037N06L3 G & Farnell & $19.32$ & 4\\
+SAR mainbus capacitor & CKG45NX5R1C226M & Farnell & $38.72$ & 4\\
+PWM, MEA and MOSFET driver & LM3477AMM & Farnell & $16.37$ & 5\\
+SAR inductor & 2101-H-RC & Farnell(US) & $25.13$ & 2\\
+\acp{PCB} & CIF - AA15 & Farnell & $67.42$ & 4\\
+Battery(obsolete) & PA-L60 & Farnell & $294.28$ & 2\\
+Battery & LiPo Racing Pack 2S1P & Ansmann & N/A\footnotemark[2] & 1\\
+\footnotetext[2]{Part was supplied by previous Spacemasters}
+Reverse protection diode & VS-STPS20L15DPBF & Farnell & $24.56$ & 6\\
+BCR & MCP73842-840I/UN & Farnell & $13.61$ & 2\\
+BCR Transistor(obsolete) & TPCA8102(TE12L,Q) & Farnell & $28.5$ & 2\\
+Current limit \ac{BJT}(obsolete) & 2STN2540 & Farnell & $7.84$ & 5\\
+Current limit MOSFET(obsolete) & IRLML6401PBF & Farnell & $6.41$ & 2\\
+BCR current sense resistor & ERJB3CFR15V & Farnell & $1.97$ & 5\\
+Current limit sense resistor(obsolete) & ERJB2BFR33V & Farnell & $4.83$ & 5\\
+Current limit sense resistor 2(obsolete) & ERJA1BJR27U & Farnell & $5.30$ & 5\\
+Power limit \ac{BJT}(obsolete) & STN888 & Farnell & $5.49$ & 5\\
+Solar cell & RC7.2-75(PSA) & Eco Power Shop & $230.08$ & 2\\
+Solar cell(obsolete) & MC-SP0.8-NF-GCS & Farnell & $66.51$ & 2\\
+\ac{LDO} regulator & MIC29300-5.0WT & Farnell & $74.85$ & 2\\
+Current sense OpAmp & LTC6362CMS8\# PBF & Farnell & $32.31$ & 2\\
+Thermistor & NTCLE203E3472GB0 & Farnell & $8.64$ & 5\\
+Motor fuses & RGEF1000 & Farnell & $6.46$ & 5\\
+\ac{LDO} regulator fuses & MC36248 & Farnell & $1.41$ & 5\\
+\ac{BCR} MOSFET & SUP75P03-07-E3 & Farnell & $31.51$ & 2\\
+\ac{UVLO} linear shunt regulator & TL431AILPME3 & Farnell & $1.36$ & 5\\
+\ac{UVLO} MOSFET & SUP75P03-07-E3 & Farnell & $31.51$ & 2\\
+\hline\hline
+Total cost & & & 2707.6 & \\
+\hline
+\end{longtable}
+\end{center}
+%
+%
+\subsection{Electronics Ground Support Equipment}
+The \ac{EGSE} in Table \ref{tab:EGSE} is mainly required for testing of the \ac{EPS}.
+%
+\begin{table}[H]
+\centering
+\caption{Required \ac{EGSE}}
+\label{tab:EGSE}
+\begin{tabular}{|p{0.35\textwidth}p{0.55\textwidth}|}
+\hline
+\textbf{Instrument} & \textbf{Required Specifications}\\
+\hline
+Network Analyzer & Up to about $\sim 1\,MHz$\\
+Spectrum Analyzer & \ac{TBD}\\
+Power supply & $75\,W$ output power at $\sim 15\,V$\\
+Heating and cooling chamber(s) & $-20^{\circ}C$ to $+45^{\circ}C$ and allow small wires to be pulled through chamber\\
+\hline
+\end{tabular}
+\end{table}
+%
+%
+\subsection{Mechanical Ground Support Equipment}
+The required \ac{MGSE} is mainly for \ac{PCB} manufacturing, i.e. UV light source, photo developing facility, etching facility, drills, cutters etc.

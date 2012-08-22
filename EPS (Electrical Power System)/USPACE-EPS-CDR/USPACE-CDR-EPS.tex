@@ -19,15 +19,16 @@
 \usepackage{float} % forced position of figures/tables etc.
 %\usepackage{mathtools}
 %\usepackage[framed,numbered]{mcode}
-%\usepackage{URL}
+\usepackage{url}
 \usepackage{acronym}
-\usepackage{rotating}
+\usepackage{rotating} % allow sideways figures and tables
 \usepackage{titling}
 \usepackage{bibcheck}
 %\usepackage{pdfpages}
-%\usepackage[pdfpagemode=FullScreen,pdfstartview=FitH,pdfborder={0 0 0},pdftitle={My report},bookmarks,pdfauthor={Morten Olsen}]{hyperref}
+\usepackage[pdfstartview=FitH,pdfborder={0 0 0},bookmarks]{hyperref} % activate cross links in pdf
 \usepackage{memhfixc}
 %\usepackage{maplestd2e}
+\usepackage{longtable} % multi-page table environment
 
 \graphicspath{{./figures/}}	% look for graphic files in the "figures" subfolder
 
@@ -55,8 +56,8 @@ Zhou \textsc{Hao}\\
 Dries \textsc{Agten}\\
 Morten \textsc{Olsen}
 }
-\def\docversion{DRAFT}					% Possible versions are: DRAFT, REVIEW or RELEASED
-\def\docreference{USPACE-CDR-EPS-00}	% -00 = DRAFT,  -A1 = 1st release,  -A2 = 1st release with minor updates, -B1, = 2nd release
+\def\docversion{Review}					% Possible versions are: DRAFT, REVIEW or RELEASED
+\def\docreference{USPACE-CDR-EPS-A1}	% -00 = DRAFT,  -A1 = 1st release,  -A2 = 1st release with minor updates, -B1, = 2nd release
 \def\title{Critical Design Report}
 \def\subtitle{Electrical Power System}
 
@@ -102,6 +103,6 @@ Morten \textsc{Olsen}
 \newgeometry{margin=1.5cm}
 \pagestyle{plain}
 
-%\input{appendices}
+\input{appendices}
 
 \end{document}

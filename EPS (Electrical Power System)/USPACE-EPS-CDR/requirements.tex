@@ -4,7 +4,7 @@
 This section describes the functional and technical \ac{EPS} requirements along with the expected \ac{EPS} performance.
 %
 \subsection{Functional Requirements}
-Below are listed the primary functional \ac{EPS} requirements:
+The primary functional \ac{EPS} requirements are:
 %
 \begin{itemize}
 \item Provide adequate power to motors, other subsystems and payloads
@@ -33,14 +33,11 @@ The \ac{EPS} technical requirements are listed in table \ref{tab:technical_requi
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
 Minimum power output & $P_{out,min}$ & $40\,W$\\
-Maximum mass & $W_{EPS}$ & $1000\,g$ including solar arrays\\
-Maximum cost & - & $4000\,SEK$\footnote{Initial budget for 2 students.}\\
-Output voltages & $V_{mainbus}$, $V_{5V}$ & $6.0-9.2\,V$ un-regulated and $5\,V$ regulated\\
-Maximum output current (worst case) & $I_{Out,max}$ & $10.8\,A$\\
-Regulator phase margin & - & $60\,deg$\\
-Regulator gain margin & - & $10\,dB$\\
-Control loop bandwidth & - & $>10\,kHz$\\
-Operational temperature & $T_{max}$, $T_{min}$ & $-20^{\circ}C\,to +25^{\circ}C$\\
+Maximum mass & $W_{EPS,max}$ & $1000\,g$ including solar arrays\\
+Maximum cost & - & $4000\,SEK$\footnote{Initial budget for 2 students}\\
+Output voltages & $V_{mainbus}$, $V_{5V}$ & $6.0-9.5\,V$ un-regulated and $5\,V$ regulated\\
+Maximum output current (worst case) & $I_{out,max}$ & $10.8\,A$\\
+Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\,to +25^{\circ}C$\\
 Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 \hline
 \end{tabular}\par
@@ -54,10 +51,10 @@ Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 This section discusses the system challenges imposed by the operation environment.
 
 \subsubsection*{Solar Array Temperature}
-As was discussed in \cite{PDR}, the optimal operating voltage of the solar cells change with temperature. The \ac{EPS} must be able to generate optimal power from the solar cells in the full expected temperature range of the environment.
+As was discussed in \cite{PDR}, the optimal operating voltage of the solar cells change with temperature. The \ac{EPS} must be able to generate optimal power from the solar cells in the full expected temperature range of the environment. This can be achieved using a \ac{MPPTU} which will be discussed in Section \ref{sec:MPPTU}
 
 \subsubsection*{Solar Incidence Angle}
-The launch site of U-SPACE is near Kiruna at $67.5^{\circ}$ northern latitude. In summer solstice, at midday, the solar incidence angle, from local horizontal, is $\alpha_{sun}=46\^{circ}$\cite[eq. 1]{PDR}. The solar cell output current drops with the Kelly cosine function as shown in figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, \ac{MSE} design must consider the optimal mounting position and angle of the solar panels.
+The flight location of U-SPACE is near Kiruna at $67.5^{\circ}$ northern latitude. In summer solstice, at midday, the solar incidence angle from local horizontal is $\alpha_{sun}=46^{\circ}$\cite[eq. 1]{PDR}. The solar cell output current drops with the Kelly cosine function as shown in figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, \ac{MSE} design must consider the optimal mounting position and angle of the solar panels.
 %
 \begin{figure}[H]
 \centering
