@@ -158,15 +158,64 @@ The facilitated sensors will be (see figure \ref{fig:ADS_overview}):
 \end{itemize}
 
 Combined all together, these sensors provide complete information about the module's attitude.
-As a fusion method we will use well-understood algorithms, such as the extended Kalman filter.
 
-The fused information will be updated in real-time and stored together with each image snapshot.
 
-For development of the software, a simulation module is being written that feeds simulated measurement data into the fusion algorithm.
-By this the performance can be quantified and development gets much faster than with waiting for actual measurement data. 
+\subsection{Attitude Determination System Development}
 
-The fusion algorithm being developed and implemented in C++ will use a Kalman-like approach with least-square estimators for an optimized estimation of position and attitude combined.
-In a first simpler appoach, we treat position and attitude independetly, which is less accurate but more robust as the system is being developed.
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/raspberry-sensors-top.jpg}
+\caption{Raspberry Pi computer with our self-constructed sensor shield.
+Mounted on the shield are gyroscope (red, left), magnetometer + accelerometer (red, top) and a GPS receiver (green, right).
+Also I2C and UART 4-pin sockets are visible as well as a small voltage regulator (bottom) that connects the 3.3V GPS module to the 5V high-current source.}
+\label{fig:raspberry-sensors-top}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/raspberry-sensors-open.jpg}
+\caption{Raspberry Pi computer with our self-constructed plugable sensor shield.
+Wiring from the Raspberry Pi 26pin P1 header to individual sensors can be seen on the bottom side of the shield.}
+\label{fig:raspberry-sensors-open}
+\end{figure}
+
+The attitude determination system was not only developed on the final hardware itself.
+For continuation of the development during the semester break a recently released Raspberry Pi minicomputer was privately purchased, which has properties very similar to the Beagle Board and runs a derivate of the Debian operating system.
+We created a board to attach a complete set of sensors to the system, which is gyroscope (ITG-3200 from Sparkfun), magnetometer+accelerometer (LSM303 from Sparkfun) and GPS receiver (Venus 6 GPS Module
+ST22 from SkyTraq).
+All sensors are pluggable and the complete system is shown in \autoref{fig:raspberry-sensors-top}.
+The bottom side of the board with wiring cables is shown in \autoref{fig:raspberry-sensors-open}.
+This testing system does not yet contain a camera, but it will be added in the future.
+
+In this configuration the whole unit consumes 3W of power and weights 71g (30g for sensors and shield and 41g for the computer).
+
+%% more text until end of august if I [Bastian] find time.
+
+
+\subsection{Attitude Determination algorithms}
+The attitude of the sensing unit could in principle determined by simply integrating the gyro rates up from an initial alignment.
+This however will degrade with time because of significant low-frequency drifts, sensor offsets and measurement inaccuracies.
+
+To solve the problem more robust we use a set of 3D gyro-, magnetometer and accelerometer sensors which are fused with our C++ program that runs on the board computer.
+Main technique is the Extended Kalman Filter (EKF) which offers and near-optimal estimation with fixed memory usage.
+Attitudes are represented as quaternions, which is an elegant and cpu-effective solution.
+
+Offset filtering for the magnetometer and accelerometer is done independently.
+We set up an EKF that estimates x- y- and z-offset and total radius along with each new measurement.
+%% more text until end of august if I [Bastian] find time.
+The measurements are available readily at system startup without calibration, but the accuracy will only improve as soon as measurements from different attitudes are available.
+The EKF also accounts for slow offset drifts and similar effects.
+
+Estimation of the gyro offsets and rate scaling is done with combination of acceleration and magnetometer absolute attitude estimations and the gyro-integrated attitude.
+This outputs a gyro error value at each measurement step that is used by the Kalman algorithm to estimate the system parameters and calculate a best-estimate attitude.
+%% more text until end of august if I [Bastian] find time.
+
+Finally the position is determined independently from the GPS receiver.
+This is much simpler than fusing position values from the inertial measurement of the previously described sensors with the absolute GPS position.
+With the tight time constraints of the project we choose this simpler method.
+However in continuation of the project we want to test the fusion algorithm described in the book ``Stochastic Models -- Estimation and Control'' chapter 6.4.
+%% more text until end of august if I [Bastian] find time.
+
 
 \FloatBarrier
 \section{Electrical Circuits}
