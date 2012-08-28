@@ -5,7 +5,7 @@ The Motor Control and Communication subsystem is responsible for providing suffi
 
 \section{Functional and Technical Requirements}
 
-Below are listed the primary functional requirements for the MCC:
+Below are listed the primary functional requirements for the \ac{MCC}:
 
 \subsection{Functional Requirements}
 %What function(s) does the subsystem have to fulfill?
@@ -16,11 +16,10 @@ Below are listed the primary functional requirements for the MCC:
 \item Operation of the airship from ground 
 \end{itemize}
 
-
 \subsection{Technical Requirements}
 %What technical requirements constrain the subsystem design? - e.g. mass, power, strength, stability etc.
 
-MCC's technical requirements:
+\enlargethispage{1.0em}
 
 \begin{itemize}
 \item Maximum power consumption: 50 to 60 W Approx. 
@@ -32,6 +31,7 @@ MCC's technical requirements:
 \item Receiver channels: 6
 \end{itemize}
 
+\noindent
 As it was decided to use the blimp from ESRANGE instead of the structure that was supposed to be built by MSE, the whole system had to be re-designed. The main reasons were the dimensions of the blimp and the limitation on the total weight it is able to carry. This required for the MCC to use more powerful and efficient motors since the power system was affected as well, while the transmitter/receiver system remained unchanged.
 \\
 \\
@@ -52,15 +52,17 @@ Brush-less motors were chosen as they are known to be more powerful and lighter 
 \item RPM (for each motor): 1400 RPM/V
 \end{itemize}
 
-\section{Design of the System}
+\section{Critical Design}
 %Explain the preliminary design including block diagrams, schematics, drawings, etc.
 
-The functioning of the MCC subsystem is shown in figure \ref{fig:design_block}. The transceiver consists of 2.4 GHz transmitter and receiver. The receiver gets the motor speed control commands to the ESC which in turn actuate the motor to the desired speed.
+The functioning of the \ac{MCC} subsystem is shown in figure \ref{fig:design_block}. The transceiver consists of 2.4 GHz transmitter and receiver. The receiver gets the motor speed control commands to the ESC which in turn actuate the motor to the desired speed.
+
+\pagebreak
 
 \begin{figure}[bht]
 \centering
 \includegraphics[scale=0.8]{figures/blockdiagram.jpg}
-\caption{Block Diagram of the MCC Subsystem}
+\caption{Block diagram of the MCC Subsystem}
 \label{fig:design_block}
 \end{figure}
 
@@ -88,9 +90,8 @@ For the transceiver system the available options are to use
 
 \begin{center}
 \begin{table}[bht]
-\rowcolors{3}{tableshade}{white}
-\begin{tabular}{||l l l||}
-\hline\hline
+\begin{tabular}{l l l|}
+\hline
 \textbf{Parameter:} &  \textbf{2.4 GHz Transceiver} & \textbf{72 MHz Transceiver}\\ 
 \hline
 Frequency Used & 2.4 GHz & 72 MHz \\
@@ -106,9 +107,11 @@ RF Noise Immunity & Very Good & Less \\
 \caption{Trade off analysis}
 \label{tab:TradeOff}
 \end{table}
+\vspace{-2.0em}
 \end{center}
 
-It is clear from the Table \ref{tab:TradeOff}, that a 2.4 GHz Transceiver System is a clear winner for chosen application. The only disadvantage of using a 2.4 GHz transceiver system is that the receiver should have really good batteries and the voltage should be maintained at a particular level. The reason being that there are small processors in the transmitter and receiver that carry out many complex calculation every second without mistake. These processors require constant steady supply of current to work properly. If there is an interruption in the supply current of the receiver then there would be problems with the communication channel.
+\noindent
+It is clear from table \ref{tab:TradeOff}, that a 2.4 GHz Transceiver System is a clear winner for chosen application. The only disadvantage of using a 2.4 GHz transceiver system is that the receiver should have really good batteries and the voltage should be maintained at a particular level. The reason being that there are small processors in the transmitter and receiver that carry out many complex calculation every second without mistake. These processors require constant steady supply of current to work properly. If there is an interruption in the supply current of the receiver then there would be problems with the communication channel.
 \\
 \\
 The speed of the motor can be controlled by the following methods:
@@ -117,6 +120,7 @@ The speed of the motor can be controlled by the following methods:
 \item Build a Motor Speed Controller using a microprocessor.
 \end{itemize}
 
+\noindent
 The primary advantage of using commercial off the shelf Electronic Speed Controller is the ease of use. This would reduce the development cycle to a large extent. The disadvantage of using it is no scalability i.e. function like autonomous control and telemetry and telecommanding are not possible.
 
 \subsection{Argumentation for Chosen Concept(s)}
