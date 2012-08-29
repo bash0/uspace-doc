@@ -164,6 +164,7 @@ The facilitated sensors will be (see figure \ref{fig:ADS_overview}):
 Combined all together, these sensors provide complete information about the module's attitude.
 
 \subsection{Attitude Determination System Development}
+\FloatBarrier
 
 \begin{figure}
 \centering
@@ -194,16 +195,16 @@ In this configuration the whole unit consumes 3W of power and weighs 71g (30g fo
 
 
 \subsection{Attitude Determination Algorithms}
-The attitude of the sensing unit could in principle determined by simply integrating the gyroscope rates up from an initial alignment. This however will degrade with time because of significant low-frequency drifts, sensor offsets and measurement inaccuracies.
+The attitude of the sensing unit could in principle be determined by simply integrating the gyroscope rates up from an initial alignment. This however will degrade with time because of significant low-frequency drifts, sensor offsets and measurement inaccuracies.
 \\
 \\
-To solve the problem more robust we use a set of 3D gyro-, magnetometer and accelerometer sensors which are fused with our C++ program that runs on the board computer. Main technique is the Extended Kalman Filter (EKF) which offers and near-optimal estimation with fixed memory usage. Attitudes are represented as quaternions, which is an elegant and cpu-effective solution.
+To solve the problem more robustly we use a set of 3D gyro-, magnetometer and accelerometer sensors which are fused with our C++ program that runs on the board computer. Main technique is the \ac{EKF} which offers and near-optimal estimation with fixed memory usage. Attitudes are represented as quaternions, which is an elegant and cpu-effective solution.
 \\
 \\
 Offset filtering for the magnetometer and accelerometer is done independently.
-We set up an EKF that estimates x- y- and z-offset and total radius along with each new measurement.
+We set up an \ac{EKF} that estimates $x$- $y$- and $z$-offset and total radius along with each new measurement.
 %% more text until end of august if I [Bastian] find time.
-The measurements are available readily at system start-up without calibration, but the accuracy will only improve as soon as measurements from different attitudes are available. The EKF also accounts for slow offset drifts and similar effects.
+The measurements are available readily at system start-up without calibration, but the accuracy will only improve as soon as measurements from different attitudes are available. The \ac{EKF} also accounts for slow offset drifts and similar effects.
 \\
 \\
 Estimation of the gyro offsets and rate scaling is done with combination of acceleration and magnetometer absolute attitude estimations and the gyro-integrated attitude. This outputs a gyro error value at each measurement step that is used by the Kalman algorithm to estimate the system parameters and calculate a best-estimate attitude.
