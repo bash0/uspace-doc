@@ -198,7 +198,7 @@ In this configuration the whole unit consumes 3W of power and weighs 71g (30g fo
 The attitude of the sensing unit could in principle be determined by simply integrating the gyroscope rates up from an initial alignment. This however will degrade with time because of significant low-frequency drifts, sensor offsets and measurement inaccuracies.
 \\
 \\
-To solve the problem more robustly we use a set of 3D gyro-, magnetometer and accelerometer sensors which are fused with our C++ program that runs on the board computer. Main technique is the \ac{EKF} which offers and near-optimal estimation with fixed memory usage. Attitudes are represented as quaternions, which is an elegant and cpu-effective solution.
+To solve the problem more robustly we use a set of 3D gyro-, magnetometer and accelerometer sensors which are fused with our C++ program that runs on the board computer. Main technique is the \ac{EKF} which offers a near-optimal estimation with fixed memory usage. Attitudes are represented as quaternions, which is an elegant and cpu-effective solution.
 \\
 \\
 Offset filtering for the magnetometer and accelerometer is done independently.
@@ -219,6 +219,6 @@ Finally the position is determined independently from the GPS receiver. This is 
 
 As compared to the BeagleBone the delivered BeagleBoard's voltage at the pins
 of the expansion header is only between 0~V and 1.8~V but the expected voltage
-at the supply and the I2C interface for the sensors is 3.3~V additionally to
+at the supply and the I2C interface for the sensors is 3.3~V. Thus additionally to
 the external pull-up resistors on the I2C interface also voltage level
 converters have to be used.
