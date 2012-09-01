@@ -17,7 +17,7 @@ Table \ref{tab:pdr_to_cdr} lists major design changes from the \ac{EPS} \ac{PDR}
 \centering
 \caption{Design changes from PDR to CDR}
 \label{tab:pdr_to_cdr}
-\begin{tabular}{p{0.25\textwidth}p{0.3\textwidth}p{0.45\textwidth}}
+\begin{tabular}{p{0.25\textwidth}p{0.3\textwidth}p{0.4\textwidth}}
 \hline
 \textbf{Area of change} & \textbf{Changed parameter } & \textbf{Argumentation for change}\\
 \hline
@@ -64,12 +64,11 @@ The \ac{EPS} technical requirements are listed in table \ref{tab:technical_requi
 \hline
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
-Minimum power output & $P_{out,min}$ & $40\,W$\\
+Minimum power output & $P_{out,min}$ & $40\,W$\footnote{Average \ac{SAR} output power including losses}\\
 Maximum mass & $W_{EPS,max}$ & $1000\,g$ including solar arrays\\
 Maximum cost & - & $4000\,SEK$\footnote{Initial budget for 2 students}\\
 Output voltages & $V_{mainbus}$, $V_{5V}$ & $6.0-9.5\,V$ un-regulated and $5\,V$ regulated\\
-Maximum output current (worst case) & $I_{out,max}$ & $10.8\,A$\\
-Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\,to +25^{\circ}C$\\
+Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\,to +45^{\circ}C$\\
 Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 \hline
 \end{tabular}\par
@@ -86,14 +85,31 @@ This section discusses the system challenges imposed by the operation environmen
 As was discussed in \cite{PDR}, the optimal operating voltage of the solar cells change with temperature. The \ac{EPS} must be able to generate optimal power from the solar cells in the full expected temperature range of the environment. This can be achieved using a \ac{MPPTU} which will be discussed in Section \ref{sec:MPPTU}
 
 \subsubsection*{Solar Incidence Angle}
-The flight location of U-SPACE is near Kiruna at $67.5^{\circ}$ northern latitude. In summer solstice, at midday, the solar incidence angle from local horizontal is $\alpha_{sun}=46^{\circ}$\cite[eq. 1]{PDR}. The solar cell output current drops with the Kelly cosine function as shown in figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, \ac{MSE} design must consider the optimal mounting position and angle of the solar panels.
+The flight location of U-SPACE is near Kiruna in Sweden. Figure \ref{fig:SolarIncidenceAngles} shows the average solar incidence angles in Kiruna for the months June and September\cite{web:solarincidence}, considering a flat solar panel facing straight up.
+The solar cell output current drops with the Kelly cosine function as shown in figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, \ac{MSE} design must consider the optimal mounting position and angle of the solar panels. The most optimal flight conditions are at noon in June, with a solar incidence angle of around $46^{\circ}$, however that still reduces the solar array output by about $30\%$. If the solar array output should not drop by more than $50\%$, the maximum solar incidence angle is about $57^{\circ}$. This is only an approximation from the assumption that the solar array is mounted flat on top of the airship envelope, which will not be the exact case in practical.
+%
+\begin{figure}[H]
+\centering
+\begin{minipage}[t]{0.48\linewidth}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_CDR_EPS_SolarIncidenceAngle_Jun}
+\end{minipage}
+%\vspace{0.5mm}
+\begin{minipage}[t]{0.48\linewidth}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_CDR_EPS_SolarIncidenceAngle_Sep}
+\end{minipage}
+\caption[Solar Incidence Angles]{Monthly average solar incidence angles for June(left) and September(right) for each hour of the day. Solar panel is facing straight up}
+\label{fig:SolarIncidenceAngles}
+\end{figure}
 %
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{figures/fig_KellyCosine}
-\caption[Kelly cosine function]{Kelly cosine function showing how solar cell photo current depends on sun incidence angle}
+\caption[Kelly cosine function]{Kelly cosine function showing how solar cell photo current depends on sun incidence angle\cite[Fig 9.12]{book:mukund_wind}}
 \label{fig:KellyCosine}
 \end{figure}
+%
 %
 \subsubsection*{Solar Array Shading}
 Shading on the solar panels, for example caused by airship stabilizer structures or objects in the landscape, can cause a significant drop in the cell output voltage, as described in \cite[p. 165]{Mukund}. Bypass diodes can be used to partly mitigate this issue. However, since the airship is only expected to fly at altitudes above terrain and buildings the only shading possibly expected is from the airship structure hence the \ac{MSE} design must consider this restriction.
@@ -113,10 +129,10 @@ The expected \ac{EPS} performance values are listed in Table \ref{tab:expected_p
 \hline
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
-Power conversion efficiency(overall) & - & $80-90\%$\\
-Power output(overall) & $P_{out}$ & $\sim 57-65\,W$\\
+Power conversion efficiency(SAR) & - & $>90\%$\\
+Power output(SAR) & $P_{out}$ & $\sim 45\,W$\footnote{For ideal weather conditions, i.e. no clouds and best expected solar incidence angle}\\
 Battery capacity & $C_{bat}$ & $7.3\,Wh$\\
-Mass & $W_{EPS}$ & $\sim910\,g$\\
+Mass & $W_{EPS}$ & $\sim980\,g$\\
 Total cost & - & $\sim12000\,SEK$\footnote{Solar cells are significantly more expensive than anticipated. A request for more funds is under preparation.}\\
 \hline
 \end{tabular}\par
@@ -315,10 +331,17 @@ The inductor current ripple, $\Delta I_L$, can be calculated as
 \Delta I_L=\dfrac{V_{in}-V_{out}}{L\,f_{switch}}D
 \end{equation}
 %
-where $L$ is the inductance and $f_{switch}$ the converter switching frequency. The inductor current ripple is usually limited to about $10\,\%$ of the maximum output current which was given in Table \ref{tab:technical_requirements} as $10.8\,A$. Thus the minimum required inductance is calculated to
+where $L$ is the inductance and $f_{switch}$ the converter switching frequency. 
+The inductor current ripple is usually limited to about $10\,\%$ of the maximum converter output current leading to a minimum required inductance of
 %
 \begin{equation}
-L=\dfrac{V_{in}-V_{out}}{\Delta I_L\,f_{switch}}D=\dfrac{14.4\,V-7.4\,V}{1.08\,A\cdot 500\,kHz}\cdot 0.514=6.7\,uH
+L=\dfrac{V_{in}-V_{out}}{\Delta I_L\,f_{switch}}D=\dfrac{14.4\,V-7.4\,V}{10\% \cdot 10.83\,A\cdot 500\,kHz}\cdot 0.514=6.7\,uH
+\end{equation}
+%
+where $10.83\,A$ is the maximum converter output current calculated as 
+%
+\begin{equation}
+I_{SAR,max}=\dfrac{P_{out,max}}{V_{out,min}}=\dfrac{65\,W}{6.0\,V}=10.83\,A
 \end{equation}
 %
 A $10\,uH$ inductor is chosen giving a current ripple of about $0.72\,A$. If the load current drops below $0.36\,A$, which is unlikely to happen in most operating modes, the converter will enter \ac{DCM}.
@@ -334,6 +357,8 @@ v_{sense}=\Delta I_L\cdot R_{sense}=0.72\,A\cdot 10\,m\Omega = 7.2\,mV
 \end{equation}
 %
 It is recommended that the slope compensation is equal to or the double of the sense slope\cite[sec. 12-1]{Fundamentals}, however the minimum compensation slope is limited to $103\,mV$ by the \textit{LM3477} chip. Thus the sensed slope signal must be amplified with a gain of around 20 being suitable. This also has the advantage of eliminating some of the typical noise susceptibility in the current sense signal. The current sense circuit in Figure \ref{fig:EPS_diagram_detailed} consists of two differential OpAmps which amplifies the current sense slope. Resistive voltage dividers are placed on the OpAmp inputs to scale down the input voltage signals to always be below the $5\,V$ OpAmp supply voltage.
+
+Since a closed-loop OpAmp gain of 20 is needed at an operating frequency of $500\,kHz$, the gain-bandwidth specification of the OpAmps must be more than $10\,MHz$. The \textit{LTC6362CMS8PBF} OpAmp is chosen. One limitation of this OpAmp is its temperature range which only goes down to $0^{\circ}\,C$. This might be solved by thermally connecting it to the transistor heat sinks or ensure that the internal \ac{EPS} temperature does not go below $0^{\circ}\,C$.
 %
 \subsubsection*{Input Filter}
 An input filter is placed in front of the buck converter, mainly to draw a continuous current from the solar array. It also reduces the converter \ac{EMC} issues. 
@@ -393,7 +418,7 @@ The complete \ac{EPS} diagram is shown in Figure \ref{fig:EPS_diagram_detailed}.
 %
 \begin{sidewaysfigure}
 \centering
-\includegraphics[scale=0.8]{figures/fig_CDR_EPSdiagram_detailed}
+\includegraphics[width=\textwidth]{figures/fig_CDR_EPSdiagram_detailed}
 \caption{EPS detailed block diagram}
 \label{fig:EPS_diagram_detailed}
 \end{sidewaysfigure}

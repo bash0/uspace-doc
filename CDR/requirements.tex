@@ -30,11 +30,11 @@ The \ac{U-SPACE} project, being a proof of concept, consists of designing, build
 \begin{tabular}{c c c}
 \hline
 \textbf{Parameter} & \textbf{Lower limit} & \textbf{Upper limit}\\ \hline
-Total mass & / & 4.5 kg\\
-Flight altitude & 2 m & 100 m\\
-Electrical power & / & 40 W\\
-Forward velocity & / & 1 m/s\\
-Radius & 10 m & /\\
+Total mass & - & $4.5\,kg$\\
+Flight altitude & $2\,m$ & $100\,m$\\
+Electrical power & - & $40\,W$\\
+Forward velocity & - & $1\,m/s$\\
+Radius & $10\,m$ & -\\
 \hline
 \end{tabular}
 \end{table}
@@ -63,22 +63,21 @@ The final resource is related to the previously mentioned functionality. With a 
 
 \subsection{Environment}
 
-The \ac{SPA} that will be developed during the \ac{U-SPACE} project finally has to be tested outdoors. Since the \ac{U-SPACE} project is being executed in the city of Kiruna during the spring, summer and early autumn, it is important to take the environmental conditions during this period of the year into account.  Some of the these conditions are listed below in table \ref{tab:environment}, using data for the month of May \cite{website:weatherspark} as a representation of the entire project period.
+The \ac{SPA} that will be developed during the \ac{U-SPACE} project finally has to be tested outdoors. Since the \ac{U-SPACE} project is being executed in the city of Kiruna during the spring, summer and early autumn, it is important to take the environmental conditions during this period of the year into account.  Some of the these conditions are listed below in table \ref{tab:environment} for the months May-September\cite{website:weatherspark}.
 
 \begin{table}[H]
 \centering
 \caption{Environmental conditions}
 \label{tab:environment}
 \makebox[\textwidth]{
-\begin{tabularx}{1.06\textwidth}{p{0.35\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.35\textwidth}}
+\begin{tabularx}{1.06\textwidth}{p{0.2\textwidth} p{0.15\textwidth} p{0.15\textwidth} p{0.4\textwidth}}
 \hline
 \textbf{Parameter} & \textbf{Lower boundary} & \textbf{Upper boundary} & \textbf{Remarks}\\ \hline
-Temperature & -2 $^\circ$C & 11 $^\circ$C & Average values\\
-Wind speed & 1 m/s & 6 m/s & Usually from the south west\\
-Probability of precipitation & 61 \% & 61 \% & Average value\\
-Hours of sunshine & 17:38 h & 22:45 h & Daily values\\
-Cloud cover & 83 \% & 83 \% & Median value\\
-Solar incidence angle at noon & 46 $^\circ$ & 46 $^\circ$ & Refer to document \newline USPACE-PDR-PWR-A1\\
+Temperature & $-7^{\circ} \,C$ & $22^{\circ} \,C$ & worst-case $10-90$ percentile band\\
+Wind speed & $1\;/\;3 \,m/s$ & $6\;/\;(9) \,m/s$ & Daily average / worst-case $10-90$ percentile band). Usually from the south west\\
+Probability of precipitation & $61\%$ & $63\%$ & Daily average. Mostly light rain/snow or moderate rain/snow\\
+Cloud cover & $83\%$ & $85\%$ & Median cloud cover(mostly cloudy)\\
+Solar incidence angle & $46^{\circ}$ & $57^{\circ}$ & See Section \ref{subsec:environmental_requirements}\\
 \hline
 \end{tabularx}}
 \end{table}

@@ -2,9 +2,36 @@
 \label{chap:thermal_pyro_emc}
 
 \section{Thermal Interfaces}
+This section describes the \ac{U-SPACE} thermal requirements and design.
+%
+\subsection{Thermal Requirements}
+The \ac{U-SPACE} systems are required to operate in the temperature range $-20^{\circ}\,C$ to $+45^{\circ}\,C$. The limits are based on weather data from Table \ref{tab:environment} including appropriate design margins. The high temperature limit also considers heat contribution from direct external sun exposure and internal power dissipation from the \ac{EPS}. Table \ref{tab:temp_critical_parts} lists temperature critical parts that are not rated for the full temperature range as given above.
+%
+\begin{table}[H]
+\centering
+\caption{Temperature critical parts}
+\label{tab:temp_critical_parts}
+\begin{minipage}{\textwidth}
+\begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.15\textwidth}p{0.2\textwidth}}
+\hline
+\textbf{Part} & \textbf{Rating} & \textbf{Monitoring} & \textbf{Control} & \textbf{Protection}\\
+\hline
+BeagleBoard \ac{MCU} & $0^{\circ}\,C$ to $+85^{\circ}\,C$ & - & - & ?\\
+\hline
+\ac{EPS} Battery &  $+5^{\circ}\,C$ to $+40^{\circ}\,C$\footnote{Including $5^{\circ}\,C$ design safety margin} & External thermistor & - & Charge inhibit at low temperature\\
+\hline
+Current sense OpAmp & $0^{\circ}\,C$ to $+70^{\circ}\,C$ & - & - & -\\
+\hline
+\end{tabular}\par
+\vspace{-0.75\skip\footins}
+\renewcommand{\footnoterule}{}
+\end{minipage}
+\end{table}
 
-The topic of thermal interfaces is irrelevant for the \ac{U-SPACE} project. All subsystems, both for the airborne structure and the ground-based structures, will have roughly the same temperature during the entire operation period of the \ac{SPA}. Also the expected ambient temperature is uniform and not extremely high or low (see section \ref{sec:constraints} in chapter \ref{chap:goals_constraints}). For these reasons it is not necessary to investigate the issues related to thermal interfaces (e.g. thermal mismatch).
-
+\subsection{Thermal Design}
+From Table \ref{tab:temp_critical_parts} it is mainly the lower temperature limit which is of concern. Currently the \ac{U-SPACE} thermal design does not include temperature monitoring, except the battery, nor any temperature control. It will therefore not be possible to fly when the outdoor temperature falls much below $+5^{\circ}\,C$. This issue may be solved by insulating the cargo bay with Styrofoam or similar material. Internal dissipation from the \ac{EPS} and payloads will increase the internal cargo bay temperature. Additional heaters may also be included in the design, however this will complicate the system and consume power, which is already limited.\\[5mm]
+Complete thermal analysis, insulation requirements and possible heater design still remains to be done.
+%
 \section{Pyrotechnics Interface}
 
 In order to achieve the functionality described in chapter \ref{chap:goals_constraints} there is no need for any form of pyrotechnics. The project does not require the release or deployment of other structures which could make use of pyrotechnics. Therefore pyrotechnics particulars are not discussed in this respect.
