@@ -19,7 +19,7 @@ Table \ref{tab:pdr_to_cdr} lists major design changes from the \ac{EPS} \ac{PDR}
 \label{tab:pdr_to_cdr}
 \begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.5\textwidth}}
 \hline
-\textbf{Area of change} & \textbf{Change parameter } & \textbf{Argumentation for change}\\
+\textbf{Area of change} & \textbf{Change} & \textbf{Argumentation for change}\\
 \hline
 \rr Total power budget & \rr Increased to $>40\,W$ & Airship total mass and size are increased thus requiring much more power for the motors.\tn
 Solar cells & New part & \rr Old solar cell was much heavier than listed in manufacturer datasheet due to a glass cover.\tn
@@ -52,14 +52,31 @@ Additional desired requirements are:
 \item Optimal design and high performance to increase power capability and minimize system mass
 \end{itemize}
 %
-\subsection{Technical Requirements}
-The \ac{EPS} technical requirements are listed in table \ref{tab:technical_requirements}.
+\subsection{Technical Requirements and Power Budget}
+%
+The \ac{EPS} power budget is listed in Table \ref{tab:power_budget} and the technical requirements are listed in Table \ref{tab:technical_requirements}.
+%
 %
 \begin{table}[H]
 \centering
-\caption{Technical requirements}
+\caption{EPS Power Budget}
+\label{tab:power_budget}
+\begin{tabular}{p{0.4\textwidth}p{0.3\textwidth}p{0.2\textwidth}}
+\hline
+\textbf{Part/subsystem} & \textbf{Peak load} & \textbf{Average load}\\
+\hline
+2 x \ac{MCC} motors & $120\,W$ & $\sim 35\,W$? \\
+\rr \ac{ITPU} MCU + sensors & $3\,W$? & $3\,W$?\tn
+\ac{MCC} ETag & ? & ? \\
+\hline
+\end{tabular}
+\end{table}
+%
+%
+\begin{table}[H]
+\centering
+\caption{EPS Technical requirements}
 \label{tab:technical_requirements}
-\begin{minipage}{\textwidth}
 \begin{tabular}{p{0.3\textwidth}p{0.15\textwidth}p{0.45\textwidth}}
 \hline
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
@@ -71,11 +88,10 @@ Output voltages & $V_{mainbus}$, $V_{5V}$ & $6.0-9.5\,V$ un-regulated and $5\,V$
 Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\,to +45^{\circ}C$\\
 Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 \hline
-\end{tabular}\par
-\vspace{-0.75\skip\footins}
-\renewcommand{\footnoterule}{}
-\end{minipage}
+\end{tabular}
 \end{table}
+%
+%
 %
 \subsection{Mission and Environmental Constraints}
 \label{subsec:environmental_requirements}
