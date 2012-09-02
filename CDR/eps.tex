@@ -1,31 +1,31 @@
 \chapter{Electrical Power System}
 \label{chap:eps}
-
+%
 \section{Introduction}
 \label{sec:introduction}
-
+%
 The \ac{EPS} provides power to motors, the on-board computer, communication system and payloads. Power is mainly supplied from solar cells but can also be supplied from a battery, when solar power is not available or insufficient. 
-
-\enlargethispage{2.0em}
-
+%
+%\enlargethispage{2.0em}
+%
 \subsection{Changes from PDR to CDR}
 \label{sec:changes_pdr_to_cdr}
 %
 Table \ref{tab:pdr_to_cdr} lists major design changes from the \ac{EPS} \ac{PDR} report.
-
+%
 \begin{table}[H]
 \centering
 \caption{Design changes from PDR to CDR}
 \label{tab:pdr_to_cdr}
-\begin{tabular}{p{0.25\textwidth}p{0.3\textwidth}p{0.4\textwidth}}
+\begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.5\textwidth}}
 \hline
-\textbf{Area of change} & \textbf{Changed parameter } & \textbf{Argumentation for change}\\
+\textbf{Area of change} & \textbf{Change parameter } & \textbf{Argumentation for change}\\
 \hline
-Total power budget & Increased to $>40\,W$ & Airship total mass and size are increased thus requiring much more power for the motors\\
-Solar cells & New part & Old solar cell was much heavier than listed in manufacturer datasheet due to a glass cover\\
-Total system cost & Increased to $>12000\,SEK$ & Increased power and new light-weight solar cells are more expensive\\
-Solar cell mounting & New part & New solar cell is flexible instead of rigid and can be mounted with \ac{PSA}\\
-Battery & New part & A battery that supports much higher discharge currents has been selected which simplifies current limiting circuitry and improves battery efficiency\\
+\rr Total power budget & \rr Increased to $>40\,W$ & Airship total mass and size are increased thus requiring much more power for the motors.\tn
+Solar cells & New part & \rr Old solar cell was much heavier than listed in manufacturer datasheet due to a glass cover.\tn
+Total system cost & \rr Increased to $>12000\,SEK$ & \rr Increased power and new light-weight solar cells are more expensive.\tn
+\rr Solar cell mounting & New part & \rr New solar cell is flexible instead of rigid and can be mounted with \ac{PSA}.\tn
+Battery & New part & \rr A battery that supports much higher discharge currents has been selected which simplifies current limiting circuitry and improves battery efficiency.\tn
 \hline
 \end{tabular}
 \end{table} 
@@ -60,7 +60,7 @@ The \ac{EPS} technical requirements are listed in table \ref{tab:technical_requi
 \caption{Technical requirements}
 \label{tab:technical_requirements}
 \begin{minipage}{\textwidth}
-\begin{tabular}{p{0.35\textwidth}p{0.15\textwidth}p{0.4\textwidth}}
+\begin{tabular}{p{0.3\textwidth}p{0.15\textwidth}p{0.45\textwidth}}
 \hline
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
@@ -76,14 +76,14 @@ Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 \renewcommand{\footnoterule}{}
 \end{minipage}
 \end{table}
-
+%
 \subsection{Mission and Environmental Constraints}
 \label{subsec:environmental_requirements}
 This section discusses the system challenges imposed by the operation environment.
-
+%
 \subsubsection*{Solar Array Temperature}
 As was discussed in \cite{PDR}, the optimal operating voltage of the solar cells change with temperature. The \ac{EPS} must be able to generate optimal power from the solar cells in the full expected temperature range of the environment. This can be achieved using a \ac{MPPTU} which will be discussed in Section \ref{sec:MPPTU}
-
+%
 \subsubsection*{Solar Incidence Angle}
 The flight location of U-SPACE is near Kiruna in Sweden. Figure \ref{fig:SolarIncidenceAngles} shows the average solar incidence angles in Kiruna for the months June and September\cite{web:solarincidence}, considering a flat solar panel facing straight up.
 The solar cell output current drops with the Kelly cosine function as shown in figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, \ac{MSE} design must consider the optimal mounting position and angle of the solar panels. The most optimal flight conditions are at noon in June, with a solar incidence angle of around $46^{\circ}$, however that still reduces the solar array output by about $30\%$. If the solar array output should not drop by more than $50\%$, the maximum solar incidence angle is about $57^{\circ}$. This is only an approximation from the assumption that the solar array is mounted flat on top of the airship envelope, which will not be the exact case in practical.
@@ -91,7 +91,6 @@ The solar cell output current drops with the Kelly cosine function as shown in f
 \begin{figure}[H]
 \centering
 \begin{minipage}[t]{0.48\linewidth}
-\centering
 \includegraphics[width=\textwidth]{figures/fig_CDR_EPS_SolarIncidenceAngle_Jun}
 \end{minipage}
 %\vspace{0.5mm}
@@ -172,7 +171,7 @@ Capacity & $C_{bat}$ & $2.1\,Ah$ / $15.54\,Wh$\\
 Weight & $W_{bat}$ & $122\,g$\\
 Dimensions & - & $105\,mm\:\times\:35.2\,mm\:\times\:17\,mm$\\
 Maximum fast charge current & $I_{charge,max}$ & $3\,A$\\
-Maximum discharge current (continuous) & $I_{discharge,max}$ & $63\,A$\\
+\rr Maximum discharge current (continuous) & $I_{discharge,max}$ & $63\,A$\\
 \hline
 \end{tabular}
 \end{table}
@@ -182,17 +181,14 @@ Maximum discharge current (continuous) & $I_{discharge,max}$ & $63\,A$\\
 \label{subsec:BCR}
 %
 The \ac{BCR} must control the charge rate of the battery such that the charge current limit is not exceeded and cut off the charge current when the battery is fully charged. Temperature monitoring is usually also required to inhibit charging if the battery temperature is outside its safety limits. 
-
-\pagebreak
-
+\\
+%\pagebreak
+%
 \noindent
 An \textit{MCP73842} Li-ion battery charge regulator \ac{IC} is selected. It employs three different charge modes: low-charge for deeply discharged batteries, \ac{CC} charge and trickle charging as well as inputs for temperature monitoring. The battery maximum charge current was in Table \ref{tab:proposed_battery} given as $3\,A$. From the \textit{MCP73842} datasheet, the minimum current sense resistor value is calculated as
 %
 \begin{equation}
-\begin{split}
-R_{sense}=&\dfrac{V_{FCS}}{I_{REG}}\\
-R_{sense}=&\dfrac{120\,mV}{3\,A}=40\,m\Omega
-\end{split}
+R_{sense}=\dfrac{V_{FCS}}{I_{REG}}=\dfrac{120\,mV}{3\,A}=40\,m\Omega
 \end{equation}
 %
 A $50\,m \Omega$ current sense resistor is selected leading to a charge current of $2.4\,A$.
@@ -200,7 +196,10 @@ A $50\,m \Omega$ current sense resistor is selected leading to a charge current 
 The worst-case thermal dissipation in the MOSFET happens when the battery is charged from its minimum charge state
 %
 \begin{equation}
-\footnotesize{P_{max,MOSFET}=(V_{in,max}-V_F-V_{bat,min})\cdot I_{charge}=(9.5\,V-0.3\,V-5.5\,V)\cdot 2.4\,A=8.88\,W}
+\begin{split}
+P_{max,MOSFET}=&(V_{in,max}-V_F-V_{bat,min})\cdot I_{charge}\\
+=&(9.5\,V-0.3\,V-5.5\,V)\cdot 2.4\,A=8.88\,W
+\end{split}
 \end{equation}
 %
 where $V_{in,max}$ is the maximum mainbus voltage, $V_F$ the expected Schottky diode forward voltage drop and $V_{bat,min}$ is the preconditioning threshold voltage of the \ac{BCR} \ac{IC}.
@@ -242,9 +241,9 @@ where $V_{ref}$ is the \textit{TL431} build-in voltage reference. If the battery
 \\
 \\
 The \ac{UVLO} circuit only cuts out the motor power line. Thus payloads remain supplied and the battery is still slowly drained. This design has been chosen to allow  telemetry and telecommand capability during a heavy battery discharge event. In this case, it is expected that all payloads and on-board computers enter a low power consumption mode, to extend the remaining battery supply time. If the battery voltage drops below $5.62\,V$, the $5\,V$ payload power supply shuts down and all telemetry and telecommand capabilities will be lost.
-
-\pagebreak
-
+%
+%\pagebreak
+%
 \subsection{Solar Array Design}
 \label{sec:SA}
 The main driver for selecting the solar cell is to choose a part which is very light-weight and easy to mount on the \ac{SPA}. A  \textit{PowerFilm RC7.2-75(PSA)} solar cell is selected as shown in Figure \ref{fig:solar_cell}. This is a very light-weight flexible solar cell with a \ac{PSA} backside for mounting. Table \ref{tab:solar_cell_spec} lists the solar cell specifications.
@@ -271,7 +270,7 @@ Total solar array area & $A_{array}$ & $2.43\,m^2$ (assuming $100\,\%$ fill fact
 \renewcommand{\footnoterule}{}
 \end{minipage}
 \end{table}
-
+%
 \noindent
 The solar array is an array of 50 parallel connected strings of two series solar cells as shown in Figure \ref{fig:solar_cell}. The nominal output voltage and current are given as
 %
@@ -284,16 +283,16 @@ I_{array}&=50\cdot I_{cell}=5\,A
 %
 \begin{figure}[H]
 \centering
-\begin{minipage}[t]{0.4\linewidth}
+\begin{minipage}[c]{0.4\linewidth}
 \centering
 \includegraphics[width=\textwidth]{figures/SolarCell_RC7-2_Powerfilm}
 \end{minipage}
 \hspace{5mm}
-\begin{minipage}[t]{0.55\linewidth}
+\begin{minipage}[c]{0.55\linewidth}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/fig_CDR_Solar_Array}
 \end{minipage}
-\caption{PowerFilm solar cell (left) and solar array configuration (right)}
+\caption[PowerFilm solar cell and solar array configuration]{PowerFilm solar cell (left) and solar array configuration (right)}
 \label{fig:solar_cell}
 \end{figure}
 %
@@ -323,7 +322,8 @@ The \ac{CM} control scheme is adopted due to its excellent dynamic abilities\cit
 \\
 \\
 The converter switching frequency, $f_{switch}$, is chosen relatively high to $500\,kHz$. The increased switching losses are expected to by out-weighted by the fact that the low operating voltage limits switching losses and high frequency allows the inductor and filter components to be made smaller thus limiting system mass and the resistive losses in the inductor copper wires which are expected to dominate converter losses due to the relatively high currents.
-
+\\
+%
 \noindent
 The inductor current ripple, $\Delta I_L$, can be calculated as 
 %
@@ -432,16 +432,16 @@ The interfaces of the \ac{EPS} external are listed in table \ref{tab:external_in
 \centering
 \caption{External interfaces}
 \label{tab:external_interfaces}
-\begin{tabular}{m{0.3\textwidth}m{0.15\textwidth}m{0.45\textwidth}}
+\begin{tabular}{p{0.25\textwidth}p{0.15\textwidth}p{0.5\textwidth}}
 \hline
 \textbf{External interface} & \textbf{Type} & \textbf{Implementation}\\
 \hline
-Solar cells mounting & Mechanical & \ac{TBD} (possibly using \ac{PSA})\\[2mm]
-Power electronics mounting & Mechanical & Mounted on a \ac{PCB} which sits in the cargo bay, attached with screws\\[2mm]
+Solar cells mounting & Mechanical & Possibly using \ac{PSA} - \ac{TBD}.\\[2mm]
+\rr Power electronics mounting & Mechanical & \rr Mounted on a \ac{PCB} which sits in the cargo bay, attached with screws.\tn[2mm]
 Battery mounting & Mechanical & Mounted in cargo bay with strips or Velcro. Thermal insulation with Styrofoam or similar material should be added to protect against cold temperatures.\\[2mm]
-\ac{EPS} telemetry & Electrical & Analog signals to Microcontroller. Electrical connector interface still remains \ac{TBD}\\[2mm]
+\ac{EPS} telemetry & Electrical & Analog signals to Microcontroller. Electrical connector interface still remains \ac{TBD}.\\[2mm]
 \ac{EPS} telecommands & Electrical & \ac{TBD}\\[2mm]
-Output voltages & Electrical & $6.0-9.5\,V$ (unregulated) and $5.0\,V$(regulated)\\[2mm]
+Output voltages & Electrical & \rr $6.0-9.5\,V$ (unregulated) and $5.0\,V$(regulated).\tn[2mm]
 \hline
 \end{tabular}
 \end{table}
@@ -457,7 +457,6 @@ The exact electrical configuration and interface connectors still remains to be 
 \centering
 \caption{Telemetry}
 \label{tab:Telemetry}
-%\begin{minipage}{\textwidth}
 \begin{tabular}{|p{0.29\textwidth}p{0.13\textwidth}p{0.13\textwidth}p{0.35\textwidth}|}
 \hline
 \textbf{Telemetry} & \textbf{Data rate} & \textbf{Data size} & \textbf{Data range}\\
@@ -466,9 +465,9 @@ Battery voltage & Every 5 sec & 2 bytes & \ac{TBD}\\
 \hline
 Battery temperature & Every 5 sec & 2 bytes & \ac{TBD}\\
 \hline
-BCR status & Every 5 sec & 1 byte & high($5\,V$), low($0\,V$) and $1\,Hz\;50\%$ duty cycle ripple\footnote{for explanation of the different status indications, look in the \ac{BCR} \ac{IC} datasheet}\\
+BCR status & Every 5 sec & 1 byte & \rr High($5\,V$), low($0\,V$) and $1\,Hz\;50\%$ duty cycle ripple\footnote{for explanation of the different status indications, look in the \ac{BCR} \ac{IC} datasheet}\tn
 \hline
-\ac{UVLO} status & Every 5 sec & 1 byte &  $0\,V$(nominal operation), $5\,V$(under-voltage lock-out)\\
+\ac{UVLO} status & Every 5 sec & 1 byte &  \rr $0\,V$(nominal operation), $5\,V$(under-voltage lock-out)\tn
 \hline
 Mainbus voltage & Every 5 sec & 2 bytes & \ac{TBD}\\
 \hline
@@ -484,13 +483,13 @@ Solar array voltage & Every 1 sec & 2 bytes & \ac{TBD}\\
 \caption{Telecommands}
 \label{tab:Telecommands}
 %\begin{minipage}{\textwidth}
-\begin{tabular}{|p{0.25\textwidth}p{0.25\textwidth}p{0.45\textwidth}|}
+\begin{tabular}{|p{0.2\textwidth}p{0.25\textwidth}p{0.45\textwidth}|}
 \hline
 \textbf{Telecommand} & \textbf{Command format} & \textbf{Description}\\
 \hline
-Battery charge inhibit & \ac{TBD} & Battery charging can be remotely terminated in case of battery anomalies\\
+\rr Battery charge inhibit & \ac{TBD} & Battery charging can be remotely terminated in case of battery anomalies.\\
 \hline
-Solar array voltage set & \ac{TBD} & When \ac{MPPT} is running, the solar array operating voltage can manually be set to mitigate any malfunction in the \ac{MPPT} algorithm\\
+\rr Solar array voltage set & \ac{TBD} & When \ac{MPPT} is running, the solar array operating voltage can manually be set to mitigate any malfunction in the \ac{MPPT} algorithm.\\
 \hline
 \end{tabular}
 \end{table}
@@ -527,33 +526,34 @@ The \ac{BCR} is also working however excessive heating of the MOSFET was experie
 If time allows, a dedicated \ac{FM} will be build, using a custom designed \ac{PCB} schematic layout. An optimized \ac{PCB} layout will minimize the system mass and size while maximizing the efficiency and system robustness.
 %
 \subsection{EPS Test Program}
+\label{sec:eps_test_program}
 Table \ref{tab:test_program} lists all necessary and desired test of the EPS. Priority "1" tests are all required while priority "2" tests will only be realized if time and resources allow it.
 %
 \begin{center}
-\begin{longtable}[H]{p{0.15\textwidth}p{0.3\textwidth}p{0.45\textwidth}r}
+\begin{longtable}[H]{p{0.15\textwidth}p{0.25\textwidth}p{0.45\textwidth}r}
 \caption{Test program}\\
 \label{tab:test_program}\\[-0.5cm]
 \hline
 \textbf{Subsystem} & \textbf{Condition/Mode} & \textbf{Test Description} & \textbf{Pri.}\\
 \hline
-\ac{SAR} & Mainbus voltage limitation & With more input power than load power, \ac{SAR} must be able to maintain a stable $9.5\,V$ output voltage also during transient loading & 1\\
-- & Maximum power handling & With an input and load power slightly above the maximum expected solar array power, no \ac{SAR} components must overheat or otherwise malfunction & 1 \\
-- & \ac{MPPT} & \ac{TBD} & 2\\
-- & Mode transitions & \ac{SAR} must be able to change between \ac{MPPT}, battery charge and discharge mode without loosing mainbus voltage regulation or causing other malfunctions & 2\\
-- & Feedback loop stability & Regulator bandwidth, gain- and phase margins should be measured with a Network Analyzer & 2\\
-- & \ac{EMC} & Electromagnetic emissions should be measured with a Spectrum Analyzer, especially with concerns to the telecommunication systems & 2\\
+\ac{SAR} & \rr Mainbus voltage limitation & \rr With more input power than load power, \ac{SAR} must be able to maintain a stable $9.5\,V$ output voltage also during transient loading. & 1\tn
+- & \rr Maximum power handling & \rr With an input and load power slightly above the maximum expected solar array power, no \ac{SAR} components must overheat or otherwise malfunction. & 1 \tn
+- & \ac{MPPT} & \ac{TBD}. & 2\\
+- & Mode transitions & \rr \ac{SAR} must be able to change between \ac{MPPT}, battery charge and discharge mode without loosing mainbus voltage regulation or causing other malfunctions. & 2\tn
+- & \rr Feedback loop stability & \rr Regulator bandwidth, gain- and phase margins should be measured with a Network Analyzer. & 2\tn
+- & \ac{EMC} & Electromagnetic emissions should be measured with a Spectrum Analyzer, especially with concerns to the telecommunication systems. & 2\\
 \hline
-\ac{BCR} & \ac{CC} and trickle charging & \ac{CC} charge at $2.4\,A$ and trickle charge mode entered when battery voltage reaches $8.4\,V$ should be verified & 1\\
-- & Charge inhibit at high/low temperatures & While battery is charging, battery thermistor is heated/cooled in thermal oven/fridge to slightly above/below the specified temperature limits and charging should be terminated & 1\\
+\ac{BCR} & \rr \ac{CC} and trickle charging & \rr \ac{CC} charge at $2.4\,A$ and trickle charge mode entered when battery voltage reaches $8.4\,V$ should be verified. & 1\tn
+- & \rr Charge inhibit at high/low temperatures & \rr While battery is charging, battery thermistor is heated/cooled in thermal oven/fridge to slightly above/below the specified temperature limits and charging should be terminated. & 1\tn
 \hline
-\ac{UVLO} & Power cut-off and recovery & Reducing input voltage below calculated threshold voltage should open switch and switch should close again when input voltage is increased above the threshold & 1\\
+\ac{UVLO} & \rr Power cut-off and recovery & \rr Reducing input voltage below calculated threshold voltage should open switch and switch should close again when input voltage is increased above the threshold. & 1\tn
 \hline
-Battery & Dynamic model & Test approach is described in \cite{chen} & 2\\
+Battery & Dynamic model & Test approach is described in \cite{chen}. & 2\\
 \hline
-Solar cell & I-V specifications & short-circuit current, open-circuit voltage, current and voltage at the \ac{MPP} should be determined from an irradiance test & 2\\
-- & Temperature coefficients & Solar cell temperature coefficients should be determined be measuring the I-V characteristics at different temperatures within the expected temperature interval & 2\\
+Solar cell & I-V specifications & \rr Short-circuit current, open-circuit voltage, current and voltage at the \ac{MPP} should be determined from an irradiance test. & 2\tn
+- & \rr Temperature coefficients & \rr Solar cell temperature coefficients should be determined be measuring the I-V characteristics at different temperatures within the expected temperature interval. & 2\tn
 \hline
-Fuses & Temperature variation & The \ac{PTC} resettable fuses should be tested at nominal, minimum and maximum expected temperatures to verify acceptable functionality & 1\\
+Fuses & \rr Temperature variation & \rr The \ac{PTC} resettable fuses should be tested at nominal, minimum and maximum expected temperatures to verify acceptable functionality. & 1\tn
 \hline
 \end{longtable}
 \end{center}
@@ -624,14 +624,14 @@ Battery & LiPo Racing Pack 2S1P & Ansmann & N/A\footnotemark[2] & 1\\
 Reverse protection diode & VS-STPS20L15DPBF & Farnell & $24.56$ & 6\\
 BCR & MCP73842-840I/UN & Farnell & $13.61$ & 2\\
 BCR Transistor(obsolete) & TPCA8102(TE12L,Q) & Farnell & $28.5$ & 2\\
-Current limit \ac{BJT}(obsolete) & 2STN2540 & Farnell & $7.84$ & 5\\
-Current limit MOSFET(obsolete) & IRLML6401PBF & Farnell & $6.41$ & 2\\
+\rr Current limit \ac{BJT} (obsolete) & 2STN2540 & Farnell & $7.84$ & 5\\
+Current limit MOSFET (obsolete) & IRLML6401PBF & Farnell & $6.41$ & 2\\
 BCR current sense resistor & ERJB3CFR15V & Farnell & $1.97$ & 5\\
-Current limit sense resistor(obsolete) & ERJB2BFR33V & Farnell & $4.83$ & 5\\
-Current limit sense resistor 2(obsolete) & ERJA1BJR27U & Farnell & $5.30$ & 5\\
-Power limit \ac{BJT}(obsolete) & STN888 & Farnell & $5.49$ & 5\\
+\rr Current limit sense resistor (obsolete) & ERJB2BFR33V & Farnell & $4.83$ & 5\\
+\rr Current limit sense resistor 2 (obsolete) & ERJA1BJR27U & Farnell & $5.30$ & 5\\
+Power limit \ac{BJT} (obsolete) & STN888 & Farnell & $5.49$ & 5\\
 Solar cell & RC7.2-75(PSA) & Eco Power Shop & $230.08$ & 2\\
-Solar cell(obsolete) & MC-SP0.8-NF-GCS & Farnell & $66.51$ & 2\\
+Solar cell (obsolete) & MC-SP0.8-NF-GCS & Farnell & $66.51$ & 2\\
 \ac{LDO} regulator & MIC29300-5.0WT & Farnell & $74.85$ & 2\\
 Current sense OpAmp & LTC6362CMS8\# PBF & Farnell & $32.31$ & 2\\
 Thermistor & NTCLE203E3472GB0 & Farnell & $8.64$ & 5\\
@@ -661,7 +661,7 @@ The \ac{EGSE} in Table \ref{tab:EGSE} is mainly required for testing of the \ac{
 Network Analyzer & Up to about $\sim 1\,MHz$\\
 Spectrum Analyzer & \ac{TBD}\\
 Power supply & $75\,W$ output power at $\sim 15\,V$\\
-Heating and cooling chamber(s) & $-20^{\circ}C$ to $+45^{\circ}C$ and allow small wires to be pulled through chamber\\
+\rr Heating and cooling chamber(s) & $-20^{\circ}C$ to $+45^{\circ}C$ and allow small wires to be pulled through chamber\\
 \hline
 \end{tabular}
 \end{table}

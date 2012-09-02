@@ -74,6 +74,8 @@ pdftitle={U-SPACE Critical Design Report}}
 \fancyfoot{}
 \fancyfoot[C]{\thepage}
 \renewcommand{\footrulewidth}{0.4pt}
+\newcommand{\rr}{\raggedright} % to use for force left-align in multi-row table cells
+\newcommand{\tn}{\tabularnewline} % to use for making the above work :-)
 
 \bibliography{references} % include .bib file for citations
 
@@ -126,7 +128,9 @@ Tiago \textsc{Rebelo} \\
 \input{eps}
 \input{mcc}
 \input{itpu}
-\input{thermal_pyro_emc}
+\input{thermal}
+\input{emc}
+\input{pyro}
 \input{test_verification}
 \input{ground_support}
 \input{project_management}

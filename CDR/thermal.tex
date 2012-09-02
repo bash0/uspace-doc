@@ -1,6 +1,7 @@
 \chapter{Thermal Interfaces}
 \label{chap:thermal}
 %
+%\section{Thermal Interfaces}
 This chapter describes the \ac{U-SPACE} thermal requirements and design.
 %
 \section{Thermal Requirements}
@@ -11,15 +12,15 @@ The \ac{U-SPACE} systems are required to operate in the temperature range $-20^{
 \caption{Temperature critical parts}
 \label{tab:temp_critical_parts}
 \begin{minipage}{\textwidth}
-\begin{tabular}{p{0.2\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.15\textwidth}p{0.2\textwidth}}
+\begin{tabular}{p{0.15\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.15\textwidth}p{0.2\textwidth}}
 \hline
 \textbf{Part} & \textbf{Rating} & \textbf{Monitoring} & \textbf{Control} & \textbf{Protection}\\
 \hline
 BeagleBoard \ac{MCU} & $0^{\circ}\,C$ to $+85^{\circ}\,C$ & - & - & ?\\
 \hline
-\ac{EPS} Battery &  $+5^{\circ}\,C$ to $+40^{\circ}\,C$\footnote{Including $5^{\circ}\,C$ design safety margin} & External thermistor & - & Charge inhibit at low temperature\\
+\ac{EPS} Battery &  $+5^{\circ}\,C$ to $+40^{\circ}\,C$\footnote{Including $5^{\circ}\,C$ design safety margin} & External thermistor & - & Charge inhibit at low temperature.\\
 \hline
-Current sense OpAmp & $0^{\circ}\,C$ to $+70^{\circ}\,C$ & - & - & -\\
+\rr Current sense OpAmp & $0^{\circ}\,C$ to $+70^{\circ}\,C$ & - & - & -\tn
 \hline
 \end{tabular}\par
 \vspace{-0.75\skip\footins}
@@ -28,6 +29,6 @@ Current sense OpAmp & $0^{\circ}\,C$ to $+70^{\circ}\,C$ & - & - & -\\
 \end{table}
 %
 \section{Thermal Design}
-From Table \ref{tab:temp_critical_parts} it is mainly the lower temperature limit which is of concern. Currently the \ac{U-SPACE} thermal design does not include temperature monitoring, except the battery, nor any temperature control. It will therefore not be possible to fly when the outdoor temperature falls much below $+5^{\circ}\,C$. This issue may be solved by insulating the cargo bay with Styrofoam or similar material. Internal dissipation from the \ac{EPS} and payloads will increase the internal cargo bay temperature. Additional heaters may also be included in the design, however this will complicate the system and consume power, which is already limited.\\[5mm]
+From Table \ref{tab:temp_critical_parts} it is mainly the lower temperature limit which is of concern. Currently the \ac{U-SPACE} thermal design does not include temperature monitoring, except the battery, nor any temperature control. It will therefore not be possible to fly when the outdoor temperature falls much below $+5^{\circ}\,C$. This issue may be solved by insulating the cargo bay with Styrofoam or similar material. Internal dissipation from the \ac{EPS} and payloads will then increase the internal cargo bay temperature with respect to the outdoor temperature. Additional heaters may also be included in the design, however this will complicate the system and consume power which is already limited.\\[5mm]
 Complete thermal analysis, insulation requirements and possible heater design still remains to be done.
 %
