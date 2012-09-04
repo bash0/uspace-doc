@@ -132,8 +132,86 @@ developments it could be beneficial to use a real-time Linux kernel.
 
 \FloatBarrier
 \section{Image Processing}
+Provided sensoric and computational system (USpace - ITPU) is ment to be a craddle for image 
+processing experiments that simulate Low Earth Orbit conditions. Given the metainformation 
+available with images taken we can assume several basic scenarios,
+\begin{itemize}
+\item Aerial map creation (optionally automatic)
+\item 3D reconstruction of large areas
+\item Object tracking
+\item Visual attitude determination
+\end{itemize}
+We will briefly cover the basic design of each possibility and it's scientific potential.
 
-\textit{Will be included in the final version...}
+\subsection{Camera calibration}
+We are using a simple and low cost camera, nevertheless, we have to calibrate the system and compensate
+for projection distortion. Since we are assuming to take pictures at larger distances then the camera was designed for
+this distortion compensation is crucial for proper quality output. We model the camera parameters assuming a simple
+pin hole camera. We need to take pictures of a well known pattern with easily detectable lines or points on lines. 
+Taking various pictures of a tilted chess board pattern will allow us to stably detect corners of the pattern. The corners
+are lying on a straight line (under a rotation-translation transformation). Using this information we are able to calculate
+the so called intrinsic camera parameters. As the straight lines of points will appear to be curved on the pictures
+we can compute a transformation to straighten up these lines and therefore compensate for the lens distortion. 
+There might be a need for future extrinsic camera calibration as well. This is importnat specially for 3D and automated 
+applicaitons where a coordinate frame is needed.
+
+\subsection{Preprocessing}
+\label{sec:preprocessing}
+A crucial step for quality assurance is the first preprocessing and data homologization step. We need our
+input picture to be as clear and dynamically stable as possible as well as distortion free. There might be 
+more steps involved but the most important are lens distortion compensation, contrast and brightness stabilization 
+and blur removal. Lens distortion compensation is a compensation of lense's radial character and comes
+as the calibration result. Contrast and brightness might be adjusted globally to avoid saturated or
+noisy pictures. We have to assume that the aerial carrier is on the move and with not suitable light
+conditions the image can get blurry. To compensate for this blur we need to deploy a motion blur
+removal filter. Assuming linear and constant motion we can implement a Wiener filter. The motion
+can be estimated from the sensorics part or image analysis. 
+
+\subsection{Aerial map creation (optionally automatic)}
+Creating an aerial map or stitching partial views into a single pictures is a basic space-related opeartion. Our implemented
+approach consists of these steps,
+\begin{enumerate}
+\item Preprocessing
+\item Feature detection
+\item Feature rejection
+\item Transformation estimation
+\item Transformation
+\item Image merging
+\end{enumerate}
+As preprocessing was described in section ~\ref{sec:preprocessing} we move on to the feature detection. As there
+are many feature detectors this is the possibility to evaluate the performance of different feature detectors on different
+climates or terrain types. We have decided to implement three feature extraction methods for the starters. The well
+known SIFT keypoints, Kanade Lucas Tomasi (KLT) tracker based features and AGAST - a machine generated corner detector
+developed at DLR for robust 3D reconstruction. 
+
+Feature rejection then filters wrong, not relevant to the transformation we are looking for, or just bad features, not 
+persistent in the pictures long enough. 
+
+Based on the geometry of detected features and sensorics information we can estimate an affine transformation parameters
+at minimum. All of these methods should provide enough control points so that we would be able to estimate even higher 
+polynomial transformation to ease the image stitching at the edges.
+
+After carrying out the transformation we can merge the pictures together with small overlapping regions around the edges
+and make a smooth transition from picture to picture. This process can be handled by our processing unit on the fly so the
+ITPU is able to provide a ready-made result.
+
+\subsection{3D reconstruction of large ojects}
+Another potential application is in robust 3D object reconstruction. Having multiple arbitrary views of one large object as for example a castle
+we are able to find regions that are invariant to affine transformation. Having these regions we are able to calculate camera's position
+and paramteres as well as transformation of the key points. This solution is based on MSER algorithm proposed by ... and imlpemented 
+in OpenCV.
+
+\subsection{Object tracking}
+In case of ITPU having control over the steering of air carrier we could implement a real time object tracking system.
+Tracking is a modified recognition problem which focuses on real-time performance. We assume a continuous target
+movement which allows us to encorporate filtering and movement prediction methods such as Kalman filter. 
+
+\subsection{Visual attitude determination}
+Another importnat possibility of usage is attitude determination. From the relative transformation in between images a relative
+6 degrees of freedom pose change can be estimated. Having samples of absolute reference this pose can be cleaned
+of incremental errors and a long time solution can be tested. Such algorithm can be used for planetary and interplanetary
+localization.
+
 
 \FloatBarrier
 \section{Attitude Determination System}
