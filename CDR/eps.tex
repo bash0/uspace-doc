@@ -4,7 +4,7 @@
 \section{Introduction}
 \label{sec:introduction}
 %
-The \ac{EPS} provides power to motors, the on-board computer, communication system and payloads. Power is mainly supplied from solar cells but can also be supplied from a battery, when solar power is not available or insufficient. 
+The \ac{EPS} provides power to the motors, the on-board computer, the communication system and the payloads. Power is mainly supplied from solar cells but can also be supplied from a battery, when solar power is not available or insufficient. 
 %
 %\enlargethispage{2.0em}
 %
@@ -40,7 +40,7 @@ The primary functional \ac{EPS} requirements are:
 %
 \begin{itemize}
 \item Provide adequate power to motors, other subsystems and payloads
-\item Proof that flying on solar energy is possible i.e more power produced than consumed
+\item Prove that flying on solar energy is possible i.e more power produced than consumed
 \end{itemize}
 %
 Additional desired requirements are:
@@ -52,14 +52,14 @@ Additional desired requirements are:
 \item Optimal design and high performance to increase power capability and minimize system mass
 \end{itemize}
 %
-\subsection{Technical Requirements and Power Budget}
+\subsection{Power Budget and Technical Requirements}
 %
 The \ac{EPS} power budget is listed in Table \ref{tab:power_budget} and the technical requirements are listed in Table \ref{tab:technical_requirements}.
 %
 %
 \begin{table}[H]
 \centering
-\caption{EPS Power Budget}
+\caption{Power budget}
 \label{tab:power_budget}
 \begin{tabular}{p{0.4\textwidth}p{0.3\textwidth}p{0.2\textwidth}}
 \hline
@@ -75,20 +75,24 @@ The \ac{EPS} power budget is listed in Table \ref{tab:power_budget} and the tech
 %
 \begin{table}[H]
 \centering
-\caption{EPS Technical requirements}
+\caption{Technical requirements}
 \label{tab:technical_requirements}
+\begin{minipage}{\textwidth}
 \begin{tabular}{p{0.3\textwidth}p{0.15\textwidth}p{0.45\textwidth}}
 \hline
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
 Minimum power output & $P_{out,min}$ & $40\,W$\footnote{Average \ac{SAR} output power including losses}\\
-Maximum mass & $W_{EPS,max}$ & $1000\,g$ including solar arrays\\
+Maximum mass & $W_{EPS,max}$ & $1000\,g$ including solar array\\
 Maximum cost & - & $4000\,SEK$\footnote{Initial budget for 2 students}\\
 Output voltages & $V_{mainbus}$, $V_{5V}$ & $6.0-9.5\,V$ un-regulated and $5\,V$ regulated\\
 Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\,to +45^{\circ}C$\\
 Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 \hline
-\end{tabular}
+\end{tabular}\par
+\vspace{-0.75\skip\footins}
+\renewcommand{\footnoterule}{}
+\end{minipage}
 \end{table}
 %
 %
@@ -98,11 +102,11 @@ Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 This section discusses the system challenges imposed by the operation environment.
 %
 \subsubsection*{Solar Array Temperature}
-As was discussed in \cite{PDR}, the optimal operating voltage of the solar cells change with temperature. The \ac{EPS} must be able to generate optimal power from the solar cells in the full expected temperature range of the environment. This can be achieved using a \ac{MPPTU} which will be discussed in Section \ref{sec:MPPTU}
+As was discussed in \cite{PDR}, the optimal operating voltage of the solar cells change with temperature. The \ac{EPS} must be able to generate optimal power from the solar cells in the full expected temperature range of the environment. This can be achieved using a \ac{MPPTU} which will be discussed in section \ref{sec:MPPTU}
 %
 \subsubsection*{Solar Incidence Angle}
-The flight location of U-SPACE is near Kiruna in Sweden. Figure \ref{fig:SolarIncidenceAngles} shows the average solar incidence angles in Kiruna for the months June and September\cite{web:solarincidence}, considering a flat solar panel facing straight up.
-The solar cell output current drops with the Kelly cosine function as shown in figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, \ac{MSE} design must consider the optimal mounting position and angle of the solar panels. The most optimal flight conditions are at noon in June, with a solar incidence angle of around $46^{\circ}$, however that still reduces the solar array output by about $30\%$. If the solar array output should not drop by more than $50\%$, the maximum solar incidence angle is about $57^{\circ}$. This is only an approximation from the assumption that the solar array is mounted flat on top of the airship envelope, which will not be the exact case in practical.
+The flight location of U-SPACE is near Kiruna in Sweden. Figure \ref{fig:SolarIncidenceAngles} shows the average solar incidence angles in Kiruna for the months June and September \cite{web:solarincidence}, considering a flat solar panel facing straight up.
+The solar cell output current drops with the Kelly cosine function as shown in Figure \ref{fig:KellyCosine}. To minimize power losses due to inclined solar incidence, the \ac{MSE} design must consider the optimal mounting position and angle of the solar panels. The most optimal flight conditions are at noon in June, with a solar incidence angle of around $46^{\circ}$. However, this still reduces the solar array output by about $30\%$. If the solar array output should not drop by more than $50\%$, the maximum solar incidence angle is about $57^{\circ}$. This is only an approximation from the assumption that the solar array is mounted flat on top of the airship envelope, which will not be the exact case in practice.
 %
 \begin{figure}[H]
 \centering
@@ -114,23 +118,23 @@ The solar cell output current drops with the Kelly cosine function as shown in f
 \centering
 \includegraphics[width=\textwidth]{figures/fig_CDR_EPS_SolarIncidenceAngle_Sep}
 \end{minipage}
-\caption[Solar Incidence Angles]{Monthly average solar incidence angles for June(left) and September(right) for each hour of the day. Solar panel is facing straight up}
+\caption[Solar incidence angles]{Monthly average solar incidence angles for June (left) and September (right) for each hour of the day. The solar panel is facing straight up}
 \label{fig:SolarIncidenceAngles}
 \end{figure}
 %
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{figures/fig_KellyCosine}
-\caption[Kelly cosine function]{Kelly cosine function showing how solar cell photo current depends on sun incidence angle\cite[Fig 9.12]{book:mukund_wind}}
+\caption[Kelly cosine function]{Kelly cosine function showing how solar cell photo current depends on sun incidence angle \cite[Fig 9.12]{book:mukund_wind}}
 \label{fig:KellyCosine}
 \end{figure}
 %
 %
 \subsubsection*{Solar Array Shading}
-Shading on the solar panels, for example caused by airship stabilizer structures or objects in the landscape, can cause a significant drop in the cell output voltage, as described in \cite[p. 165]{Mukund}. Bypass diodes can be used to partly mitigate this issue. However, since the airship is only expected to fly at altitudes above terrain and buildings the only shading possibly expected is from the airship structure hence the \ac{MSE} design must consider this restriction.
+Shading on the solar panels, for example caused by airship stabilizer structures or objects in the landscape, can cause a significant drop in the cell output voltage, as described in \cite[p. 165]{Mukund}. Bypass diodes can be used to partly mitigate this issue. However, since the airship is only expected to fly at altitudes above normal terrain and building height the only shading possibly expected is from the airship structure. Hence the \ac{MSE} design must consider this restriction.
 %
 \subsubsection*{Battery Temperature}
-One of the most temperature critical \ac{EPS} components is the battery which must stay within its safety temperature limits. In the proposed design, only temperature monitoring is offered therefore, flight is only allowed when outdoors temperatures are well within the allowed battery temperature range. Otherwise a battery heater and more sophisticated thermal design may be necessary.
+One of the most temperature-critical \ac{EPS} components is the battery, which must stay within its safety temperature limits. In the proposed design, only temperature monitoring is offered. Therefore, flight is only allowed when outdoor temperatures are well within the allowed battery temperature range. Otherwise a battery heater and more sophisticated thermal design may be necessary.
 %
 \subsection{Expected Performance}
 The expected \ac{EPS} performance values are listed in Table \ref{tab:expected_performance}.
@@ -144,8 +148,8 @@ The expected \ac{EPS} performance values are listed in Table \ref{tab:expected_p
 \hline
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
-Power conversion efficiency(SAR) & - & $>90\%$\\
-Power output(SAR) & $P_{out}$ & $\sim 45\,W$\footnote{For ideal weather conditions, i.e. no clouds and best expected solar incidence angle}\\
+Power conversion efficiency (SAR) & - & $>90\%$\\
+Power output (SAR) & $P_{out}$ & $\sim 45\,W$\footnote{For ideal weather conditions, i.e. no clouds and best expected solar incidence angle}\\
 Battery capacity & $C_{bat}$ & $7.3\,Wh$\\
 Mass & $W_{EPS}$ & $\sim980\,g$\\
 Total cost & - & $\sim12000\,SEK$\footnote{Solar cells are significantly more expensive than anticipated. A request for more funds is under preparation.}\\
@@ -160,7 +164,7 @@ Total cost & - & $\sim12000\,SEK$\footnote{Solar cells are significantly more ex
 \section{Critical Design}
 \label{sec:critical_design}
 %
-The basic \ac{EPS} diagram is shown in  Figure \ref{fig:EPS_diagram_simple}. A \ac{SAR} controls the operating voltage of the solar array and supplies an unregulated mainbus. The mainbus voltage is mainly controlled by the battery voltage. A DC-DC regulator provides a regulated $5\,V$ supply to subsystems and payloads. Motors are supplied from the unregulated mainbus.
+The basic \ac{EPS} diagram is shown in  Figure \ref{fig:EPS_diagram_simple}. A \ac{SAR} controls the operating voltage of the solar array and supplies an un-regulated mainbus. The mainbus voltage is mainly controlled by the battery voltage. A DC-DC regulator provides a regulated $5\,V$ supply to subsystems and payloads. The motors are supplied from the unregulated mainbus.
 %
 \begin{figure}[H]
 \centering
@@ -175,7 +179,7 @@ In \cite{PDR} it was decided that a Li-ion type battery was suitable for the \ac
 %
 \begin{table}[H]
 \centering
-\caption{Specification of chosen battery}
+\caption{Specifications of selected battery}
 \label{tab:proposed_battery}
 \begin{tabular}{p{0.35\textwidth}p{0.15\textwidth}p{0.4\textwidth}}
 \hline
@@ -196,12 +200,10 @@ Maximum fast charge current & $I_{charge,max}$ & $3\,A$\\
 \subsubsection{Battery Charge Regulator}
 \label{subsec:BCR}
 %
-The \ac{BCR} must control the charge rate of the battery such that the charge current limit is not exceeded and cut off the charge current when the battery is fully charged. Temperature monitoring is usually also required to inhibit charging if the battery temperature is outside its safety limits. 
+The \ac{BCR} must control the charge rate of the battery such that the charge current limit is not exceeded and it must cut off the charge current when the battery is fully charged. Temperature monitoring is usually also required to inhibit charging if the battery temperature is outside its safety limits. 
 \\
-%\pagebreak
-%
-\noindent
-An \textit{MCP73842} Li-ion battery charge regulator \ac{IC} is selected. It employs three different charge modes: low-charge for deeply discharged batteries, \ac{CC} charge and trickle charging as well as inputs for temperature monitoring. The battery maximum charge current was in Table \ref{tab:proposed_battery} given as $3\,A$. From the \textit{MCP73842} datasheet, the minimum current sense resistor value is calculated as
+\\
+A \textit{MCP73842} Li-ion battery charge regulator \ac{IC} is selected. It employs three different charge modes: low-charge for deeply discharged batteries, \ac{CC} charge and trickle charging. It also includes inputs for temperature monitoring. The battery maximum charge current was given in Table \ref{tab:proposed_battery} as $3\,A$. From the \textit{MCP73842} datasheet, the minimum current sense resistor value is calculated as
 %
 \begin{equation}
 R_{sense}=\dfrac{V_{FCS}}{I_{REG}}=\dfrac{120\,mV}{3\,A}=40\,m\Omega
@@ -209,28 +211,25 @@ R_{sense}=\dfrac{V_{FCS}}{I_{REG}}=\dfrac{120\,mV}{3\,A}=40\,m\Omega
 %
 A $50\,m \Omega$ current sense resistor is selected leading to a charge current of $2.4\,A$.
 %
-The worst-case thermal dissipation in the MOSFET happens when the battery is charged from its minimum charge state
+The worst-case thermal dissipation in the \ac{MOSFET} happens when the battery is charged from its minimum charge state
 %
 \begin{equation}
 \begin{split}
-P_{max,MOSFET}=&(V_{in,max}-V_F-V_{bat,min})\cdot I_{charge}\\
+P_{max,\ac{MOSFET}}=&(V_{in,max}-V_F-V_{bat,min})\cdot I_{charge}\\
 =&(9.5\,V-0.3\,V-5.5\,V)\cdot 2.4\,A=8.88\,W
 \end{split}
 \end{equation}
 %
 where $V_{in,max}$ is the maximum mainbus voltage, $V_F$ the expected Schottky diode forward voltage drop and $V_{bat,min}$ is the preconditioning threshold voltage of the \ac{BCR} \ac{IC}.
-An \textit{SUP75P03-07-E3} P-channel MOSFET is selected which is rated for a peak power dissipation of $187\,W$, well above the minimum requirement provided that suitable thermal design is applied, most likely also including a heat sink. 
-\\
-\\
-Calculations on heat sink requirements still remain to be done.
+An \textit{SUP75P03-07-E3} P-channel \ac{MOSFET} is selected which is rated for a peak power dissipation of $187\,W$, well above the minimum requirement provided that suitable thermal design is applied, most likely including a heat sink. Calculations on heat sink requirements still remain to be done.
 %
 \subsubsection*{Future Improvements}
-As was calculated above, significant power may be lost in the \ac{BCR} MOSFET. This is due to the selected \ac{BCR} \ac{IC} which requires an input voltage of around $9.5\,V$ (including a Schottky diode forward voltage drop and some design margin). In future, the \ac{BCR} could be designed to allow operation with an input voltage only slightly above the battery voltage thus minimizing the charge losses and the thermal requirements of the MOSFET.
+As was calculated above, significant power may be lost in the \ac{BCR} \ac{MOSFET}. This is due to the selected \ac{BCR} \ac{IC} which requires an input voltage of around $9.5\,V$ (including a Schottky diode forward voltage drop and some design margin). In the future, the \ac{BCR} could be designed to allow operation with an input voltage only slightly above the battery voltage thus minimizing the charge losses and relaxing the thermal requirements of the \ac{MOSFET}.
 %
 %
 \subsubsection{Battery Temperature Monitoring}
 %%
-The selected \ac{LiPo} battery is rated, in charge-mode, for the temperature interval $0$ to $+45^{\circ}C$. For temperature measuring, a $4.7\,k \Omega$ \textit{NTCLE203E3472GB0} thermistor is selected which has a Beta Value, $B=3977\,K$. Since the battery temperature is measured using an external thermistor, thus the temperature response is likely to be somewhat slower, an extra $5^{\circ}C$ thermal design margin is added. The required resistance values of the \ac{BCR} temperature control resistors are determined from the \textit{MCP73842} datasheet as 
+The selected \ac{LiPo} battery is rated, in charge-mode, for the temperature interval $0$ to $+45^{\circ}C$. For temperature measuring, a $4.7\,k \Omega$ \textit{NTCLE203E3472GB0} thermistor is selected which has a Beta Value, $B=3977\,K$. Since the battery temperature is measured using an external thermistor, the temperature response is likely to be somewhat slower, so an extra $5^{\circ}C$ thermal design margin is added. The required resistance values of the \ac{BCR} temperature control resistors are determined from the \textit{MCP73842} datasheet as 
 %
 \begin{equation}
 \begin{split}
@@ -244,7 +243,7 @@ R_{T2}&=2\dfrac{R_{cold}R_{hot}}{R_{cold}-3R_{hot}}=12.6\,k\Omega
 where $R_{25}$, $R_{cold}$ and $R_{hot}$ are the thermistor resistance values at room temperature, the low and high temperature limits respectively. $R_{T1}$ and $R_{T2}$ are the required \ac{BCR} temperature control resistors setting the required temperature interval.
 \\
 \\
-If the sensed battery temperature falls outside the $+5$ to $+40^{\circ}\,C$ region, battery charging will be inhibited. The technical requirements from Table \ref{tab:technical_requirements} requires the \ac{EPS} to operate down to $-20^{\circ}\,C$. Hence some insulation and/or heating of the battery may be necessary or flight must be disallowed at outdoors temperatures much below $+5^{\circ}\,C$.
+If the sensed battery temperature falls outside the $+5$ to $+40^{\circ}\,C$ region, battery charging will be inhibited. The technical requirements from Table \ref{tab:technical_requirements} require the \ac{EPS} to operate down to $-20^{\circ}\,C$. Hence some insulation and/or heating of the battery may be necessary or flight must be disallowed at outdoor temperatures much below $+5^{\circ}\,C$.
 %
 \subsubsection{Battery Under-Voltage Lock-Out}
 To prevent over-discharge of the battery, a battery \ac{UVLO} circuit is added as shown in Figure \ref{fig:EPS_diagram_detailed}. An \textit{TL431} precision shunt regulator \ac{IC} is selected. The lock-out voltage is given as
@@ -253,7 +252,7 @@ To prevent over-discharge of the battery, a battery \ac{UVLO} circuit is added a
 V_{UVLO}=V_{ref}(1+\dfrac{R_1}{R_2})=2.5\,V(1+\dfrac{29\,k \Omega}{20\,k \Omega})=6.125\,V
 \end{equation}
 %
-where $V_{ref}$ is the \textit{TL431} build-in voltage reference. If the battery voltage drops below this value, the gate voltage to the P-type MOSFET is pulled high thus opening the switch. The $1\,M \Omega$ resistor adds about $200\,mV$ hysteresis. 
+where $V_{ref}$ is the \textit{TL431} built-in voltage reference. If the battery voltage drops below this value, the gate voltage to the P-type \ac{MOSFET} is pulled high, thus opening the switch. The $1\,M \Omega$ resistor adds about $200\,mV$ hysteresis. 
 \\
 \\
 The \ac{UVLO} circuit only cuts out the motor power line. Thus payloads remain supplied and the battery is still slowly drained. This design has been chosen to allow  telemetry and telecommand capability during a heavy battery discharge event. In this case, it is expected that all payloads and on-board computers enter a low power consumption mode, to extend the remaining battery supply time. If the battery voltage drops below $5.62\,V$, the $5\,V$ payload power supply shuts down and all telemetry and telecommand capabilities will be lost.
@@ -262,11 +261,11 @@ The \ac{UVLO} circuit only cuts out the motor power line. Thus payloads remain s
 %
 \subsection{Solar Array Design}
 \label{sec:SA}
-The main driver for selecting the solar cell is to choose a part which is very light-weight and easy to mount on the \ac{SPA}. A  \textit{PowerFilm RC7.2-75(PSA)} solar cell is selected as shown in Figure \ref{fig:solar_cell}. This is a very light-weight flexible solar cell with a \ac{PSA} backside for mounting. Table \ref{tab:solar_cell_spec} lists the solar cell specifications.
+The main driver for selecting the solar cell is to choose a part which is very lightweight and easy to mount on the \ac{SPA}. A  \textit{PowerFilm RC7.2-75 (PSA)} solar cell is selected as shown in Figure \ref{fig:solar_cell}. This is a very lightweight flexible solar cell with a \ac{PSA} backside for mounting. Table \ref{tab:solar_cell_spec} lists the solar cell specifications.
 %
 \begin{table}[H]
 \centering
-\caption{Specifications of chosen solar cell}
+\caption{Specifications of selected solar cell}
 \label{tab:solar_cell_spec}
 \begin{minipage}{\textwidth}
 \begin{tabular}{p{0.35\textwidth}p{0.15\textwidth}p{0.4\textwidth}}
@@ -274,7 +273,7 @@ The main driver for selecting the solar cell is to choose a part which is very l
 \textbf{Description} & \textbf{Symbol} & \textbf{Value}\\
 \hline
 Nominal output current & $I_{cell}$ & $100\,mA$\\
-Nominal output voltage & $V_{cell}$ & $7.2V$\\
+Nominal output voltage & $V_{cell}$ & $7.2\,V$\\
 Nominal output power & $P_{cell}$ & $0.72\,W$\\
 Dimensions & - & $270\,mm\:\times\:90\,mm\:\times\:0.2\,mm$\\
 Weight & $W_{cell}$ & $7.6\,g$\\
@@ -313,10 +312,10 @@ I_{array}&=50\cdot I_{cell}=5\,A
 \end{figure}
 %
 \noindent
-Since only two cells are in series, it is estimated that bypass diodes are not very beneficial for mitigating shading issues, as was discussed in Section \ref{subsec:environmental_requirements}, and hence are not included in the design.
+Since only two cells are in series, it is estimated that bypass diodes are not very beneficial for mitigating shading issues, as was discussed in section \ref{subsec:environmental_requirements}, and hence they are not included in the design.
 %
 \subsection{Solar Array Regulator}
-The \ac{SAR} must control the optimal the solar array operating voltage as well as limit the output mainbus voltage. A simple step-down buck converter topology is preferred for a number of reasons:
+The \ac{SAR} must control the optimal solar array operating voltage as well as limit the output mainbus voltage. A simple step-down buck converter topology is preferred for a number of reasons:
 %
 \begin{itemize}
 \item simple circuit analysis and low components count
@@ -331,17 +330,13 @@ The ideal transfer function for the buck converter shown in Figure \ref{fig:EPS_
 V_{out}=D\,V_{in}
 \end{equation}
 %
-where $D$ is the duty cycle of the MOSFET switch, $V_{in}$ the solar array voltage and $V_{out}$ the mainbus voltage. The duty cycle is controlled by a \ac{PWM} controller which provides input to a high-side MOSFET driver. A \ac{MEA} measures the mainbus output voltage to generate a control signal for the PWM controller. An \textit{LM3477} chip is selected which combines \ac{PWM} controller, \ac{MEA} and gate driver in one \ac{IC}.
+where $D$ is the duty cycle of the \ac{MOSFET} switch, $V_{in}$ the solar array voltage and $V_{out}$ the mainbus voltage. The duty cycle is controlled by a \ac{PWM} controller which provides input to a high-side \ac{MOSFET} driver. A \ac{MEA} measures the mainbus output voltage to generate a control signal for the PWM controller. An \textit{LM3477} chip is selected which combines \ac{PWM} controller, \ac{MEA} and gate driver in one \ac{IC}.
 \\
 \\
-The \ac{CM} control scheme is adopted due to its excellent dynamic abilities\cite[sec. 12-3-6]{Fundamentals} and simplified feedback regulator design. A low resistance $10\,m \Omega$ precision sense resistor measures the inductor current slope. The \textit{LM3477} has build-in slope compensation to avoid current mode instabilities\cite[sec. 12-1]{Fundamentals}.
+The \ac{CM} control scheme is adopted due to its excellent dynamic abilities \cite[sec. 12-3-6]{Fundamentals} and simplified feedback regulator design. A low resistance $10\,m \Omega$ precision sense resistor measures the inductor current slope. The \textit{LM3477} has built-in slope compensation to avoid current mode instabilities \cite[sec. 12-1]{Fundamentals}.
 \\
 \\
-The converter switching frequency, $f_{switch}$, is chosen relatively high to $500\,kHz$. The increased switching losses are expected to by out-weighted by the fact that the low operating voltage limits switching losses and high frequency allows the inductor and filter components to be made smaller thus limiting system mass and the resistive losses in the inductor copper wires which are expected to dominate converter losses due to the relatively high currents.
-\\
-%
-\noindent
-The inductor current ripple, $\Delta I_L$, can be calculated as 
+The converter switching frequency, $f_{switch}$, is chosen relatively high to $500\,kHz$. The increased switching losses are expected to be outweighed by the fact that the low operating voltage limits switching losses and the high frequency allows the inductor and filter components to be made smaller, thus limiting system mass and the resistive losses in the inductor copper wires which are expected to dominate the converter losses due to the relatively high currents. The inductor current ripple, $\Delta I_L$, can be calculated as 
 %
 \begin{equation}
 \Delta I_L=\dfrac{V_{in}-V_{out}}{L\,f_{switch}}D
@@ -372,23 +367,21 @@ With an inductor current ripple of $0.72\,A$ the current sense voltage slope is 
 v_{sense}=\Delta I_L\cdot R_{sense}=0.72\,A\cdot 10\,m\Omega = 7.2\,mV
 \end{equation}
 %
-It is recommended that the slope compensation is equal to or the double of the sense slope\cite[sec. 12-1]{Fundamentals}, however the minimum compensation slope is limited to $103\,mV$ by the \textit{LM3477} chip. Thus the sensed slope signal must be amplified with a gain of around 20 being suitable. This also has the advantage of eliminating some of the typical noise susceptibility in the current sense signal. The current sense circuit in Figure \ref{fig:EPS_diagram_detailed} consists of two differential OpAmps which amplifies the current sense slope. Resistive voltage dividers are placed on the OpAmp inputs to scale down the input voltage signals to always be below the $5\,V$ OpAmp supply voltage.
-
-Since a closed-loop OpAmp gain of 20 is needed at an operating frequency of $500\,kHz$, the gain-bandwidth specification of the OpAmps must be more than $10\,MHz$. The \textit{LTC6362CMS8PBF} OpAmp is chosen. One limitation of this OpAmp is its temperature range which only goes down to $0^{\circ}\,C$. This might be solved by thermally connecting it to the transistor heat sinks or ensure that the internal \ac{EPS} temperature does not go below $0^{\circ}\,C$.
+It is recommended that the slope compensation is equal to or the double of the sense slope \cite[sec. 12-1]{Fundamentals}, however the minimum compensation slope is limited to $103\,mV$ by the \textit{LM3477} chip. Thus the sensed slope signal must be amplified, with a gain of around 20 being suitable. This also has the advantage of eliminating some of the typical noise susceptibility in the current sense signal. The current sense circuit in Figure \ref{fig:EPS_diagram_detailed} consists of two differential OpAmps which amplifies the current sense slope. Resistive voltage dividers are placed on the OpAmp inputs to scale down the input voltage signals to always be below the $5\,V$ OpAmp supply voltage.
+\\
+\\
+Since a closed-loop OpAmp gain of 20 is needed at an operating frequency of $500\,kHz$, the gain-bandwidth specification of the OpAmps must be more than $10\,MHz$. The \textit{LTC6362CMS8PBF} OpAmp is selected. One limitation of this OpAmp is its temperature range which only goes down to $0^{\circ}\,C$. This might be solved by thermally connecting it to the transistor heat sinks or by ensuring that the internal \ac{EPS} temperature does not go below $0^{\circ}\,C$.
 %
 \subsubsection*{Input Filter}
-An input filter is placed in front of the buck converter, mainly to draw a continuous current from the solar array. It also reduces the converter \ac{EMC} issues. 
-One challenge with the input filter is that it effects the dynamic properties of the converter and if not properly designed, it can degrade the control feedback loop performance. A damping network in the filter is also necessary to avoid instabilities\cite[sec. 10-3]{Fundamentals}.
+An input filter is placed in front of the buck converter, mainly to draw a continuous current from the solar array. It also reduces the converter \ac{EMC} issues (see chapter \ref{chap:emc}). One challenge with the input filter is that it effects the dynamic properties of the converter and if not properly designed, it can degrade the control feedback loop performance. A damping network in the filter is also necessary to avoid instabilities \cite[sec. 10-3]{Fundamentals}.
 \\
 \\
 A usable filter has been designed based on PSpice simulations. However thorough analysis still remains to be done to optimize the filter design.
 %
 %
-\subsubsection{Maximum Power Point Tracker Unit}
+\subsubsection{Maximum Power Point Tracking Unit}
 \label{sec:MPPTU}
-In \cite{PDR} it was decided to use a \ac{MPPTU} with the \ac{SAR} to increase solar array efficiency during changing environment conditions.
-%
-The \ac{SAR} with \ac{MPPT} can operate in three different operation regions:
+In \cite{PDR} it was decided to use a \ac{MPPTU} with the \ac{SAR} to increase solar array efficiency during changing environmental conditions. The \ac{SAR} with \ac{MPPT} can operate in three different operation regions:
 %
 \begin{itemize}
 \item Battery discharge - when the solar array input power is insufficient to cover the load power demand, the battery is slowly discharged in order to maintain the output voltage. The \ac{MPPTU} controls the input solar array voltage.
@@ -396,7 +389,7 @@ The \ac{SAR} with \ac{MPPT} can operate in three different operation regions:
 \item Input power limitation - when the battery is fully charged, the regulator will operate the solar array at a non-optimal voltage, thus limiting the input power to keep the output voltage at a maximum limit. The extra potential input power is dissipated as heat externally on the solar arrays.
 \end{itemize}
 %
-It is preferred to implement an analog \ac{MPPTU} mainly since this makes the circuit independent on a control signal from a more complicated external \ac{MCU} or \ac{DSP} thus allowing a flexible plug'n-play system to be implemented. One challenge with an analog \ac{MPPTU} is the typical need for expensive analog multipliers\cite{Liang}. Since the required multiplier only needs to be a 1st quadrant type (only two positive inputs), it is believed that a low-cost multiplier can be build using standard discrete components\cite{Multiplier}.
+It is preferred to implement an analog \ac{MPPTU} mainly since this makes the circuit independent of a control signal from a more complicated external \ac{MCU} or \ac{DSP}, thus allowing a flexible plug'n-play system to be implemented. One challenge with an analog \ac{MPPTU} is the typical need for expensive analog multipliers \cite{Liang}. Since the required multiplier only needs to be a first quadrant type (only two positive inputs), it is believed that a low-cost multiplier can be built using standard discrete components \cite{Multiplier}.
 %
 \\
 \\
@@ -405,7 +398,7 @@ The \ac{MPPTU} design still remains to be completed.
 %
 \subsubsection{Mode Transitions}
 %
-As was discussed in Section \ref{sec:MPPTU}, the \ac{SAR} can operate in three different main modes. The transition between the modes is controlled by the mainbus output voltage as shown in Figure \ref{fig:SAR_ModeTransition}. If the \ac{SAR} input power is lower than the load power, the battery will discharge and the mainbus voltage will follow the battery voltage. Once the input power is larger than the load power, the mainbus capacitor will quickly be charged to a voltage higher than the battery voltage. Once the mainbus capacitor voltage crosses the $9.2\,V$ charge threshold, the \ac{BCR} starts to charge the battery. If the input power is still higher than the combined battery charge power and load power, the mainbus capacitor voltage continues to rise until reaching $9.5\,V$ where the \ac{SAR} enters the input power limitation mode. The battery may still be charging in this mode. Since the battery is charged with constant current, the input power may be lower than the combined charge and load power but higher than the load power alone. Hence an oscillatory state between battery charge and discharge mode may rise whose frequency depends on the mainbus capacitance which should therefore be large. 
+As was discussed in Section \ref{sec:MPPTU}, the \ac{SAR} can operate in three different main modes. The transition between the modes is controlled by the mainbus output voltage as shown in Figure \ref{fig:SAR_ModeTransition}. If the \ac{SAR} input power is lower than the load power, the battery will discharge and the mainbus voltage will follow the battery voltage. Once the input power is larger than the load power, the mainbus capacitor will quickly be charged to a voltage higher than the battery voltage. Once the mainbus capacitor voltage crosses the $9.2\,V$ charge threshold, the \ac{BCR} starts to charge the battery. If the input power is still higher than the combined battery charge power and load power, the mainbus capacitor voltage continues to rise until reaching $9.5\,V$ where the \ac{SAR} enters the input power limitation mode. The battery may still be charging in this mode. Since the battery is charged with constant current, the input power may be lower than the combined charge and load power but higher than the load power alone. Hence an oscillatory state between battery charge and discharge mode may arise, whose frequency depends on the mainbus capacitance which should therefore be large. 
 \\
 \\
 The $9.20\,V$ battery charge threshold voltage is calculated from
@@ -430,7 +423,7 @@ To provide a regulated $5\,V$ supply for the on-board computer and payloads, a \
 %
 \subsection{Complete Electrical Power System Diagram}
 %
-The complete \ac{EPS} diagram is shown in Figure \ref{fig:EPS_diagram_detailed}. Two $17\,A$ fuses are added in front of the motors, to protect the battery from a motor short-circuit failure.
+The complete \ac{EPS} diagram is shown in Figure \ref{fig:EPS_diagram_detailed}. Two $17\,A$ fuses are added in front of the motors to protect the battery from a motor short-circuit failure.
 %
 \begin{sidewaysfigure}
 \centering
@@ -442,7 +435,7 @@ The complete \ac{EPS} diagram is shown in Figure \ref{fig:EPS_diagram_detailed}.
 %
 \subsection{External Interfaces}
 %
-The interfaces of the \ac{EPS} external are listed in table \ref{tab:external_interfaces}.
+The external interfaces of the \ac{EPS} are listed in Table \ref{tab:external_interfaces}.
 %
 \begin{table}[H]
 \centering
@@ -455,16 +448,16 @@ The interfaces of the \ac{EPS} external are listed in table \ref{tab:external_in
 Solar cells mounting & Mechanical & Possibly using \ac{PSA} - \ac{TBD}.\\[2mm]
 \rr Power electronics mounting & Mechanical & \rr Mounted on a \ac{PCB} which sits in the cargo bay, attached with screws.\tn[2mm]
 Battery mounting & Mechanical & Mounted in cargo bay with strips or Velcro. Thermal insulation with Styrofoam or similar material should be added to protect against cold temperatures.\\[2mm]
-\ac{EPS} telemetry & Electrical & Analog signals to Microcontroller. Electrical connector interface still remains \ac{TBD}.\\[2mm]
+\ac{EPS} telemetry & Electrical & Analog signals to microcontroller. Electrical connector interface still remains \ac{TBD}.\\[2mm]
 \ac{EPS} telecommands & Electrical & \ac{TBD}\\[2mm]
-Output voltages & Electrical & \rr $6.0-9.5\,V$ (unregulated) and $5.0\,V$(regulated).\tn[2mm]
+Output voltages & Electrical & \rr $6.0-9.5\,V$ (un-regulated) and $5.0\,V$(regulated).\tn[2mm]
 \hline
 \end{tabular}
 \end{table}
 %
 %
 \subsection{Telemetry and Telecommands}
-The suggested \ac{EPS} telemetries are listed in Table \ref{tab:Telemetry} and the suggest telecommands in Table \ref{tab:Telecommands}. Not all telemetries or the telecommands are part of the initial \ac{EPS} design and will only be implemented if time and resources allow it.
+The suggested \ac{EPS} telemetries are listed in Table \ref{tab:Telemetry} and the suggested telecommands in Table \ref{tab:Telecommands}. Not all telemetries or telecommands are part of the initial \ac{EPS} design and will only be implemented if time and resources allow it.
 \\
 \\
 The exact electrical configuration and interface connectors still remains to be designed.
@@ -473,6 +466,7 @@ The exact electrical configuration and interface connectors still remains to be 
 \centering
 \caption{Telemetry}
 \label{tab:Telemetry}
+\begin{minipage}{\textwidth}
 \begin{tabular}{|p{0.29\textwidth}p{0.13\textwidth}p{0.13\textwidth}p{0.35\textwidth}|}
 \hline
 \textbf{Telemetry} & \textbf{Data rate} & \textbf{Data size} & \textbf{Data range}\\
@@ -481,7 +475,7 @@ Battery voltage & Every 5 sec & 2 bytes & \ac{TBD}\\
 \hline
 Battery temperature & Every 5 sec & 2 bytes & \ac{TBD}\\
 \hline
-BCR status & Every 5 sec & 1 byte & \rr High($5\,V$), low($0\,V$) and $1\,Hz\;50\%$ duty cycle ripple\footnote{for explanation of the different status indications, look in the \ac{BCR} \ac{IC} datasheet}\tn
+BCR status & Every 5 sec & 1 byte & \rr High($5\,V$), low($0\,V$) and $1\,Hz\;50\%$ duty cycle ripple\footnote{For explanation of the different status indications, look in the \ac{BCR} \ac{IC} datasheet}\tn
 \hline
 \ac{UVLO} status & Every 5 sec & 1 byte &  \rr $0\,V$(nominal operation), $5\,V$(under-voltage lock-out)\tn
 \hline
@@ -491,7 +485,10 @@ Solar array temperature & Every 5 sec & 2 bytes & \ac{TBD}\\
 \hline
 Solar array voltage & Every 1 sec & 2 bytes & \ac{TBD}\\
 \hline
-\end{tabular}
+\end{tabular}\par
+\vspace{-0.75\skip\footins}
+\renewcommand{\footnoterule}{}
+\end{minipage}
 \end{table}
 %
 \begin{table}[H]
@@ -514,16 +511,16 @@ Solar array voltage & Every 1 sec & 2 bytes & \ac{TBD}\\
 \label{sec:test_verification}
 This section describes the various design models used to develop the \ac{EPS} along with the expected functional test to be executed.
 %
-\subsection{EPS Design Models}
+\subsection{Design Models}
 %
-\subsubsection{EPS PSpice Simulations}
-A transient PSpice simulation model of the whole \ac{EPS} is currently being implemented. The completed PSpice models are shown in Appendix \ref{app:EPS_PSpice}. These will help in the design and testing of the regulator performance and system stability during transient loading as well as the interactions between the different circuits.
+\subsubsection{PSpice Simulations}
+A transient PSpice simulation model of the whole \ac{EPS} is currently being implemented. The completed PSpice models are shown in Appendix \ref{app:EPS_PSpice}. These models will help in the design and testing of the regulator performance and system stability during transient loading as well as the interactions between the different circuits.
 \\
 \\
-In future, it is desired also to implement transient PSpice models for the solar array\cite{Castaner}, \ac{MPPTU}, battery\cite{gold}, motors and \ac{BCR}.
+In the future, it is also desired to implement transient PSpice models for the solar array \cite{Castaner}, \ac{MPPTU}, battery \cite{gold}, motors and \ac{BCR}.
 %
-\subsubsection{EPS Development Model}
-An \ac{EPS} \ac{DM} is currently being build as seen in Figure \ref{fig:EPSprototype}. The prototype \ac{PCB} is realized using self-made "mini-mount" \ac{PCB} pads as shown in Appendix \ref{app:EPS_mini-mount}. These pads are attached, using a simple glue roller, on a complete copper ground plane. This design approach allows a compact layout which reduces parasitic effects. Also any \ac{IC} package can be supported and parts can easily be moved around if the design changes.
+\subsubsection{Development Model}
+An \ac{EPS} \ac{DM} is currently being built as seen in Figure \ref{fig:EPSprototype}. The prototype \ac{PCB} is realized using self-made "mini-mount" \ac{PCB} pads as shown in Appendix \ref{app:EPS_mini-mount}. These pads are attached, using a simple glue roller, on a complete copper ground plane. This design approach allows a compact layout which reduces parasitic effects. Also any \ac{IC} package can be supported and parts can easily be moved around when the design changes.
 %
 \begin{figure}[H]
 \centering
@@ -533,15 +530,12 @@ An \ac{EPS} \ac{DM} is currently being build as seen in Figure \ref{fig:EPSproto
 \end{figure}
 %
 \subsubsection*{Development Model Status}
-The \ac{SAR} is working but shows signs of \ac{CM} instability which is expected to be caused by the missing current sense amplifier circuit and input filter. Development progress is currently awaiting delivery of components.
-\\
-\\
-The \ac{BCR} is also working however excessive heating of the MOSFET was experienced. A new part rated for higher power dissipation has been selected and is currently awaiting delivery.
+The \ac{SAR} is working but shows signs of \ac{CM} instability which is probably caused by the missing current sense amplifier circuit and input filter. Development progress is currently awaiting delivery of components. The \ac{BCR} is also working, however excessive heating of the \ac{MOSFET} was experienced. A new part rated for higher power dissipation has been selected and is currently awaiting delivery.
 %
-\subsubsection{EPS Flight Model}
-If time allows, a dedicated \ac{FM} will be build, using a custom designed \ac{PCB} schematic layout. An optimized \ac{PCB} layout will minimize the system mass and size while maximizing the efficiency and system robustness.
+\subsubsection{Flight Model}
+If time allows, a dedicated \ac{FM} will be built, using a custom designed \ac{PCB} schematic layout. An optimized \ac{PCB} layout will minimize the system mass and size while maximizing the efficiency and system robustness.
 %
-\subsection{EPS Test Program}
+\subsection{Test Program}
 \label{sec:eps_test_program}
 Table \ref{tab:test_program} lists all necessary and desired test of the EPS. Priority "1" tests are all required while priority "2" tests will only be realized if time and resources allow it.
 %
@@ -556,8 +550,8 @@ Table \ref{tab:test_program} lists all necessary and desired test of the EPS. Pr
 - & \rr Maximum power handling & \rr With an input and load power slightly above the maximum expected solar array power, no \ac{SAR} components must overheat or otherwise malfunction. & 1 \tn
 - & \ac{MPPT} & \ac{TBD}. & 2\\
 - & Mode transitions & \rr \ac{SAR} must be able to change between \ac{MPPT}, battery charge and discharge mode without loosing mainbus voltage regulation or causing other malfunctions. & 2\tn
-- & \rr Feedback loop stability & \rr Regulator bandwidth, gain- and phase margins should be measured with a Network Analyzer. & 2\tn
-- & \ac{EMC} & Electromagnetic emissions should be measured with a Spectrum Analyzer, especially with concerns to the telecommunication systems. & 2\\
+- & \rr Feedback loop stability & \rr Regulator bandwidth, gain- and phase margins should be measured with a network analyzer. & 2\tn
+- & \ac{EMC} & Electromagnetic emissions should be measured with a spectrum analyzer, especially with regards to the telecommunication systems. & 2\\
 \hline
 \ac{BCR} & \rr \ac{CC} and trickle charging & \rr \ac{CC} charge at $2.4\,A$ and trickle charge mode entered when battery voltage reaches $8.4\,V$ should be verified. & 1\tn
 - & \rr Charge inhibit at high/low temperatures & \rr While battery is charging, battery thermistor is heated/cooled in thermal oven/fridge to slightly above/below the specified temperature limits and charging should be terminated. & 1\tn
@@ -567,7 +561,7 @@ Table \ref{tab:test_program} lists all necessary and desired test of the EPS. Pr
 Battery & Dynamic model & Test approach is described in \cite{chen}. & 2\\
 \hline
 Solar cell & I-V specifications & \rr Short-circuit current, open-circuit voltage, current and voltage at the \ac{MPP} should be determined from an irradiance test. & 2\tn
-- & \rr Temperature coefficients & \rr Solar cell temperature coefficients should be determined be measuring the I-V characteristics at different temperatures within the expected temperature interval. & 2\tn
+- & \rr Temperature coefficients & \rr Solar cell temperature coefficients should be determined by measuring the I-V characteristics at different temperatures within the expected temperature interval. & 2\tn
 \hline
 Fuses & \rr Temperature variation & \rr The \ac{PTC} resettable fuses should be tested at nominal, minimum and maximum expected temperatures to verify acceptable functionality. & 1\tn
 \hline
@@ -614,7 +608,7 @@ TBD...
 %\end{table}
 
 \subsection{Parts List and Costs}
-Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order which is expected to be placed in the near future). The calculated costs does not including invoicing or shipping costs.
+Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order which is expected to be placed in the near future). The calculated costs do not including invoicing or shipping costs.
 %
 %
 \begin{center}
@@ -627,12 +621,12 @@ Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order
 \hline
 \endhead
 \footnotetext[1]{Unit price in SEK. Actual price may differ due to currency variations}
-SAR current sense resistor & FCSL110R010FER & Farnell(US) & $31.52$ & 2\\
+SAR current sense resistor & FCSL110R010FER & Farnell (US) & $31.52$ & 2\\
 SAR power diode & MBR3050CT & Farnell & $9.24$ & 3\\
-SAR power MOSFET & IPI037N06L3 G & Farnell & $19.32$ & 4\\
+SAR power \ac{MOSFET} & IPI037N06L3 G & Farnell & $19.32$ & 4\\
 SAR mainbus capacitor & CKG45NX5R1C226M & Farnell & $38.72$ & 4\\
-PWM, MEA and MOSFET driver & LM3477AMM & Farnell & $16.37$ & 5\\
-SAR inductor & 2101-H-RC & Farnell(US) & $25.13$ & 2\\
+PWM, MEA and \ac{MOSFET} driver & LM3477AMM & Farnell & $16.37$ & 5\\
+SAR inductor & 2101-H-RC & Farnell (US) & $25.13$ & 2\\
 \acp{PCB} & CIF - AA15 & Farnell & $67.42$ & 4\\
 Battery(obsolete) & PA-L60 & Farnell & $294.28$ & 2\\
 Battery & LiPo Racing Pack 2S1P & Ansmann & N/A\footnotemark[2] & 1\\
@@ -641,7 +635,7 @@ Reverse protection diode & VS-STPS20L15DPBF & Farnell & $24.56$ & 6\\
 BCR & MCP73842-840I/UN & Farnell & $13.61$ & 2\\
 BCR Transistor(obsolete) & TPCA8102(TE12L,Q) & Farnell & $28.5$ & 2\\
 \rr Current limit \ac{BJT} (obsolete) & 2STN2540 & Farnell & $7.84$ & 5\\
-Current limit MOSFET (obsolete) & IRLML6401PBF & Farnell & $6.41$ & 2\\
+Current limit \ac{MOSFET} (obsolete) & IRLML6401PBF & Farnell & $6.41$ & 2\\
 BCR current sense resistor & ERJB3CFR15V & Farnell & $1.97$ & 5\\
 \rr Current limit sense resistor (obsolete) & ERJB2BFR33V & Farnell & $4.83$ & 5\\
 \rr Current limit sense resistor 2 (obsolete) & ERJA1BJR27U & Farnell & $5.30$ & 5\\
@@ -653,9 +647,9 @@ Current sense OpAmp & LTC6362CMS8\# PBF & Farnell & $32.31$ & 2\\
 Thermistor & NTCLE203E3472GB0 & Farnell & $8.64$ & 5\\
 Motor fuses & RGEF1000 & Farnell & $6.46$ & 5\\
 \ac{LDO} regulator fuses & MC36248 & Farnell & $1.41$ & 5\\
-\ac{BCR} MOSFET & SUP75P03-07-E3 & Farnell & $31.51$ & 2\\
+\ac{BCR} \ac{MOSFET} & SUP75P03-07-E3 & Farnell & $31.51$ & 2\\
 \ac{UVLO} linear shunt regulator & TL431AILPME3 & Farnell & $1.36$ & 5\\
-\ac{UVLO} MOSFET & SUP75P03-07-E3 & Farnell & $31.51$ & 2\\
+\ac{UVLO} \ac{MOSFET} & SUP75P03-07-E3 & Farnell & $31.51$ & 2\\
 \hline\hline
 Total cost & & & 2707.6 & \\
 \hline

@@ -1,24 +1,23 @@
 \chapter{Thermal Interfaces}
 \label{chap:thermal}
 %
-%\section{Thermal Interfaces}
-This chapter describes the \ac{U-SPACE} thermal requirements and design.
 %
 \section{Thermal Requirements}
-The \ac{U-SPACE} systems are required to operate in the temperature range $-20^{\circ}\,C$ to $+45^{\circ}\,C$. The limits are based on weather data from Table \ref{tab:environment} including appropriate design margins. The high temperature limit also considers heat contribution from direct external sun exposure and internal power dissipation from the \ac{EPS}. Table \ref{tab:temp_critical_parts} lists temperature critical parts that are not rated for the full temperature range as given above.
+
+The \ac{U-SPACE} systems are required to operate in a temperature range of $-20^{\circ}\,C$ to $+45^{\circ}\,C$. These limits are based on weather data from Table \ref{tab:environment} including appropriate design margins. The high temperature limit also considers heat contribution from direct external sun exposure and internal power dissipation from the \ac{EPS}. Table \ref{tab:temp_critical_parts} lists temperature-critical parts that are not rated for the full temperature range as given above.
 %
 \begin{table}[H]
 \centering
-\caption{Temperature critical parts}
+\caption{Temperature-critical parts}
 \label{tab:temp_critical_parts}
 \begin{minipage}{\textwidth}
-\begin{tabular}{p{0.15\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.15\textwidth}p{0.2\textwidth}}
+\begin{tabular}{p{0.25\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.10\textwidth}p{0.2\textwidth}}
 \hline
 \textbf{Part} & \textbf{Rating} & \textbf{Monitoring} & \textbf{Control} & \textbf{Protection}\\
 \hline
 BeagleBoard \ac{MCU} & $0^{\circ}\,C$ to $+85^{\circ}\,C$ & - & - & ?\\
 \hline
-\ac{EPS} Battery &  $+5^{\circ}\,C$ to $+40^{\circ}\,C$\footnote{Including $5^{\circ}\,C$ design safety margin} & External thermistor & - & Charge inhibit at low temperature.\\
+\ac{EPS} Battery &  $+5^{\circ}\,C$ to $+40^{\circ}\,C$\footnote{Including $5^{\circ}\,C$ design safety margin} & External thermistor & - & Charge inhibit at low temperature\\
 \hline
 \rr Current sense OpAmp & $0^{\circ}\,C$ to $+70^{\circ}\,C$ & - & - & -\tn
 \hline
@@ -29,6 +28,8 @@ BeagleBoard \ac{MCU} & $0^{\circ}\,C$ to $+85^{\circ}\,C$ & - & - & ?\\
 \end{table}
 %
 \section{Thermal Design}
-From Table \ref{tab:temp_critical_parts} it is mainly the lower temperature limit which is of concern. Currently the \ac{U-SPACE} thermal design does not include temperature monitoring, except the battery, nor any temperature control. It will therefore not be possible to fly when the outdoor temperature falls much below $+5^{\circ}\,C$. This issue may be solved by insulating the cargo bay with Styrofoam or similar material. Internal dissipation from the \ac{EPS} and payloads will then increase the internal cargo bay temperature with respect to the outdoor temperature. Additional heaters may also be included in the design, however this will complicate the system and consume power which is already limited.\\[5mm]
+From Table \ref{tab:temp_critical_parts} it is clear that mainly the lower temperature limit is of concern. Currently the \ac{U-SPACE} thermal design does not include temperature monitoring, except for the battery, nor any temperature control. It will therefore not be possible to fly when the outdoor temperature falls much below $+5^{\circ}\,C$. This issue may be solved by insulating the cargo bay with Styrofoam or a similar material. Internal dissipation from the \ac{EPS} and payloads will then increase the internal cargo bay temperature with respect to the outdoor temperature. Additional heaters may also be included in the design, but this will complicate the system and consume power which is already limited.
+\\
+\\
 Complete thermal analysis, insulation requirements and possible heater design still remains to be done.
 %

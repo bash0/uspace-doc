@@ -1,37 +1,35 @@
 \chapter{Electromagnetic Compatibility}
 \label{chap:emc}
 %
-This chapter describes the \ac{U-SPACE} \ac{EMC}, \ac{EMI} susceptible parts and mitigation methods.\\[5mm]
-%
-%
-For the \ac{U-SPACE} \ac{EMC} we have defined one mission critical circuit which is the motor control of the \ac{MCC} subsystem. Loss of motor control due to \ac{EMC} issues, could in the extreme case result in equipment damage. Two non-critical circuits have been identified: The ITPU sensors and the telemetry communication system. 
+This chapter describes the \ac{U-SPACE} \ac{EMC} issues, the \ac{EMI}-susceptible parts and the mitigation methods. For the \ac{U-SPACE} \ac{EMC} one mission-critical circuit has been identified. This is the motor control of the \ac{MCC} subsystem. Loss of motor control due to \ac{EMC} issues could in the extreme case result in equipment damage. Two non-critical circuits have been identified as well: the \ac{ITPU} sensors and the telemetry communication system. 
 %
 \section{Electromagnetic Interference Sources}
+
 The identified main \ac{EMI} sources are:
 %
 \begin{itemize}
-\item The \ac{EPS} \ac{SAR} - Radiated \ac{EMI} from power inductor and high AC-current loops. Conducted \ac{EMI} from power switches.
-\item The two \ac{MCC} DC-motors - DC H-field from permanent magnet rotor and radiated \ac{EMI} when motors are running.
-\item The \ac{MCC} motor power leads - Radiated \ac{EMI} from large AC-current loops (up to $\sim 7.5\,A$ per motor).
+\item The \ac{EPS} \ac{SAR}: radiated \ac{EMI} from the power inductor and from high AC-current loops. Also conducted \ac{EMI} from the power switches
+\item The two \ac{MCC} DC-motors: a DC magnetic field (H-field) from the permanent magnet rotor and radiated \ac{EMI} when the motors are running
+\item The \ac{MCC} motor power leads: radiated \ac{EMI} from large AC-current loops (up to $\sim 7.5\,A$ per motor).
 \end{itemize}
 %
 \section{Electromagnetic Interference Susceptibility}
 %
-Table \ref{tab:EMI_susceptibility_mitigation} lists the \ac{EMI} sensible parts which have been identified along with the applied mitigation method.
+Table \ref{tab:EMI_susceptibility_mitigation} lists the \ac{EMI}-sensitive parts which have been identified along with the applied mitigation method.
 %
 %
 \begin{table}[H]
 \centering
-\caption{EMI susceptible parts and mitigation methods}
+\caption{EMI-susceptible parts and mitigation methods}
 \label{tab:EMI_susceptibility_mitigation}
 %\begin{minipage}{\textwidth}
 \begin{tabular}{p{0.25\textwidth}p{0.25\textwidth}p{0.4\textwidth}}
 \hline
 \textbf{Susceptible part} & \textbf{Susceptibility type} & \textbf{Mitigation method}\\
 \hline
-\ac{ITPU} Magnetometer & DC H-fields &	Must be kept at minimum distance from DC-motors. Calibration might be necessary after \ac{ITPU} integration in complete \ac{U-SPACE} system.\\
+\ac{ITPU} magnetometer & DC H-fields &	Must be kept at minimum distance from DC-motors. Calibration might be necessary after \ac{ITPU} integration in complete \ac{U-SPACE} system.\\
 \hline
-\ac{ITPU} Sensors & \rr Radiated and conducted \ac{EMI} & Must be kept at minimum distance from \ac{EMI} radiation sources.\tn
+\ac{ITPU} sensors & \rr Radiated and conducted \ac{EMI} & Must be kept at minimum distance from \ac{EMI} radiation sources.\tn
 \hline
 \ac{MCC} motor communication & Radiated \ac{EMI} & Must be kept at minimum distance from \ac{EMI} radiation sources.\\
 \hline
@@ -45,10 +43,8 @@ Table \ref{tab:EMI_susceptibility_mitigation} lists the \ac{EMI} sensible parts 
 %
 %
 \section{Electromagnetic Interference Mitigation Methods}
-In \ac{U-SPACE}, the primary applied method for reducing \ac{EMI} related issues is to separate \ac{EMI} sources from \ac{EMI} susceptible parts be appropriate distances. It is also important to minimize the area of high AC-current loops. This can be achieved by proper \ac{PCB} layout of the \ac{SAR} and by keeping together and twisting the forward and return power leads to the DC-motors. A secondary method of mitigating radiated \ac{EMI} from the \ac{SAR} will be to apply shielding either around the complete circuit or only the power inductor. This will however increase the system mass and is therefore only a last-resort option.
+In the \ac{U-SPACE} project, the primary applied method for reducing \ac{EMI}-related issues is to separate \ac{EMI} sources from \ac{EMI}-susceptible parts by appropriate distances. It is also important to minimize the area of high AC-current loops. This can be achieved by a proper \ac{PCB} layout of the \ac{SAR} and by keeping together and twisting the forward and return power leads of the DC-motors. A secondary method of mitigating radiated \ac{EMI} from the \ac{SAR} will be to apply shielding either around the complete circuit or only around the power inductor. This will however increase the system mass and is therefore only a last-resort option.
 %
 %
 \section{Electromagnetic Interference Tests}
-\ac{EMI} tests for the \ac{EPS} were defined in Section \ref{sec:eps_test_program}. In general, susceptibility tests should be applied to the sensible parts defined in Table \ref{tab:EMI_susceptibility_mitigation}. When the \ac{EPS} \ac{SAR} and DC-motors are running at full power, no performance/communication degradation or glitches should be noticed, due to \ac{EMI}. Guides for \ac{EMI} emission measurements and susceptibility tests along with accepted limits are provided in \cite{ECSS_EMC}.
-%
-%
+\ac{EMI} tests for the \ac{EPS} have been defined in section \ref{sec:eps_test_program}. In general, susceptibility tests should be applied to the sensible parts defined in Table \ref{tab:EMI_susceptibility_mitigation}. When the \ac{EPS} \ac{SAR} and DC-motors are running at full power, no performance/communication degradation or glitches should be noticed due to \ac{EMI}. Guides for \ac{EMI} emission measurements and susceptibility tests along with accepted limits are provided in \cite{ECSS_EMC}.

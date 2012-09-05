@@ -3,31 +3,31 @@
 
 \section{Electrical Ground Support Equipment (EGSE)}
 
-The design, construction and test of a \ac{SPA} requires the use of extensive \ac{EGSE}, specifically during test flights. This \ac{EGSE} can be divided into the ground station, the controller and supplementary material.
+The design, construction and test of a \ac{SPA} requires the use of extensive \ac{EGSE}, especially during test flights. The \ac{EGSE} can be divided into the ground station, the controller and some supplementary material.
 
 \subsection{Concept}
 
 The ground station of the \ac{U-SPACE} project is responsible for receiving data from the scientific payload and combining this data with images taken by the camera. This combination is then used to form aerial maps of the environment (see chapter \ref{chap:itpu}). It can also be used to track the airship with the help of the \ac{GPS} module and to visualize all data received from the airborne vehicle.
 \\
 \\
-The controller is used to control the \ac{SPA} during flight testing. It consists of a basic commercial transmitter/receiver  that allows a human ground-based pilot to remotely control the motors of the airship. More information can be found in chapter \ref{chap:mcc}.
+The controller is used to control the \ac{SPA} during flight (tests). It consists of a basic commercial transmitter/receiver  that allows a human ground-based pilot to remotely control the motors of the airship. More information can be found in chapter \ref{chap:mcc}.
 \\
 \\
 The supplementary material of the \ac{EGSE} consists of a single power supply to charge the battery before flight. This allows the airship to start flying even without the presence of sunlight.
 
 \subsection{Hardware Description}
 
-For the ground station, the hardware is a desktop computer or laptop connected to a receiver. The receiver is described in chapter \ref{chap:itpu}. The pictures taken by the camera can be downloaded after flight (requiring a connection between this camera and the computer) or can be sent to the ground station when the \ac{SPA} is still airborne (via the same wireless connection as the scientific payload data). The user is presented with visualizations of the scientific data as well as with aerial maps constructed from the camera images and the scientific data.
+For the ground station, the hardware is a desktop computer or laptop connected to a receiver. The basics of this system are described in chapter \ref{chap:itpu}. The pictures taken by the camera can be downloaded after flight (requiring a connection between the camera and the computer) or can be sent to the ground station when the \ac{SPA} is still airborne (via the same wireless connection as the scientific payload data). The user is presented with visualizations of the scientific data as well as aerial maps constructed from the camera images and the scientific data (see chapter \ref{chap:itpu} for more information).
 \\
 \\
-The hardware of the controller is basically a commercial remote controller capable of transmitting and receiving. By adjusting the controls the pilot is able to give more or less power to the motors mounted onto the airship. This is the principal means of forward propulsion. This controller is described in more detail in chapter \ref{chap:mcc}.
+The hardware of the controller is basically a commercial remote controller capable of transmitting and receiving. By adjusting the controls the pilot is able to give more or less power to the motors mounted onto the airship. This is the principal means of forward propulsion. This controller system is described in more detail in chapter \ref{chap:mcc}.
 \\
 \\
-Finally, the supplementary material consists of a commercial power supply that is able to charge the batteries of the \ac{EPS}. The characteristics of this power supply are discussed in chapter \ref{chap:eps}.
+Finally, the supplementary material consists of a commercial power supply that is able to charge the batteries of the \ac{EPS}. The characteristics of this battery are discussed in chapter \ref{chap:eps}.
 
 \subsection{Software Description}
 
-The supplementary power supply and the controller do not require any additional software. Only for the ground station additional software has to be developed, capable of reading the scientific payload data received via the wireless connection and visualizing this data. In order to combine the aerial camera images and the scientific data a custom algorithm has to be written. This software is further described in chapter \ref{chap:itpu}.
+The supplementary power supply and the controller do not require any additional software. Only for the ground station additional software has to be developed, capable of reading the scientific payload data (received via the wireless connection) and visualizing this data for the user. In order to combine the aerial camera images and the scientific data a custom algorithm has to be written. This software is further described in chapter \ref{chap:itpu}.
 
 \subsection{Compliance}
 
@@ -35,7 +35,7 @@ Both the ground station receiver and the controller transmitter/receiver have to
 
 \section{Mechanical Ground Support Equipment (MGSE)}
 
-Apart from the \ac{EGSE}, also a certain amount of \ac{MGSE} is required for the success of the \ac{U-SPACE} project. First of all facilities at \ac{LTU} Rymdcampus, \ac{IRF} or Esrange have to be available during flight tests to enable on-site fuelling of the envelope with a suitable gas (see chapter \ref{chap:mse}). These facilities include a large gas tank, valves and tubes to connect the tank to the envelope and also safety equipment to ensure that the entire procedure does not harm the persons involved.
+Apart from the \ac{EGSE}, also a certain amount of \ac{MGSE} is required for the success of the \ac{U-SPACE} project. First of all facilities at \ac{LTU} Rymdcampus, \ac{IRF} or Esrange have to be available during flight tests to enable on-site fuelling of the envelope with a suitable gas (see chapter \ref{chap:mse} for more details). These facilities include a large gas tank, valves and tubes to connect the tank to the envelope and also safety equipment to ensure that the entire procedure does not harm the persons involved.
 \\
 \\
-Secondly an extensive safety system is necessary to prevent the airship from flying beyond the flight test perimeter in case of failures or unexpected weather conditions. This system should nevertheless allow the \ac{SPA} to move freely about during all flight test procedures, without interfering with the normal operation of the airship. Possible implementations include a long rope tied to a fixed point or a cable firmly anchored to a movable object.
+Secondly an extensive safety system is necessary to prevent the airship from flying beyond the flight test perimeter in case of failures or unexpected weather conditions. This system should nevertheless allow the \ac{SPA} to move freely during all flight test procedures, without interfering with the normal operation of the airship. Possible implementations include a long rope tied to a fixed point or a cable firmly anchored to a movable object.
