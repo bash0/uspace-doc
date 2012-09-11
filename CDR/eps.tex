@@ -61,13 +61,16 @@ The \ac{EPS} power budget is listed in Table \ref{tab:power_budget} and the tech
 \centering
 \caption{Power budget}
 \label{tab:power_budget}
-\begin{tabular}{p{0.4\textwidth}p{0.3\textwidth}p{0.2\textwidth}}
+\begin{tabular}{lrr}
 \hline
 \textbf{Part/subsystem} & \textbf{Peak load} & \textbf{Average load}\\
 \hline
-2 x \ac{MCC} motors & $120\,W$ & $\sim 35\,W$? \\
-\rr \ac{ITPU} MCU + sensors & $3\,W$? & $3\,W$?\tn
-\ac{MCC} ETag & ? & ? \\
+2 x \ac{MCC} motors & $120\,W$ & $\sim 40\,W$ \\
+\ac{MCC} ETag & $100\,mW$ & $100\,mW$ \\
+\ac{MCC} Xbee-Pro radio & $10\,mW$ & $10\,mW$ \\
+\rr \ac{ITPU} BeagleBoard + sensors & $3\,W$? & $3\,W$?\tn
+\hline\hline
+Total: & $123.11\,W$ & $43.11\,W$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -75,7 +78,7 @@ The \ac{EPS} power budget is listed in Table \ref{tab:power_budget} and the tech
 %
 \begin{table}[H]
 \centering
-\caption{Technical requirements}
+\caption{Technical requirements for EPS}
 \label{tab:technical_requirements}
 \begin{minipage}{\textwidth}
 \begin{tabular}{p{0.3\textwidth}p{0.15\textwidth}p{0.45\textwidth}}
@@ -86,7 +89,7 @@ Minimum power output & $P_{out,min}$ & $40\,W$\footnote{Average \ac{SAR} output 
 Maximum mass & $W_{EPS,max}$ & $1000\,g$ including solar array\\
 Maximum cost & - & $4000\,SEK$\footnote{Initial budget for 2 students}\\
 Output voltages & $V_{mainbus}$, $V_{5V}$ & $6.0-9.5\,V$ un-regulated and $5\,V$ regulated\\
-Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\,to +45^{\circ}C$\\
+Operational temperature & $T_{min}$, $T_{max}$ & $-20^{\circ}C\;to\;+45^{\circ}C$\\
 Battery capacity & $C_{bat}$ & $>5\,Wh$\\
 \hline
 \end{tabular}\par
@@ -141,7 +144,7 @@ The expected \ac{EPS} performance values are listed in Table \ref{tab:expected_p
 %
 \begin{table}[H]
 \centering
-\caption{Expected performance}
+\caption{Expected performance for the \ac{EPS}}
 \label{tab:expected_performance}
 \begin{minipage}{\textwidth}
 \begin{tabular}{p{0.4\textwidth}p{0.15\textwidth}p{0.35\textwidth}}
@@ -435,12 +438,12 @@ The complete \ac{EPS} diagram is shown in Figure \ref{fig:EPS_diagram_detailed}.
 %
 \subsection{External Interfaces}
 %
-The external interfaces of the \ac{EPS} are listed in Table \ref{tab:external_interfaces}.
+The external interfaces of the \ac{EPS} are listed in Table \ref{tab:external_interfaces_eps}.
 %
 \begin{table}[H]
 \centering
-\caption{External interfaces}
-\label{tab:external_interfaces}
+\caption{EPS external interfaces}
+\label{tab:external_interfaces_eps}
 \begin{tabular}{p{0.25\textwidth}p{0.15\textwidth}p{0.5\textwidth}}
 \hline
 \textbf{External interface} & \textbf{Type} & \textbf{Implementation}\\
@@ -464,7 +467,7 @@ The exact electrical configuration and interface connectors still remains to be 
 %
 \begin{table}[H]
 \centering
-\caption{Telemetry}
+\caption{\ac{EPS} telemetry}
 \label{tab:Telemetry}
 \begin{minipage}{\textwidth}
 \begin{tabular}{|p{0.29\textwidth}p{0.13\textwidth}p{0.13\textwidth}p{0.35\textwidth}|}
@@ -493,7 +496,7 @@ Solar array voltage & Every 1 sec & 2 bytes & \ac{TBD}\\
 %
 \begin{table}[H]
 \centering
-\caption{Telecommands}
+\caption{EPS telecommands}
 \label{tab:Telecommands}
 %\begin{minipage}{\textwidth}
 \begin{tabular}{|p{0.2\textwidth}p{0.25\textwidth}p{0.45\textwidth}|}
@@ -541,7 +544,7 @@ Table \ref{tab:test_program} lists all necessary and desired test of the EPS. Pr
 %
 \begin{center}
 \begin{longtable}[H]{p{0.15\textwidth}p{0.25\textwidth}p{0.45\textwidth}r}
-\caption{Test program}\\
+\caption{EPS test program}\\
 \label{tab:test_program}\\[-0.5cm]
 \hline
 \textbf{Subsystem} & \textbf{Condition/Mode} & \textbf{Test Description} & \textbf{Pri.}\\
@@ -569,13 +572,13 @@ Fuses & \rr Temperature variation & \rr The \ac{PTC} resettable fuses should be 
 \end{center}
 %
 
-\section{Resources and Scheduling}
+\section{Resources}
 \label{sec:resources_scheduling}
-
-\subsection{Main Tasks}
-
-TBD...
-
+%
+%\subsection{Main Tasks}
+%
+%TBD...
+%
 %The main tasks, to implement the proposed \ac{EPS} design, are listed in table \ref{tab:main_tasks}.
 %
 %\begin{table}[H]
@@ -606,7 +609,7 @@ TBD...
 %\renewcommand{\footnoterule}{}
 %\end{minipage}
 %\end{table}
-
+%
 \subsection{Parts List and Costs}
 Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order which is expected to be placed in the near future). The calculated costs do not including invoicing or shipping costs.
 %
@@ -614,7 +617,7 @@ Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order
 \begin{center}
 \begin{longtable}[H]
 {p{0.4\textwidth}p{0.25\textwidth}p{0.12\textwidth}rc}
-\caption{Parts list}\\
+\caption{EPS Parts list}\\
 \label{tab:parts_list}\\[-0.5cm]
 \hline
 \textbf{Part} & \textbf{Part Name} & \textbf{Supplier} & \textbf{Cost\footnotemark[1]} & \textbf{Qty.}\\
@@ -662,7 +665,7 @@ The \ac{EGSE} in Table \ref{tab:EGSE} is mainly required for testing of the \ac{
 %
 \begin{table}[H]
 \centering
-\caption{Required EGSE}
+\caption{Required EGSE for EPS}
 \label{tab:EGSE}
 \begin{tabular}{|p{0.35\textwidth}p{0.55\textwidth}|}
 \hline

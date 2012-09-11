@@ -1,34 +1,52 @@
 \chapter{Test and Verification of Design}
 \label{chap:test_verification}
-
+%
 \section{Design Verification Plan}
 \label{sec:ver_plan}
-
+%
 In order to verify that the goals of the \ac{U-SPACE} project (as set forth in chapter \ref{chap:goals_constraints}) are truly satisfied after the realization of a prototype, it is very important to perform a series of design verification procedures with this prototype. Verification by analysis, verification by test and verification by inspection are the most important procedures.
-
+%
 \subsection{Objectives and Responsibilities}
-
+%
 A complete design verification plan is an essential element of a successful project. One main objective of having such a plan is the availability of a structure that allows to systematically verify the quality of the work delivered during the project. A design verification plan is also important because it makes it possible to check exactly where problems occur and to find clues towards the solution of these problems.
 \\
 \\
 The responsibility of defining and performing the appropriate design verification procedures for each subsystem lies with the team members responsible for that subsystem. They report to the quality manager and the project manager, who can then define test verification procedures for combinations of subsystems, possibly testing each combination individually. When satisfactory results are achieved the entire prototype can be verified by a final series of procedures.
-
+%
 \subsection{Verification By Analysis}
-
+%
 A first verification method is verification by analysis. This method uses theoretical calculations and simulations to check if the goals of the subsystem and/or project can be realized with the current hardware and software combination \cite{ECSS_verification}. For the \ac{U-SPACE} project these calculations could for example consist of a theoretical analysis of the maximum payload mass based on the characteristics of the \ac{SPA} structure or a comparison of the forces on the structure to calculate the maximum forward velocity due to the motors. Simulations can also be performed for the \ac{EPS} to check the stability of the provided power or the power consumption of each subsystem (see chapter \ref{chap:eps}. Comparing the prototype with previously used solution concepts (verification by similarity) can be considered as a subset of this verification method. However, since there are very few examples of a \ac{SPA} of this type, this specific subset is not used during the project verification phase.
 \\
 \\
 Although calculations and simulations are used extensively during the design phase of the project they are not an essential means to verify the final quality of the subsystem and/or prototype. This type of calculations is very difficult and requires a clear insight in the underlying principles. Since the experience in the team is limited in this respect, the principal verification method is verification by test, which is treated below.
-
+%
 \subsection{Verification By Test}
-
+%
 The second and most important verification method during the \ac{U-SPACE} project is verification by test. As the name implies this method consists of monitoring the performance and functionality of the subsystem and/or prototype in a simulated test environment \cite{ECSS_verification}. Detailed test procedures and test matrices have to be defined for each subsystem, including such topics as stable basic performance, compliance with other subsystems and extreme conditions. The subsystem or prototype has to achieve satisfactory results in all test procedures to be considered as a successful realization of the project goals.
-
+%
 \subsection{Verification By Inspection}
-
+%
 The final verification method is verification by inspection. It is defined as the visual inspection of hardware and software for good workmanship and compliance to industry or design standards \cite{ECSS_verification}. This method is a very simple method that can give some initial clues regarding the successful design of a subsystem, but which always has to be corroborated by means of test procedures. It is therefore only a minor element in the complete design verification plan.
-
+%
+%
 \section{Subsystem Test Matrices}
 %\label{sec:test_matrices}
-
+%
 The design verification plan of the \ac{U-SPACE} project includes test matrices for each subsystem, presenting all tests and their (future) results. These matrices can be used to check the progress of the test procedures and are also useful to identify problems with the subsystem. More details regarding the test procedures for each subsystem can be found in the dedicated sections of the specific subsystem chapters.
+%
+%
+\section{U-SPACE Flight Tests}
+%
+Normally \ac{U-SPACE} flights require sufficient solar incidence, clear sky, no wind and mild temperatures. However, as of the current writing, the sunlight in Kiruna is disappearing fast and outdoor temperatures are dropping close to zero. \ac{U-SPACE} will not be ready for flight before late October 2012 (see Section \ref{sec:schedule}). Therefore, outdoor flights are not viable this year. Instead it has been planned to execute an indoor test in a large heated hanger at Esrange. This flight allows us to test many important aspects of the \ac{U-SPACE} system, including:
+%
+\begin{itemize}
+\item Final proof of the Esrange blimp's capability to lift our complete system including payloads.
+\item Testing our mechanical structure concept and ease of mounting to the blimp.
+\item Testing of our communication to and control of the motors along with initial aerodynamic properties of a forward propelled blimp and its steering (turning) capabilities.
+\item Testing of ground station and onboard telemetry and telecommand link.
+\item Testing of the \ac{ITPU} payload sensors (attitude and GPS) and camera.
+\end{itemize}
+%
+%
+In spring/summer 2013, it will again be possible to perform outdoor flights with \ac{U-SPACE} thus the primary concept of a solar powered airship can be tested, possibly be the arriving SpaceMasters from round 8. Meanwhile, the power system can easily be tested in laboratory which is already planned (see Section \ref{sec:test_verification}).
+%
