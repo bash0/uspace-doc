@@ -37,7 +37,7 @@ Average power consumption & $\sim 45\,W$\\
 \end{table}
 %
 \noindent
-As it was decided to use a blimp from Esrange instead of the custom-built \ac{MSE} (see chapter \ref{chap:mse}), the whole system had to be redesigned. The main changes were the increased dimensions of the blimp and the decreased total lift mass. This required for the \ac{MCC} to use more powerful and more efficient motors, since the \ac{EPS} was affected as well. The transmitter/receiver system however remained unchanged.
+As it was decided to use a blimp from Esrange instead of the custom-built \ac{MSE} (see chapter \ref{chap:mse}), the whole system had to be redesigned. The main changes were the increased dimensions of the blimp and the decreased total lift mass. This required more powerful and efficient motors to cope with the expected increase in wind drag of the \ac{SPA}. The transmitter/receiver system however remained unchanged.
 %
 \subsection{Expected Performance}
 The expected performance of the chosen \ac{MCC} design is listed in Table \ref{tab:performance_mcc}.
@@ -53,8 +53,7 @@ Total mass & $\sim 55\,g$\\
 Max. current per motor & $7.5\,A$ \\
 Max. motor voltage & $11.2\,V$ \\
 Number of motors & $2$ \\
-Motor efficiency & $77 \%$ \\ 
-Motor RPM & $1400\,RPM/V$\\
+Motor efficiency & $\sim~77 \%$ \\ 
 Motor dimensions & $27.6 \times 11 mm$ \\
 Transmission frequency & $2.4\,GHz$\\
 Receiver channels & $6$\\
@@ -66,7 +65,7 @@ Receiver channels & $6$\\
 \section{Critical Design}
 %Explain the preliminary design including block diagrams, schematics, drawings, etc.
 %
-The functioning of the \ac{MCC} subsystem is shown in Figure \ref{fig:design_block}. The transceiver consists of a $2.4\,GHz$ transmitter and receiver (see below). The receiver forwards the motor speed control commands to the \ac{ESC} which in turn control the motor to reach the desired speed.
+The functioning of the \ac{MCC} subsystem is shown in Figure \ref{fig:design_block}. The transceiver consists of a $2.4\,GHz$ transmitter and receiver (see below). The receiver forwards the motor speed control commands to the \ac{ESC} which in turn controls the motor to reach the desired speed.
 %
 \begin{figure}[h]
 \centering
@@ -87,7 +86,7 @@ Brush-less motors are selected as they are known to be powerful, durable and lig
 \end{figure}
 %
 %\noindent
-The speed of the motor can be controlled by the following methods:
+For the \ac{ECS}, two alternatives exist:
 %
 \begin{itemize}
 \item Use a \ac{COTS} \ac{ESC} for each motor
@@ -123,18 +122,18 @@ Change in Frequency & On next power up & By changing the crystal \\
 Ability to transmit through obstacles & Weak & Very Good\\
 Bandwidth & Wide & Narrow\\
 Data Rate & High & Low\\
-Power Usage & Less & More\\
-RF Noise Immunity & Very Good & Less \\
+Power Usage & Low & High\\
+RF Noise Immunity & Very Good & Good \\
 \hline
 \end{tabular}
 \end{table}
 %\vspace{-2.0em}
 %
 %\noindent
-It is clear from Table \ref{tab:transceiver} that a $2.4\,GHz$ transceiver system is better for the chosen application. The only disadvantage of using a $2.4\,GHz$ transceiver system is that the receiver should have very reliable batteries and the voltage should constantly be maintained at a particular level. The reason is that there are small processors in the transmitter and receiver that carry out many complex calculations every second. These processors require a constant steady supply of current to work properly. If there is an interruption in the supply current of the receiver there will be problems with the communication channel.
+It is clear from Table \ref{tab:transceiver} that a $2.4\,GHz$ transceiver system is better for the chosen application. The only disadvantage of using a $2.4\,GHz$ transceiver system is that the receiver should have very reliable batteries and the voltage should constantly be maintained at a particular level since there are small processors in the transmitter and receiver that carry out many complex calculations every second. These processors require a constant steady supply of current to work properly. If there is an interruption in the supply current of the receiver there will be problems with the communication channel.
 \\
 \\
-The $2.4\,GHz$ transceiver system is selected for the communication channel. The transceiver uses the $2.4\,GHz$ frequency band and the spread spectrum technology for transmission of signals. This feature helps in removing all interfering frequencies caused by other electronic equipments which improves the communication channel. The other major advantage of using spread spectrum technology is that the communication channel is not affected, even when someone is using the same frequency band.
+The $2.4\,GHz$ transceiver system is selected for the communication channel. The transceiver uses the $2.4\,GHz$ frequency band and the spread spectrum technology for transmission of signals. This feature helps in removing all interfering frequencies caused by other electronic equipments thus improving the quality of the communication channel. The other major advantage of using spread spectrum technology is that the communication channel is not affected, even when someone is using the same frequency band.
 %
 \section{Test and Verification}
 %
@@ -149,7 +148,7 @@ Table \ref{tab:mcc_test} lists completed and scheduled tests of the \ac{MCC} sub
 \textbf{Test} &  \textbf{Description} & \textbf{Status}\\ 
 \hline
 \rr Motor control from ground transmitter & Two motors should be controlled from the ground transmitter via the onboard receivers and \acp{ESC}. & \rr Completed with success. Some re-programming of ground transmitter is needed to make it more intuitive to use.\tn
-Motor thrust measurement & \rr A rack, with the two motors mounted on, is placed on a scale that measures the generated thrust. & \rr Completed, see Figure \ref{fig:motor_thrust_level}. At $\sim 66\,W(\sim 11\,V\;,\;6\,A)$ the motors generated a thrust of $\sim 210\,g\,(2060\,N)$\tn
+Motor thrust measurement & \rr A rack, with the two motors mounted on, is placed on a scale that measures the generated thrust. & \rr Completed, see Figure \ref{fig:motor_thrust_level}. At $\sim 66\,W(\sim 11\,V\;,\;6\,A)$ the motors generated a thrust of $\sim 210\,g\,(2.06\,N)$\tn
 Communication range & \rr Effective communication range between ground transmitter and onboard receiver should be tested up to at least $250\,m$. & Pending. \tn
 \hline
 \end{tabular}
@@ -175,7 +174,7 @@ Communication range & \rr Effective communication range between ground transmitt
 \newpage
 \section{Ressources}
 %
-Table \ref{tab:mcc_parts_list} list the ordered \ac{MCC} parts.
+Table \ref{tab:mcc_parts_list} lists the ordered \ac{MCC} parts.
 \begin{table}[bht]
 \centering
 \caption{MCC parts list}

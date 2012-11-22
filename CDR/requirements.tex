@@ -5,13 +5,14 @@
 \label{sec:goals}
 %What function(s) does the subsystem have to fulfill?
 %
-The principal goal of the \ac{U-SPACE} project is to bridge the gap between a student-driven engineering project and the concept of an unmanned \ac{SPA}. As very few examples of this type of design exist \cite{website:solr}, much is to be gained from the project. Due to the many constraints that have to be taken into account (see section \ref{sec:constraints}), the goal is necessarily modest. The goal of this project is thus designing, building and testing a small-scale \ac{SPA} for low altitude flight, including support for a scientific payload. The basic targets are listed below:
+The principal goal of the \ac{U-SPACE} project is to bridge the gap between a student-driven engineering project and the concept of an unmanned \ac{SPA}. As very few examples of this type of design exist \cite{website:solr}, much is to be gained from the project. The goal of this project is thus designing, building and testing a small-scale \ac{SPA} for low altitude flight, including support for a scientific payload. The basic targets are listed below:
 %
 \begin{enumerate}
-\item Design of a small unmanned \ac{SPA} capable of forward propulsion, powered by solar cells and including a scientific payload
-\item Construction of such an \ac{SPA} with minimal cost
+\item Design of a small unmanned \ac{SPA} capable of forward propulsion and steering, powered by solar cells and including a scientific payload
 \item Flight test of this \ac{SPA} at low altitude
 \end{enumerate}
+%
+Initially, it was also considered to build our own envelope. However, due to time constraints and an arising opportunity to borrow a blimp from Esrange, this became our choice of envelope.
 %
 \section{Project Constraints}
 \label{sec:constraints}
@@ -34,7 +35,7 @@ Total mass & - & $4.5\,kg$\\
 Flight altitude & $2\,m$ & $100\,m$\\
 Electrical power & - & $40\,W$\\
 Forward velocity & - & $1\,m/s$\\
-Radius & $10\,m$ & -\\
+%Radius & $10\,m$ & -\\
 \hline
 \end{tabular}
 \vspace{-1.0em}
@@ -42,19 +43,19 @@ Radius & $10\,m$ & -\\
 %
 \subsection{Resources}
 %
-Since the \ac{U-SPACE} project is a student project supported by \ac{LTU} and \ac{IRF}, the available resources are limited. This imposes stringent constraints on all phases of the project. The main resources can be identified as the three elements of the project management triangle, shown in Figure \ref{fig:project_triangle}.
+Since the \ac{U-SPACE} project is a student project supported by \ac{LTU} and \ac{IRF}, the available resources are limited. This imposes stringent constraints on all phases of the project. %The main resources can be identified as the three elements of the project management triangle, shown in Figure \ref{fig:project_triangle}.
 %
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.2]{figures/project_triangle.png}
-\caption[Project management triangle]{Project management triangle \cite{website:claromentis}.}
-\label{fig:project_triangle}
-\vspace{-0.5em}
-\end{figure}
-%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.2]{figures/project_triangle.png}
+%\caption[Project management triangle]{Project management triangle \cite{website:claromentis}.}
+%\label{fig:project_triangle}
+%\vspace{-0.5em}
+%\end{figure}
+%%
 
 \noindent
-The cost of this student project is limited by its approved budget, an initial sum between 10,000 and 12,500 SEK, provided by \ac{LTU}. More funding can be applied for if required, but the budget nevertheless remains limited. This constraint implies a careful selection of components and the use of innovative engineering solutions throughout the entire project. 
+The cost of this student project is limited by its approved budget, an initial sum of 14,000 SEK is provided by \ac{LTU}(2000 SEK per European student). More funding can be applied for if required, but the budget nevertheless remains limited. This constraint implies a careful selection of components and the use of innovative engineering solutions throughout the entire project. 
 \\
 \\
 The time available for this project is also constrained, being a student project that has to be realized in concurrence with other academic duties. The estimated time frame is therefore between 2 and 6 months for a first prototype capable of test flight.
@@ -102,7 +103,7 @@ Based on the project goals set forth in section \ref{sec:goals} and taking into 
 \hline
 \textbf{Parameter} & \textbf{Value} & \textbf{Remarks}\\ \hline
 Autonomy & $2\,h$ & At peak power\\
-Flight altitude & $2-20\,m$ & -\\
+Flight altitude & $2-20\,m$\footnote{flight altitude will initially only be controlled by a mechanical device (wire) attached to ground} & -\\
 Forward velocity & $0.5-1\,m/s$ & -\\
 Flight conditions & Daytime & Sunny and calm weather\\
 \hline
@@ -114,7 +115,7 @@ The other functional constraints presented in section \ref{sec:constraints} will
 
 \section{Fault Tolerance Design and Safety Concept}
 
-Since the goal of the \ac{U-SPACE} project is to design, build and test a prototype of a small-scale \ac{SPA}, the focus of this project is not on a fault-tolerant \ac{SPA} design, but rather on a performant design that meets the project goals. Nevertheless some safety features are included in the design, construction and flight test of the airship. These features will be discussed in the chapters dedicated to the different subsystems and in chapter \ref{chap:ground_support}.
+Since the goal of the \ac{U-SPACE} project is to design, build and test a prototype of a small-scale \ac{SPA}, the focus of this project is not on a fault-tolerant \ac{SPA} design, but rather on  performance of the design that meets the project goals. Nevertheless some safety features are included in the design, construction and flight test of the airship. These features will be discussed in the chapters dedicated to the different subsystems and in chapter \ref{chap:ground_support}.
 
 \section{Materials}
 

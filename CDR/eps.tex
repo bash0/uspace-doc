@@ -121,14 +121,14 @@ The solar cell output current drops with the Kelly cosine function as shown in F
 \centering
 \includegraphics[width=\textwidth]{figures/fig_CDR_EPS_SolarIncidenceAngle_Sep}
 \end{minipage}
-\caption[Solar incidence angles]{Monthly average solar incidence angles for June (left) and September (right) for each hour of the day. The solar panel is facing straight up}
+\caption[Solar incidence angles]{Monthly average solar incidence angles for June (left) and September (right) for each hour of the day.}
 \label{fig:SolarIncidenceAngles}
 \end{figure}
 %
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{figures/fig_KellyCosine}
-\caption[Kelly cosine function]{Kelly cosine function showing how solar cell photo current depends on sun incidence angle \cite[Fig 9.12]{book:mukund_wind}}
+\caption[Kelly cosine function]{Kelly cosine function showing how solar cell photo current depends on sun incidence angle onto the solar cell\cite[Fig 9.12]{book:mukund_wind}}
 \label{fig:KellyCosine}
 \end{figure}
 %
@@ -206,25 +206,15 @@ Maximum fast charge current & $I_{charge,max}$ & $3\,A$\\
 The \ac{BCR} must control the charge rate of the battery such that the charge current limit is not exceeded and it must cut off the charge current when the battery is fully charged. Temperature monitoring is usually also required to inhibit charging if the battery temperature is outside its safety limits. 
 \\
 \\
-A \textit{MCP73842} Li-ion battery charge regulator \ac{IC} is selected. It employs three different charge modes: low-charge for deeply discharged batteries, \ac{CC} charge and trickle charging. It also includes inputs for temperature monitoring. The battery maximum charge current was given in Table \ref{tab:proposed_battery} as $3\,A$. From the \textit{MCP73842} datasheet, the minimum current sense resistor value is calculated as
+A \textit{MCP73842} Li-ion battery charge regulator \ac{IC} is selected. It employs three different charge modes: low-charge for deeply discharged batteries, \ac{CC} charge and trickle charging. It also includes inputs for temperature monitoring. The battery maximum charge current was given in Table \ref{tab:proposed_battery} as $3\,A$. From the \textit{MCP73842} datasheet, the minimum current sense resistor, $R_{sense}$, is calculated as
 %
 \begin{equation}
 R_{sense}=\dfrac{V_{FCS}}{I_{REG}}=\dfrac{120\,mV}{3\,A}=40\,m\Omega
 \end{equation}
 %
-A $50\,m \Omega$ current sense resistor is selected leading to a charge current of $2.4\,A$.
+Where $V_{FCS}$ is the fast charge voltage regulation across the sense resistor and $I_{REG}$ is the desired charge current. A $50\,m \Omega$ current sense resistor is selected leading to a charge current of $2.4\,A$. A heat sink must be added according to the thermal calculations in Appendix \ref{app:BCR_trans_max_heat_dissipation}.
 %
-The worst-case thermal dissipation in the \ac{MOSFET} happens when the battery is charged from its minimum charge state
-%
-\begin{equation}
-\begin{split}
-P_{max,\ac{MOSFET}}=&(V_{in,max}-V_F-V_{bat,min})\cdot I_{charge}\\
-=&(9.5\,V-0.3\,V-5.5\,V)\cdot 2.4\,A=8.88\,W
-\end{split}
-\end{equation}
-%
-where $V_{in,max}$ is the maximum mainbus voltage, $V_F$ the expected Schottky diode forward voltage drop and $V_{bat,min}$ is the preconditioning threshold voltage of the \ac{BCR} \ac{IC}.
-An \textit{SUP75P03-07-E3} P-channel \ac{MOSFET} is selected which is rated for a peak power dissipation of $187\,W$, well above the minimum requirement provided that suitable thermal design is applied, most likely including a heat sink. Calculations on heat sink requirements still remain to be done.
+In Appendix \ref{app:BCR_trans_max_heat_dissipation}, heat sink requirements for the \ac{BCR} transistor are calculated.
 %
 \subsubsection*{Future Improvements}
 As was calculated above, significant power may be lost in the \ac{BCR} \ac{MOSFET}. This is due to the selected \ac{BCR} \ac{IC} which requires an input voltage of around $9.5\,V$ (including a Schottky diode forward voltage drop and some design margin). In the future, the \ac{BCR} could be designed to allow operation with an input voltage only slightly above the battery voltage thus minimizing the charge losses and relaxing the thermal requirements of the \ac{MOSFET}.
@@ -315,7 +305,8 @@ I_{array}&=50\cdot I_{cell}=5\,A
 \end{figure}
 %
 \noindent
-Since only two cells are in series, it is estimated that bypass diodes are not very beneficial for mitigating shading issues, as was discussed in section \ref{subsec:environmental_requirements}, and hence they are not included in the design.
+Bypass diodes were briefly discussed in section \ref{subsec:environmental_requirements}.
+But since only two cells are connected in series, it is estimated that bypass diodes are not very important in mitigating shading issues since it would require a large amount of diodes (one for every solar cell string) and only one cell is bypassed.
 %
 \subsection{Solar Array Regulator}
 The \ac{SAR} must control the optimal solar array operating voltage as well as limit the output mainbus voltage. A simple step-down buck converter topology is preferred for a number of reasons:
@@ -336,7 +327,7 @@ V_{out}=D\,V_{in}
 where $D$ is the duty cycle of the \ac{MOSFET} switch, $V_{in}$ the solar array voltage and $V_{out}$ the mainbus voltage. The duty cycle is controlled by a \ac{PWM} controller which provides input to a high-side \ac{MOSFET} driver. A \ac{MEA} measures the mainbus output voltage to generate a control signal for the PWM controller. An \textit{LM3477} chip is selected which combines \ac{PWM} controller, \ac{MEA} and gate driver in one \ac{IC}.
 \\
 \\
-The \ac{CM} control scheme is adopted due to its excellent dynamic abilities \cite[sec. 12-3-6]{Fundamentals} and simplified feedback regulator design. A low resistance $10\,m \Omega$ precision sense resistor measures the inductor current slope. The \textit{LM3477} has built-in slope compensation to avoid current mode instabilities \cite[sec. 12-1]{Fundamentals}.
+The \ac{CM} control scheme is adopted due to its excellent dynamic abilities \cite[sec. 12-3-6]{Fundamentals} and simplified feedback regulator design. A $10\,m \Omega$ precision sense resistor measures the inductor current slope. The \textit{LM3477} has built-in slope compensation to avoid current mode instabilities \cite[sec. 12-1]{Fundamentals}.
 \\
 \\
 The converter switching frequency, $f_{switch}$, is chosen relatively high to $500\,kHz$. The increased switching losses are expected to be outweighed by the fact that the low operating voltage limits switching losses and the high frequency allows the inductor and filter components to be made smaller, thus limiting system mass and the resistive losses in the inductor copper wires which are expected to dominate the converter losses due to the relatively high currents. The inductor current ripple, $\Delta I_L$, can be calculated as 
@@ -370,13 +361,13 @@ With an inductor current ripple of $0.72\,A$ the current sense voltage slope is 
 v_{sense}=\Delta I_L\cdot R_{sense}=0.72\,A\cdot 10\,m\Omega = 7.2\,mV
 \end{equation}
 %
-It is recommended that the slope compensation is equal to or the double of the sense slope \cite[sec. 12-1]{Fundamentals}, however the minimum compensation slope is limited to $103\,mV$ by the \textit{LM3477} chip. Thus the sensed slope signal must be amplified, with a gain of around 20 being suitable. This also has the advantage of eliminating some of the typical noise susceptibility in the current sense signal. The current sense circuit in Figure \ref{fig:EPS_diagram_detailed} consists of two differential OpAmps which amplifies the current sense slope. Resistive voltage dividers are placed on the OpAmp inputs to scale down the input voltage signals to always be below the $5\,V$ OpAmp supply voltage.
+It is recommended that the slope compensation is equal to or the double of the sense slope \cite[sec. 12-1]{Fundamentals}, however the minimum compensation slope is limited to $103\,mV$ by the \textit{LM3477} chip. Thus the sensed slope signal must be amplified, with a gain of around 20 being suitable. This also has the advantage of eliminating some of the typical noise susceptibility in the current sense signal. The current sense circuit in Figure \ref{fig:EPS_diagram_detailed} consists of two differential OpAmps which amplify the current sense slope. Resistive voltage dividers are placed on the OpAmp inputs to scale down the input voltage signals to always be below the $5\,V$ OpAmp supply voltage.
 \\
 \\
 Since a closed-loop OpAmp gain of 20 is needed at an operating frequency of $500\,kHz$, the gain-bandwidth specification of the OpAmps must be more than $10\,MHz$. The \textit{LTC6362CMS8PBF} OpAmp is selected. One limitation of this OpAmp is its temperature range which only goes down to $0^{\circ}\,C$. This might be solved by thermally connecting it to the transistor heat sinks or by ensuring that the internal \ac{EPS} temperature does not go below $0^{\circ}\,C$.
 %
 \subsubsection*{Input Filter}
-An input filter is placed in front of the buck converter, mainly to draw a continuous current from the solar array. It also reduces the converter \ac{EMC} issues (see chapter \ref{chap:emc}). One challenge with the input filter is that it effects the dynamic properties of the converter and if not properly designed, it can degrade the control feedback loop performance. A damping network in the filter is also necessary to avoid instabilities \cite[sec. 10-3]{Fundamentals}.
+An input filter is placed in front of the buck converter, mainly to draw a continuous current from the solar array. It also reduces the converters \ac{EMC} issues (see chapter \ref{chap:emc}). One challenge with the input filter is that it affects the dynamic properties of the converter and if not properly designed, it can degrade the control feedback loop performance. A damping network in the filter is also necessary to avoid instabilities \cite[sec. 10-3]{Fundamentals}.
 \\
 \\
 A usable filter has been designed based on PSpice simulations. However thorough analysis still remains to be done to optimize the filter design.
@@ -421,8 +412,8 @@ where $V_{UVLO,BCR}$ is the worst-case \ac{UVLO} threshold voltage of the \ac{BC
 \end{figure}%
 %
 %
-\subsection{5V Regulator}
-To provide a regulated $5\,V$ supply for the on-board computer and payloads, a \textit{MIC29300-5} \ac{LDO} regulator is selected. A $2\,A$ resettable \ac{PTC} fuse is added to protect the loads from excessive currents and to protect the battery in case of a payload short-circuit failure.
+\subsection{3.3V and 5V Regulators}
+To provide regulated $3.3\,V$ and $5\,V$ supplies for on-board logic circuits and payloads, a \textit{MIC29300-5} \ac{LDO} and a [3.3V regulator name] regulator are selected. Resettable $2\,A$ \ac{PTC} fuses are added to protect the loads from excessive currents and to protect the battery in case of a payload short-circuit failure.
 %
 \subsection{Complete Electrical Power System Diagram}
 %
@@ -434,7 +425,6 @@ The complete \ac{EPS} diagram is shown in Figure \ref{fig:EPS_diagram_detailed}.
 \caption{EPS detailed block diagram}
 \label{fig:EPS_diagram_detailed}
 \end{sidewaysfigure}
-
 %
 \subsection{External Interfaces}
 %
@@ -474,19 +464,19 @@ The exact electrical configuration and interface connectors still remains to be 
 \hline
 \textbf{Telemetry} & \textbf{Data rate} & \textbf{Data size} & \textbf{Data range}\\
 \hline
-Battery voltage & Every 5 sec & 2 bytes & \ac{TBD}\\
+Battery voltage & Every 5 sec & 2 bytes & $5\,V$ to $9\,V$\\
 \hline
-Battery temperature & Every 5 sec & 2 bytes & \ac{TBD}\\
+Battery temperature & Every 5 sec & 2 bytes & $-25^{\circ}C$ to $+55^{\circ}C$\\
 \hline
-BCR status & Every 5 sec & 1 byte & \rr High($5\,V$), low($0\,V$) and $1\,Hz\;50\%$ duty cycle ripple\footnote{For explanation of the different status indications, look in the \ac{BCR} \ac{IC} datasheet}\tn
+BCR status & Every 5 sec & 1 byte & \rr High($5\,V$), low($0\,V$) and $1\,Hz\;50\%$ duty cycle ripple\footnote{The different status indications are explained in the \ac{BCR} \ac{IC} datasheet}\tn
 \hline
 \ac{UVLO} status & Every 5 sec & 1 byte &  \rr $0\,V$(nominal operation), $5\,V$(under-voltage lock-out)\tn
 \hline
-Mainbus voltage & Every 5 sec & 2 bytes & \ac{TBD}\\
+Mainbus voltage & Every 5 sec & 2 bytes & $5\,V$ to $12\,V$\\
 \hline
-Solar array temperature & Every 5 sec & 2 bytes & \ac{TBD}\\
+Solar array temperature & Every 5 sec & 2 bytes & $-35^{\circ}C$ to $75^{\circ}C$\\
 \hline
-Solar array voltage & Every 1 sec & 2 bytes & \ac{TBD}\\
+Solar array voltage & Every 1 sec & 2 bytes & $10\,V$ to $20\,V$\\
 \hline
 \end{tabular}\par
 \vspace{-0.75\skip\footins}
@@ -501,9 +491,9 @@ Solar array voltage & Every 1 sec & 2 bytes & \ac{TBD}\\
 %\begin{minipage}{\textwidth}
 \begin{tabular}{|p{0.2\textwidth}p{0.25\textwidth}p{0.45\textwidth}|}
 \hline
-\textbf{Telecommand} & \textbf{Command format} & \textbf{Description}\\
+\textbf{Telecommand} & \textbf{Command signal} & \textbf{Description}\\
 \hline
-\rr Battery charge inhibit & \ac{TBD} & Battery charging can be remotely terminated in case of battery anomalies.\\
+\rr Battery charge inhibit & logic low $(<0.8\,V)$ inhibits charging, logic high $(>1.4\,V)$ puts \ac{BCR} in normal mode & Battery charging can be remotely terminated in case of battery anomalies.\\
 \hline
 \rr Solar array voltage set & \ac{TBD} & When \ac{MPPT} is running, the solar array operating voltage can manually be set to mitigate any malfunction in the \ac{MPPT} algorithm.\\
 \hline
@@ -611,7 +601,7 @@ Fuses & \rr Temperature variation & \rr The \ac{PTC} resettable fuses should be 
 %\end{table}
 %
 \subsection{Parts List and Costs}
-Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order which is expected to be placed in the near future). The calculated costs do not including invoicing or shipping costs.
+Table \ref{tab:parts_list} lists all ordered \ac{EPS} parts (including one order which is expected to be placed in the near future). The calculated costs do not include invoicing or shipping costs.
 %
 %
 \begin{center}
@@ -674,7 +664,7 @@ The \ac{EGSE} in Table \ref{tab:EGSE} is mainly required for testing of the \ac{
 Network Analyzer & Up to about $\sim 1\,MHz$\\
 Spectrum Analyzer & \ac{TBD}\\
 Power supply & $75\,W$ output power at $\sim 15\,V$\\
-\rr Heating and cooling chamber(s) & $-20^{\circ}C$ to $+45^{\circ}C$ and allow small wires to be pulled through chamber\\
+\rr Heating and cooling chamber(s) & $-20^{\circ}C$ to $+45^{\circ}C$ and allow wire interfacing through chamber\\
 \hline
 \end{tabular}
 \end{table}

@@ -41,7 +41,7 @@ The technical requirements are listed in Table \ref{tab:technical}.
 Operation altitude & $< 500\,m$\footnote{The \ac{U-SPACE} requirements are less stringent, but the \ac{ITPU} might be used at these altitudes in later applications} & Open air\\
 Input voltage & $5\,V$ & Un-regulated\\
 Maximum power consumption  & $2.5\,W$ & -\\
-Image storage capacity & $>\,1000$ & Medium-resolution\\
+Image storage capacity & $>\,1000$ & 1 Mega-pixel resolution\\
 \hline
 \end{tabular}\par
 \vspace{-0.75\skip\footins}
@@ -57,12 +57,12 @@ Image storage capacity & $>\,1000$ & Medium-resolution\\
 To read out the sensors, communicate with the ground station and save images from the camera, an embedded system which provides all necessary interfaces and sufficient computing power to handle comparably large data streams from the camera is required. The BeagleBone \cite{website:beaglebone, BeagleBone:SRM} was selected, but only the BeagleBoard \cite{website:beagleboard} was delivered, which is a related predecessor that lacks some features.
 \\
 \\
-The BeagleBoard is a microcontroller board running a TI OMAP3530 ARM Cortex-A8 \ac{SoC}. It provides 256~MB RAM and several high and low level interfaces. The main interfaces used for the \ac{U-SPACE} project are \ac{$I^2C$} and \ac{UART} for communication with the sensors (gyroscope, magnetometer, accelerometer), plus the \ac{GPS}-receiver and radio-transmitter module (E-TAG). The high level interface to connect the camera is the \ac{USB}-host adapter. The operating system with the control program as well as the image files are stored onto an 8~GB class 10 \ac{SD} card. The required supply voltage for the BeagleBoard is 5~V. The voltage of the pins on the extension header is 1.8~V.
+The BeagleBoard is a microcontroller board running a TI OMAP3530 ARM Cortex-A8 \ac{SoC}. It provides 256~MB RAM and several high and low level interfaces. The main interfaces used for the \ac{U-SPACE} project are \ac{$I^2C$} and \ac{UART} for communication with the sensors (gyroscope, magnetometer, accelerometer) and the \ac{GPS}-receiver and radio-transmitter module (E-TAG). The high level interface to connect the camera is the \ac{USB}-host adapter. The operating system with the control program as well as the image files are stored onto an 8~GB class 10 \ac{SD} card. The required supply voltage for the BeagleBoard is 5~V. The voltage of the pins on the extension header is 1.8~V.
 
 \subsection{Sensors}
 
 To determine the position and attitude of the airship the LSM303DLM \cite{LSM303:datasheet} combined magnetometer and accelerometer and the ITG-3200 triple-axis gyroscope \cite{ITG-3200:datasheet} from Sparkfun are used. Both sensors have been used by the team members during an earlier project. The sensors communicate via an \ac{$I^2C$} interface with the main board at 3.3~V. To receive \ac{GPS} information an E-TAG device developed by Esrange is
-used. It is connected via a serial line interface with the main board. It also provides a transmitter module for communication with the ground station.
+used. It is connected via a serial line interface with the main board. It also provides a transmitter module for communication with the ground station which however, will not be used for U-SPACE.
 
 \subsection{Camera}
 
@@ -73,11 +73,11 @@ As high-quality embedded industrial cameras are very highly priced, a consumer w
 \FloatBarrier
 \section{Software Environment}
 
-The BeagleBoard is equipped with an 8~GB \ac{SD} card. A Debian-based Linux operating system is installed onto the card providing the environment, libraries and drivers for the program to run. As compared to the BeagleBone the
+The BeagleBoard is equipped with an 8~GB micro-\ac{SD} card. A Debian-based Linux operating system is installed onto the card providing the environment, libraries and drivers for the program to run. As compared to the BeagleBone the
 BeagleBoard lacks pull-up resistors on its \ac{$I^2C$} interface which produces problems with the Linux kernel. Also, the standard kernel for this board came without the possibility to enable the \ac{$I^2C$} controller. Therefore a custom version of the Linux kernel was compiled for the BeagleBoard in order to activate the \ac{$I^2C$} device on the extension header. 
 \\
 \\
-The program is divided into several threads. One thread is responsible for getting the newest sensor data from the accelerometer, magnetometer and gyroscope through the \ac{$I^2C$} interface and fusing them to achieve accurate position and attitude representations. This thread is running at a relatively high frequency (>50 Hz, but the final frequency has not yet been defined).  A second thread is polling for new \ac{GPS} data from the E-TAG via a serial line. As the \ac{GPS}-chip only updates the positional data about once per second this thread can run at a much lower frequency. A third thread is responsible for controlling the camera. If the thread is active, it will take a picture every second and save it to the \ac{SD}-card. The two final threads handle the sending of telemetry data to and the receiving of basic commands from the ground station.
+The OnBoard program is divided into five threads. One thread is responsible for getting the newest sensor data from the accelerometer, magnetometer and gyroscope through the \ac{$I^2C$} interface and fusing them to achieve accurate position and attitude representations. This thread is running at a relatively high frequency (>50 Hz, but the final frequency has not yet been defined).  A second thread is polling for new \ac{GPS} data from the E-TAG via a serial line. As the \ac{GPS}-chip only updates the positional data about once per second this thread can run at a much lower frequency. A third thread is responsible for controlling the camera and if active, it will take a picture every second and save it to the \ac{SD}-card. The two final threads handle the sending of telemetry data to and the receiving of basic commands from the ground station, respectively.
 
 \noindent
 Due to a lack of time a standard kernel is used which is not hard real-time capable. Nevertheless it still has the possibility of using pre-emptive scheduling which should give a high enough accuracy. It should be noted that in future
@@ -106,7 +106,7 @@ A simple and low-cost camera is being used, but, nevertheless, the system has to
 \label{sec:preprocessing}
 
 A crucial step for quality assurance is the first preprocessing and data homologization step. The input picture needs to be as clear and dynamically stable as possible as well as distortion free. There might be more steps involved, but the most important ones are lens distortion compensation, contrast and brightness stabilization and blur removal. Lens distortion compensation is a compensation of the lens's radial character and comes as the calibration result. Contrast and brightness might be adjusted globally to avoid saturated or noisy pictures. It is assumed that the aerial carrier is moving and without suitable light conditions the image can get blurry. To compensate for this blur a motion blur
-removal filter has to deployed. Assuming linear and constant motion a Wiener filter can be implemented. The motion
+removal filter has to be deployed. Assuming linear and constant motion a Wiener filter can be implemented. The motion
 can be estimated from the sensors or through image analysis. 
 
 \subsection{Aerial Map Creation}
@@ -135,7 +135,7 @@ After carrying out the transformation the pictures can be merged with small over
 
 \subsection{3D Reconstruction of Large Objects}
 
-Another potential application is robust 3D object reconstruction. Having multiple arbitrary views of one large object (for example a castle), it is possible to find regions that are invariant to an affine transformation. With these regions the position and parameters of the camera can be calculated as well as a transformation of the key points. This solution is based on the MSER algorithm proposed by ... and implemented in OpenCV.
+Another potential application is robust 3D object reconstruction. Having multiple arbitrary views of one large object (for example a castle), it is possible to find regions that are invariant to an affine transformation. With these regions the position and parameters of the camera can be calculated as well as a transformation of the key points. This solution is based on the MSER algorithm and implemented in OpenCV.
 
 \subsection{Object Tracking}
 
@@ -171,7 +171,7 @@ As can be seen in Figure \ref{fig:ADS_overview}, the sensors to be used are:
 %\FloatBarrier
 \subsection{Development Status}
 
-The \ac{ADS} has not only been developed on the final hardware (BeagleBoard). To continue the development during the semester break a recently released Raspberry Pi minicomputer \cite{website:raspberry} has been privately purchased, with properties very similar to the BeagleBoard. It also runs a derivative of the Debian operating system. A board has been created to attach a complete set of sensors to the system. These sensors are a gyroscope (ITG-3200 from Sparkfun), a magnetometer/accelerometer (LSM303 from Sparkfun) and a \ac{GPS} receiver (Venus 6 \ac{GPS} Module ST22 from SkyTraq). All sensors are pluggable and the complete system is shown in Figure \ref{fig:raspberry-sensors-top}. The bottom side of the board including the wiring cables is shown in Figure \ref{fig:raspberry-sensors-open}. This testing system does not yet contain a camera, but it will be added in the future. In this configuration the entire unit consumes 3 W of power and weighs 71 g (broken down into 30 g for the sensors and shield and 41 g for the computer).
+The \ac{ADS} has not only been developed on the final hardware (BeagleBoard). To continue the development during the semester break a recently released Raspberry Pi minicomputer \cite{website:raspberry} has been privately purchased, with properties very similar to the BeagleBoard. It also runs a derivative of the Debian operating system. A board has been created to attach a complete set of sensors to the system. These sensors are a gyroscope (ITG-3200 from Sparkfun), a magnetometer/accelerometer (LSM303 from Sparkfun) and a \ac{GPS} receiver(Etag). All sensors are pluggable and the complete system is shown in Figure \ref{fig:raspberry-sensors-top}(A Venus 6 \ac{GPS} Module ST22 from SkyTraq has been used in the shown figure). The bottom side of the board including the wiring cables is shown in Figure \ref{fig:raspberry-sensors-open}. This testing system does not yet contain a camera, but it will be added in the future. In this configuration the entire unit consumes 3 W of power and weighs 71 g (broken down into 30 g for the sensors and shield and 41 g for the computer).
 
 \begin{figure}[h!]
 \centering
@@ -194,7 +194,7 @@ The \ac{ADS} has not only been developed on the final hardware (BeagleBoard). To
 
 \subsection{Algorithms}
 
-The attitude of the sensing unit could in principle be determined by simply integrating the gyroscope rates from an initial alignment. This measurement however will degrade with time because of significant low-frequency drifts, sensor offsets and measurement inaccuracies. To solve the problem more robustly a set of a 3D gyroscope, a magnetometer and an accelerometer is used. They are fused with the C++ program that runs on the board computer. The main technique used is the \ac{EKF} which offers a near-optimal estimation with a fixed memory usage. Attitudes are represented as quaternions, which is an elegant and \ac{CPU}-effective solution.
+The attitude of the sensing unit could in principle be determined by simply integrating the gyroscope rates from an initial alignment. This measurement however will degrade with time because of significant low-frequency drifts, sensor offsets and measurement inaccuracies. To solve the problem more robustly a combination of 3D gyroscope, a magnetometer and an accelerometer is used. They are fused with a C++ program that runs on the board computer. The main technique used is the \ac{EKF} which offers a near-optimal attitude estimation with a fixed memory usage. Attitudes are represented as quaternions, which is an elegant and \ac{CPU}-effective solution.
 \\
 \\
 Offset filtering for the magnetometer and accelerometer is performed independently. An \ac{EKF} has been set up that estimates the $x$- $y$- and $z$-offset and the total radius along with each new measurement. The measurements are readily available at system start-up without calibration, but the accuracy will only improve as soon as measurements from different attitudes are available. The \ac{EKF} also accounts for slow offset drifts and similar effects.
@@ -205,7 +205,7 @@ An estimation of the gyroscope offsets and rate scaling is performed with a comb
 %% more text until end of august if I [Bastian] find time.
 \\
 \\
-Finally the position is determined independently from the \ac{GPS} receiver. This method is much simpler than fusing position values from the inertial measurement of the previously described sensors with the absolute \ac{GPS} position. This simpler method was chosen due to the tight time constraints of the project. However, in a continuation of the project it is desirable to test the fusion algorithm described in \cite[chap. 6.4]{book:stochastic}.
+Finally the position is determined independently from the \ac{GPS} receiver, which is much simpler than fusing position values from the inertial measurement of the previously described sensors with the absolute \ac{GPS} position. This approach was chosen due to the tight time constraints of the project. However, in a continuation of the project it is desirable to test the fusion algorithm described in \cite[chap. 6.4]{book:stochastic}.
 %% more text until end of august if I [Bastian] find time.
 
 \FloatBarrier

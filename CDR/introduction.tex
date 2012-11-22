@@ -13,7 +13,7 @@ Even though many research groups and commercial companies have investigated the 
 \section{Hardware}
 \label{sec:intro_hardware}
 
-The hardware for the \ac{U-SPACE} project can be divided into four subsystems, as visualized in the block diagram of Figure \ref{fig:hardware_block}. This hardware is present both in the airborne structure (the \ac{SPA}) and in the ground-based part of the project (the ground station and controller).
+The hardware for the \ac{U-SPACE} project can be divided into four subsystems, as visualized in the block diagram of Figure \ref{fig:hardware_block}. This hardware includes both the airborne parts (the \ac{SPA}) and the ground-based parts (ground station and controller).
 
 \begin{figure}[htbp!]
 \centering
@@ -24,7 +24,7 @@ The hardware for the \ac{U-SPACE} project can be divided into four subsystems, a
 
 \subsection{On-board Hardware}
 
-The first subsystem is the \ac{MSE}. This subsystem is the principal mechanical structure of the airship. It includes a gas-filled envelope, a payload bay and structures to mount both the solar cells and the propellers. This subsystem is the support for all other subsystems and provides the lift to allow the \ac{SPA} to fly. More information can be found in chapter \ref{chap:mse}. The second subsystem, the \ac{EPS}, is responsible for generating solar power, distributing this power to all other subsystems and storing the generated energy when required. It makes use the \ac{MSE} subsystem which supports the solar cells, while it also allows both forward propulsion and the generation of scientific payload data.  Chapter \ref{chap:eps} provides the details on this subsystem. The third subsystem, \ac{MCC}, takes care of the forward propulsion of the airship by employing propellers mounted onto motors. The structural link to the airship is the responsibility of the \ac{MSE}, while power is provided by the \ac{EPS}. The motors are controlled via a wireless connection, which is also the responsibility of this subsystem. A more thorough discussion can be found in chapter \ref{chap:mcc}. The final subsystem, the \ac{ITPU}, is the scientific payload of the \ac{SPA}. It consists of several different sensors (including a magnetometer, an accelerometer, a gyroscope and a \ac{GPS}) mounted inside the payload bay (part of the \ac{MSE}). The data from these sensors is processed with the help of a \ac{MCU}. The payload bay also contains a camera which can take pictures from the ground that are saved on board or transmitted to a ground station via a second wireless connection. The sensor data is also sent to the ground station via this wireless connection. The power for the sensors, the \ac{MCU}, the camera and the wireless connection is provided by the \ac{EPS}. Chapter \ref{chap:itpu} discusses this subsystem in more detail.
+The first subsystem is the \ac{MSE}. This subsystem is the principal mechanical structure of the airship. It includes a gas-filled envelope, a payload bay and structures to mount both the solar cells and the propellers. This subsystem is the support for all other subsystems and provides the lift to allow the \ac{SPA} to fly. More information can be found in chapter \ref{chap:mse}. The second subsystem, the \ac{EPS}, is responsible for generating solar power, distributing this power to all other subsystems and storing the generated energy when required. It makes use of the \ac{MSE} subsystem which supports the solar cells, while it also allows both forward propulsion and the generation of scientific payload data.  Chapter \ref{chap:eps} provides the details on this subsystem. The third subsystem, \ac{MCC}, takes care of the forward propulsion of the airship by employing propellers mounted onto motors. The structural link to the airship is the responsibility of the \ac{MSE}, while power is provided by the \ac{EPS}. The motors are controlled via a wireless connection, which is also the responsibility of this subsystem. A more thorough discussion can be found in chapter \ref{chap:mcc}. The final subsystem, the \ac{ITPU}, is the scientific payload of the \ac{SPA}. It consists of several different sensors (including a magnetometer, an accelerometer, a gyroscope and a \ac{GPS}) mounted inside the payload bay (part of the \ac{MSE}). The data from these sensors is processed with the help of a \ac{MCU}. The payload bay also contains a camera which can take pictures from the ground that are saved on board or transmitted to a ground station via a second wireless connection. The sensor data is also sent to the ground station via this wireless connection. The power for the sensors, the \ac{MCU}, the camera and the wireless connection is provided by the \ac{EPS}. Chapter \ref{chap:itpu} discusses this subsystem in more detail.
 
 \subsection{Ground-based Hardware}
 
@@ -35,18 +35,18 @@ The hardware for the ground station and for the wireless control are respectivel
 
 \enlargethispage{2.0em}
 
-The software required for the \ac{U-SPACE} project is only present in the on-board \ac{ITPU} subsystem and in the ground station used to receive the scientific payload data from this subsystem. The other subsystems do not require the development of any software. A block diagram of the software is presented in Figure \ref{fig:software_block}.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\textwidth]{figures/software_block.png}
-\caption{Software block diagram of the U-SPACE project}
-\label{fig:software_block}
-\end{figure}
+The software required for the \ac{U-SPACE} project is only present in the on-board \ac{ITPU} subsystem and in the ground station used to receive the scientific payload data from this subsystem. The other subsystems do not require the development of any software. %A block diagram of the software is presented in Figure \ref{fig:software_block}.
+%
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=\textwidth]{figures/software_block.png}
+%\caption{Software block diagram of the U-SPACE project}
+%\label{fig:software_block}
+%\end{figure}
 
 \subsection{On-board Software}
 
-The software on board the \ac{SPA} reads the data from the sensors (magnetometer, accelerometer, gyroscope and \ac{GPS}) and fuses this data in order to obtain more accurate information about the orientation and position of the airship. The software is also responsible for sending this scientific payload data to the ground station via the dedicated wireless connection. Finally the on-board software is needed to control the camera and to take pictures from the ground below the airship. The pictures are saved on board or sent to the ground station via a wireless connection. A description of this software can be found in chapter \ref{chap:itpu}.
+The software on board the \ac{SPA} reads the data from the sensors (magnetometer, accelerometer, gyroscope and \ac{GPS}) and fuses these data in order to obtain more accurate information about the orientation and position of the airship. The software is also responsible for sending this scientific payload data to the ground station via the dedicated wireless connection. Finally the on-board software is needed to control the camera and to take pictures from the ground below the airship. The pictures are saved on board or sent to the ground station via a wireless connection. A description of this software can be found in chapter \ref{chap:itpu}.
 
 \subsection{Ground-based Software}
 
@@ -57,7 +57,7 @@ The ground station also requires the development of some software. This software
 With the development of the on-board and ground-based software modules, several operational modes related to the scientific payload become possible in the \ac{U-SPACE} project. The basic modes are listed below:
 
 \begin{enumerate}
-\item Read out data from sensors and fuse the data
+\item Read out data from sensors and data fusion 
 \item Control the camera to take pictures from the ground
 \item Combination of mode 1 and mode 2
 \end{enumerate}
