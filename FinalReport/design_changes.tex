@@ -23,15 +23,10 @@ Due to some misunderstandings of the initial budget, it was approved by the supe
 %
 Due to the issues discussed in section \ref{sec:project_changes}, the solar cells were not ordered. However, it is still believed that the cells discussed in [ref to CDR] are suitable for this project.
 %
+One of the greatest challenges in the U-SPACE design is to keep the system mass low. Therefore, all custom electronic boards are built on extra thin \ac{PCB}(0.4 mm), using mainly \ac{SMD} components and nylon/plastic connectors and mechanical mountings.
 %
 In the final circuity layouts, it was decided to place the \ac{BCR} and \ac{SAR} on separate \acp{PCB}. Additionally, a small temperature sensor board was built. The following sections describe the features and circuit diagrams of each of these boards.
 %
-%
-\subsection{Battery}
-%
-%Challenges in thermal design to achieve specifications on battery. A passive design has been made. Specify test results. Suggestion to add a heater or have a winter + summer configuration of the insulation.
-%
-During testing of a thermal design, one Li-ion battery underwent a heavy discharge and subsequently showed clear indication of damage (swallowing of the battery pack). There was no immediate danger, however the incidence learned us that it is important that everyone working with Li-ion batteries knows about its safe use and limitations. Li-ion fires are almost impossible to put out. Only useful method is to cover the battery in sand why we recommend LTU to put available a bucket of sand and/or establish a fire proof area/table for working with Li-ion batteries.
 %
 %
 \subsection{Battery Charge Regulator}
@@ -42,7 +37,7 @@ Table \ref{tab:BCR_features} lists the features of the final \ac{BCR}.
 \centering
 \caption{Features of developed \ac{BCR}}
 \label{tab:BCR_features}
-\begin{tabular}{p{0.35\textwidth}p{0.2\textwidth}p{0.4\textwidth}}
+\begin{tabular}{p{0.42\textwidth}p{0.18\textwidth}p{0.35\textwidth}}
 \hline
 \textbf{Feature/Specification} & \textbf{Value} & \textbf{Comments}\\
 \hline
@@ -50,10 +45,10 @@ Max output current & 20 A & All outputs combined \\
 Output voltage & 6-8 V & Unregulated \\
 Input voltage & 9.2-9.5 V & Higher voltage may lead to overheating\\
 Weight & ??? & \\
-Under voltage protection & $V_{BATT}$ < 6.0 V & Only cuts off motor power outputs \\
-Short-circuit protection & $I_{SC}$ > 15 A & Only on motor power outputs \\
-Thermal monitoring and charge cut-off & & \\
-Automatic charge control & - & Constant current or voltage and trickle charge\\
+Under voltage protection & $V_{BATT}$ < 6.0 V & Only cuts off motor outputs \\
+Short-circuit protection & $I_{SC}$ > 15 A & Only on motor outputs \\
+Thermal monitor and charge cut-off & & \\
+Automatic charge control &  & Constant current, constant voltage and trickle charge\\
 Charge inhibit by telecommand & & \\
 Power cut-off by telecommand & & Only motor power outputs\\
 Charge status telemetry & &\\
@@ -63,7 +58,10 @@ Battery cells voltage monitoring & & \\
 \end{tabular}
 \end{table} 
 %
-The main changes to the \ac{BCR} include added telemetries, telecommands and protection circuits.
+The main changes to the \ac{BCR} include added telemetries, telecommands and protection circuits. The short-circuit and under-voltage protections only work on the motor power outputs. This is based on the philosophy of preventing an error in the motor supply propagating to the supply of the onboard computer which would otherwise result in complete loss of communication, control and monitoring of the system. The logic power supplies have their own short-circuit protection (fuses) and a battery undervoltage situation can be detected onboard and the computer could be programmed to enter a low power consumption mode (sleep mode etc.). At a battery voltage lower than about 5.7 V, the linear regulator will inherently cut off logic supply.
+%
+%
+All \ac{BCR} functionalities have been tested and verified at room temperature conditions.
 %
 %
 \subsubsection*{Increasing BCR Power Output}
@@ -72,14 +70,13 @@ To increase the output power rating, the best and first option is to use a highe
 The current rating can also be increased by using higher power connectors, thicker wire or several wires in parallel, higher power diodes or two diodes in parallel and using thicker PCB copper tracing, reducing trace length, increasing trace width and improving the thermal layout (adding lots of heat sinks and thermal connections).
 %
 %
-All \ac{BCR} functionalities have been tested and verified at room temperature conditions.
 %
 \begin{figure}[H]
 \begin{minipage}[t]{\linewidth}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_BCR_top}
 \end{minipage}
-\vspace{2mm}
+\\[1mm]
 \begin{minipage}[t]{\linewidth}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_BCR_bottom}
@@ -97,25 +94,40 @@ All \ac{BCR} functionalities have been tested and verified at room temperature c
 %
 %
 \subsection{Solar Array Regulator}
-
-5.0V(regulated), 3.3V(regulated),
-
-Inclusion of 3.3V regulated output - mainly due to limitations on BeagleBoard which is not compatible with 5V?
-
-SAR not implemented due to time limitation.
-
-MPPT not implemented due to time limitation.
-
-Components for DC-DC converter already ordered.
-
-Additional telemetry data outputs added for SAR.
-
+%
+%
+As discussed in section \ref{sec:project_changes}, due to some project issues, it was decided not to implement the \ac{MPPT} and DC-DC buck converter for the solar array. The circuit layout of the \ac{SAR} board in  figure \ref{fig:SAR_top_bottom} shows empty space on the \ac{PCB} for later adding on these circuits. Components for implementing the DC-DC converter are already available in the Viking room, but the \ac{MPTT} components must first be ordered.
+%
+%
+In this prototype version, the \ac{SAR} thus only works as a logic power supply to the onboard computer and electronics.
+%
+%
+\begin{table}[H]
+\centering
+\caption{\ac{SAR} features}
+\label{tab:BCR_features}
+\begin{tabular}{p{0.42\textwidth}p{0.18\textwidth}p{0.35\textwidth}}
+\hline
+\textbf{Feature/Specification} & \textbf{Value} & \textbf{Comments}\\
+\hline
+Output voltages & 3.3 V and 5.0 V & Regulated \\
+Maximum output currents & 1.0 A and 1.2 A & Limited by linear regulator and fuse respectively \\
+Weight & ??? & \\
+Output currents monitoring & & \\
+Output voltage monitoring & & \\
+Short circuit protection & $I_{SC}$ > 1.2 A & Both outputs \\
+Quiescent current (standby) & 14 mA & \\
+\hline
+\end{tabular}
+\end{table} 
+%
+%
 \begin{figure}[H]
 \begin{minipage}[t]{\linewidth}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_SAR_top}
 \end{minipage}
-\vspace{2mm}
+\\[1mm]
 \begin{minipage}[t]{\linewidth}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_SAR_bottom}
@@ -123,42 +135,50 @@ Additional telemetry data outputs added for SAR.
 \caption{Battery Charge Regulator}
 \label{fig:SAR_top_bottom}
 \end{figure}
-
+%
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_Schematic_SAR}
 \caption{Schematic of the \acl{SAR}}
 \label{fig:SAR_Schematic}
 \end{figure}
-
-
+%
+%
 \subsection{Temperature Sensor Board}
-
-
+%
+When flying U-SPACE outdoors in both warm and cool days, one concern is to maintain the cargo bay temperature within specification of the battery. Even though the first goal was an indoor flight in a heated hangar, a small temperature sensor board was added to monitor temperatures inside and outside the cargo bay. Also temperature monitoring of the motors was planned, however the very thin wires bought to connect to the sensor proved to be impractical when connecting the wire to a connector plug.
+%
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_Temp_top}
 \caption{Temperature Sensor Board}
 \label{fig:TS_top}
 \end{figure}
-
+%
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_Schematic_TS}
 \caption{Schematic of the Temperature Sensor Board}
 \label{fig:Schematic_TS}
 \end{figure}
-
-
+%
+%
+\subsection*{Battery Handling}
+%
+%
+During testing of a thermal design, one Li-ion battery underwent a heavy discharge and subsequently showed clear indication of damage (swallowing of the battery pack). There was no immediate danger, however the incidence learned us that it is important that everyone working with Li-ion batteries knows about its safe use and limitations. Li-ion fires are almost impossible to put out. Only useful method is to cover the battery in sand why we recommend LTU to put available a bucket of sand and/or establish a fire proof area/table for working with Li-ion batteries.
+%
+%
+%
 \section{Mechanical Structure and Envelope}
 %responsible: Pedro 
 
 \section{Motor Control and Communication}
 %responsible: Pedro and Morten
-
-Temperature monitoring not implemented due to lack of thin wire (ordered thin wire proved to be non-practical to work with = too fragile).
-
-
+%
+%Temperature monitoring not implemented due to lack of thin wire (ordered thin wire proved to be non-practical to work with = too fragile).
+%
+%
 \input{design_changes_itpu}
 %responsible: Jan
 
