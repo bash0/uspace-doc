@@ -163,6 +163,7 @@ Temperature monitoring not implemented due to lack of thin wire (ordered thin wi
 %responsible: Jan
 
 \section{Communication Subsystem}
+\label{sec:com}
 %responsible: Omair
 There is no change in the design of the \ac{TTC} subsystem from the CDR report \cite{CDR_TTC}. The \ac{U-SPACE} communication protocol was implemented in C language for the on-board computer (Beagle board) and in Lab View, due to its nice graphical environment, for the ground station. A custom \ac{PCB} was designed and developed for the conversion of analogue \acp{TM}. Second \ac{PCB} was designed for the housing and interfacing of the Xbee radio with the Beagle board. \ac{TTC} or communication subsystem provided the interface between the \ac{U-SPACE} and the ground station. This wireless connection is shown in figure \ref{fig:com_setup}. According to the test and verification plan in \cite{CDR_TTC}, testing of the on-board software and the ground station was done in Lab. However, due to one bad solder connection in the voltage level conversion board, first flight testing was not carried out.
 \begin{figure}[bht]
@@ -260,6 +261,7 @@ Three telecommands are implemented for the payload (camera). Camera set command 
 \end{tabular}
 \end{table}
 \subsection{Telemetry Conversion Module}
+\label{sec:telemetryConv}
 Type of the telemetry in table \ref{tab:telemetry_uspace} is stated analogue if the sensor does not have a built in \ac{ADC} and requires an external \ac{ADC} for its on board processing. Also, the Beagle board does not have \ac{ADC} chip on board. So a custom \ac{PCB} shown in figure \ref{fig:PCB_conversion_module} has been designed, etched and soldered in the lab which is capable of converting all the analogue telemetries listed in table \ref{tab:telemetry_uspace} into digital domain. In the design of the conversion module, two ADC chips (ad7998) are used from analog devices. AD7998 is a 12 bit \ac{ADC} chip having eight input channels and a multiplexer on a single IC. For the protection of the IC from high input voltage, diodes are added. These diodes get forward biased, if the telemetry voltage goes above $5$V, connecting the input pin to the power supply of the IC.  A second PCB has been designed for the housing of on-board X-bee pro module. This \ac{PCB} will be used to interface the Xbee pro module to 
 the beagle board for transmission and reception of the telecommands and telemetries respectively.\\
 %
