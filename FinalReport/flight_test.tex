@@ -29,6 +29,18 @@ For EPS: Test if suitable power could be supplied to the motors confirming plaus
 
 \subsection{Flight results for ITPU}
 
+Shortly before the flight test the BB failed. The attempted provisory fix using a BB-xM turned out to unstable during the flight test (see also \ref{sec:changes_itpu}). While trying to fixate cable connections between the BB-xM and the expansion board cable broke and damaged the expansion board unable to repair on the test side. Therefore the test results presented here are taken from the pre-flight test which was done in the facilities of LTU Kiruna when the original BB was still operational.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.55\textheight]{figures/full-system-setup}
+\caption{Full system setup}
+\label{fig:FlightTest1_1}
+\end{figure}
+
+An image of the full system setup including all electronical moduels can be seen in figure . This setup was then mounted into the payload box (see \textcolor{red}{REF!!!}) for testing. As mentioned in section \ref{sec:changes_itpu}, operating both the ADCs of the telemetry subsystem and the sensors of the attitude determination subsystem on the same I2C-bus caused problems which needed manual reset of the I2C-bus in order to get it working again. Peculiar was that both system worked when only one of the two ADCs where connected to the I2C bus together with the attitude sensors, but failed when both ADCs were connected. As the attempts to enable a second I2C-bus on a different expansion header of the BB were unsuccessful, it was decided to test only with one ADC and in turn loose 8 of the 16 telemetry values of the internal voltages. 
+
+With this decision implemented the testing went successful. The wireless connection to the groundstation could be established (for more see \textcolor{red}{REF TO OMAIR}). After calibration of the magnetometer, the attitude determination system was able to determine the attitude stabily and produce the roll-, pitch- and yaw-angles for the telemetry system. When receiving the corresponding signal from the communication module the camera could be activated and shoot either single images or multiple images with a set period (fastest 1~s) and save them to the onboard sd-card.  
 
 
 \section{Discussions and Future Recommendations}
