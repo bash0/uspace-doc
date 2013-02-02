@@ -8,11 +8,11 @@
 \label{sec:project_changes}
 %responsible: Morten
 %
-As previously stated in [CDR ref], the U-SPACE project was initially substantially delayed due to bureaucratic challenges in course registrations and subsequent release of project budget. This resulted in a reformulation of the system concept going from a custom designed helium envelope to a \ac{COTS} blimp provided by Esrange Space Center.
+As previously stated in \cite{CDR}, the U-SPACE project was initially substantially delayed due to bureaucratic challenges in course registrations and subsequent release of project budget. This resulted in a reformulation of the system concept going from a custom designed helium envelope to a \ac{COTS} blimp provided by Esrange Space Center.
 
-In June 2012, many of the U-SPACE team members left Kiruna to pursue summer internships and prepare for their 3rd semester outside Sweden. Work on the project over the summer holiday was restricted since Lars Jakobsson (LTU technician) was unavailable thus making ordering of new components impossible. Work on U-SPACE began again in September 2012, when Jan and Pedro returned to Sweden and Omair officially joined the project. At this point, Morten took over the full project management responsibilities and also remained responsible for the power subsystem, Jan became the lead responsible for the attitude sensors and payload, Omair responsible for all on-board telemetry handling, telecommunication and ground station and Pedro responsible for the mechanical structure and motors.
+In June 2012, many of the U-SPACE team members left Kiruna to pursue summer internships and prepare for their 3rd semester outside Sweden. Work on the project over the summer holiday was restricted since Lars Jakobsson (LTU technician) was unavailable thus making ordering of new components impossible. Work on U-SPACE began again in September 2012, when Jan and Pedro returned to Sweden and Omair officially joined the project. At this point, Morten took over the full project management responsibilities and also remained responsible for the power subsystem, Jan became the lead responsible for the attitude sensors and payload, Omair responsible for all on-board telemetry handling, telecommunication and ground station and Pedro responsible for the mechanical structure, thermal design and motors.
 
-Since the sun sits very low on the horizon during autumn in Kiruna and is almost completely absent during winter, it was decided, for the first prototype, not to implement the solar array and related electronics. Instead the goal would be to realize an indoor battery powered flight. This also reduced the work load as was required due to the fewer people now working on the project.
+During autumn in Kiruna, the sun sits very low on the horizon and is almost completely absent during winter. It was therefore decided, for the first prototype, not to implement the solar array and related electronics. Instead, the goal would be to realize an indoor battery powered flight. This also reduced the work load as was required due to the fewer people now working on the project.
 
 Weekly status meetings were held with project supervisors, but internal meetings were only held on a need-basis since the group just counted four people and were often already sitting together in the Viking project room. 
 Due to some misunderstandings of the initial budget, it was approved by the supervisors to increase the project budget for the four remaining students from 2000 SEK to 2500 SEK per student. 
@@ -21,21 +21,21 @@ Due to some misunderstandings of the initial budget, it was approved by the supe
 \section{Electrical Power Subsystem}
 %responsible: Morten
 %
-Due to the issues discussed in section \ref{sec:project_changes}, the solar cells were not ordered. However, it is still believed that the cells discussed in [ref to CDR] are suitable for this project.
-%
-One of the greatest challenges in the U-SPACE design is to keep the system mass low. Therefore, all custom electronic boards are built on extra thin \ac{PCB}(0.4 mm), using mainly \ac{SMD} components and nylon/plastic connectors and mechanical mountings.
-%
+Due to the issues discussed in section \ref{sec:project_changes}, the full amount of solar cells were not ordered. However, it is still believed that the cells tested and discussed in \cite{CDR} are suitable for this project.
+
+One great challenge in the U-SPACE design is to keep the system mass low. Therefore, all custom electronic boards are built on extra thin \ac{PCB}(0.4 mm), using mainly \acp{SMD}, connectors and mechanical mountings made in plastic materials.
+
 In the final circuity layouts, it was decided to place the \ac{BCR} and \ac{SAR} on separate \acp{PCB}. Additionally, a small temperature sensor board was built. The following sections describe the features and circuit diagrams of each of these boards.
 %
 %
 %
 \subsection{Battery Charge Regulator}
 %
-Table \ref{tab:BCR_features} lists the features of the final \ac{BCR}.
+The \ac{BCR} is responsible for handling safe charging of the \ac{LiPo} battery and power distribution to the motors and to the logic power supplies. Table \ref{tab:BCR_features} lists the main features of the final \ac{BCR}.
 %
 \begin{table}[H]
 \centering
-\caption{Features of developed \ac{BCR}}
+\caption{\ac{BCR} features}
 \label{tab:BCR_features}
 \begin{tabular}{p{0.42\textwidth}p{0.18\textwidth}p{0.35\textwidth}}
 \hline
@@ -58,14 +58,14 @@ Battery cells voltage monitoring & & \\
 \end{tabular}
 \end{table} 
 %
-The main changes to the \ac{BCR} include added telemetries, telecommands and protection circuits. The short-circuit and under-voltage protections only work on the motor power outputs. This is based on the philosophy of preventing an error in the motor supply propagating to the supply of the onboard computer which would otherwise result in complete loss of communication, control and monitoring of the system. The logic power supplies have their own short-circuit protection (fuses) and a battery undervoltage situation can be detected onboard and the computer could be programmed to enter a low power consumption mode (sleep mode etc.). At a battery voltage lower than about 5.7 V, the linear regulator will inherently cut off logic supply.
-%
+\noindent
+The main changes to the \ac{BCR} include added telemetries, telecommands and protection circuits. The short-circuit and under-voltage protections only work on the motor power outputs. This is based on the philosophy of preventing an error in the motor supply propagating to the supply of the onboard computer which would otherwise result in complete loss of communication, control and monitoring of the system. The logic power supplies have their own short-circuit protection (fuses) and a battery undervoltage situation can be detected onboard and the computer could be programmed to enter a low power consumption mode (sleep mode etc.). At a battery voltage lower than about 5.7 V, the linear regulator will inherently cut off logic supply.\\\\
 %
 All \ac{BCR} functionalities have been tested and verified at room temperature conditions.
 %
 %
-\subsubsection*{Increasing BCR Power Output}
-The chosen Li-ion battery can supply up to 66 A continuously or 88 A burst. The main limitation of the \ac{BCR} power output is due to current ratings on the power diode (20 A), power connectors (19 A) and wires (19 A or 11.5 A when using ECSS derating[ref to ECSS]). PCB trace thickness may also become impractically thick at higher currents. 
+\subsubsection*{Increasing the BCR Power Output}
+The chosen Li-ion battery can supply up to 66 A continuously or 88 A burst. The main limitation of the \ac{BCR} power output is due to current ratings on the power diode (20 A), power connectors (19 A) and wires (19 A or 11.5 A when using ECSS derating\cite{ECSS_derating}). PCB trace thickness may also become impractically thick at higher currents. 
 To increase the output power rating, the best and first option is to use a higher battery voltage by connecting several batteries in series (or using a higher voltage battery pack with more cells in series). 
 The current rating can also be increased by using higher power connectors, thicker wire or several wires in parallel, higher power diodes or two diodes in parallel and using thicker PCB copper tracing, reducing trace length, increasing trace width and improving the thermal layout (adding lots of heat sinks and thermal connections).
 %
@@ -96,7 +96,7 @@ The current rating can also be increased by using higher power connectors, thick
 \subsection{Solar Array Regulator}
 %
 %
-As discussed in section \ref{sec:project_changes}, due to some project issues, it was decided not to implement the \ac{MPPT} and DC-DC buck converter for the solar array. The circuit layout of the \ac{SAR} board in  figure \ref{fig:SAR_top_bottom} shows empty space on the \ac{PCB} for later adding on these circuits. Components for implementing the DC-DC converter are already available in the Viking room, but the \ac{MPTT} components must first be ordered.
+As discussed in section \ref{sec:project_changes}, due to some project issues, it was decided not to implement the \ac{MPPT} and DC-DC buck converter for the solar array. The circuit layout of the \ac{SAR} board in  figure \ref{fig:SAR_top_bottom} shows empty space on the \ac{PCB} for later adding on these circuits. Components for implementing the DC-DC converter are already available in the Viking room, but the \ac{MPPT} components must first be ordered.
 %
 %
 In this prototype version, the \ac{SAR} thus only works as a logic power supply to the onboard computer and electronics.
