@@ -65,12 +65,6 @@ The main changes to the \ac{BCR} include added telemetries, telecommands and pro
 All \ac{BCR} functionalities have been tested and verified at room temperature conditions.
 %
 %
-\subsubsection*{Increasing the BCR Power Output}
-The chosen Li-ion battery can supply up to 66 A continuously or 88 A burst. The main limitation of the \ac{BCR} power output is due to current ratings on the power diode (20 A), power connectors (19 A) and wires (19 A or 11.5 A when using ECSS derating\cite{ECSS_derating}). PCB trace thickness may also become impractically thick at higher currents. 
-To increase the output power rating, the best and first option is to use a higher battery voltage by connecting several batteries in series (or using a higher voltage battery pack with more cells in series). 
-The current rating can also be increased by using higher power connectors, thicker wire or several wires in parallel, higher power diodes or two diodes in parallel and using thicker PCB copper tracing, reducing trace length, increasing trace width and improving the thermal layout (adding lots of heat sinks and thermal connections).
-%
-%
 %
 \begin{figure}[H]
 \begin{minipage}[t]{\linewidth}
@@ -174,10 +168,46 @@ During testing of a thermal design, one Li-ion battery underwent a heavy dischar
 \section{Mechanical Structure and Envelope}
 %responsible: Pedro 
 
+The following section discuss changes made to the \ac{MSE}. The envelope has not suffered any modifications since it is the same Esrange blimp presented in the CDR and they did not allow modifications to it. However the payload box presented in the CDR was discarded and a new one was designed from zero instead. 
+
+\subsection{Cargo Bay}
+Upon retaking the project after the summer break we reach the conclusion that the old payload box was not rigid enough to withstand any moderate compression/traction load or unexpected shock loads, i.e. dropping to the box or a sudden landing when already attached to the blimp.  Therefore we agreed on discarding it and starting again from zero. 
+Since we needed to increase the strength of the structure and at the same time keep it low weight, we decided to build the second frame out of hollow carbon fiber rods with a squared section. To joint them an epoxy glue was used. 
+Upon finishing, the structure seemed quite enhanced compared to the first version. To further reinforce the frame we decided to build aluminum corner pieces that at the same time will serve as a support for the thermal insulating walls as well as for the electronics surface and roof. The final design for the payload box can be summarized as follows:
+
+\begin{itemize}
+\item Rigid carbon fiber frame.
+\item 8 aluminum corner pieces + 3x8 bolts to fasten each corner
+\item 6 Styrofoam insulating walls
+\item Payload surface to house the electronics
+\item Roof section, including the clamps to hold the rod of the motors
+\item 4 clamps at the bottom of the box as support legs
+\end{itemize}
+
+
+
+\section{Thermal Design}
+A thermal insulation is needed in order to keep the payload components within their allowed working temperature ranges. To achieve this, 6 different Styrofoam walls were designed to cover the carbon fiber frame. The walls where cut with the hot wire with a 5 mm thickness and the corresponding dimensions for each wall. 
+The thickness was chosen after an extensive series of experiments and tests to determine the right value that would be able to keep the payload within the expected range of temperatures. The critical component of the payload is the Li-ion battery since it has a much more restricted working temperature range than the electronics. This element constrained the temperature inside the payload box to be always between 50 and -10 degrees Celsius.  To determine the wall thickness that would provide this performance two main tests were performed:
+
+\begin{itemize}
+\item Cold case: in case we had to fly outdoors during the winter in Kiruna, the payload should at least be able to resist under -20 degrees Celsius. Different tests were performed using a refrigerator at approximately - 22 C and outside IRF at - 10 C. 
+\item Warm case: this time the experiment was done at room temperature. Inside the payload box a circuit with 4 resistors was placed inside in order to simulate the dissipated heat we would have on the real flight. The resistors can be connected individually to dissipate different values of heat. 
+\end{itemize}
+
+For both experiments an electronic thermometer was used to monitor the temperature at all times. After different trials with different wall thicknesses we drew the following conclusions:
+
+\begin{itemize}
+\item There was not a single wall thickness value that could accomplish the requirements for both cases. 
+\item Since we were going to flight indoors, we decided to focus on that case and choose the design accordingly. 
+\item Nevertheless, in case we had to fly outdoors for whatever reason, a simple modification can be made to the design, adding the required extra thickness as a second wall on the interior of the box. 
+\item An extra internal Styrofoam wall surrounding the battery proved to be a superb way to isolate the battery from the heat inside the box when the maximum heat was being dissipated. 
+\end{itemize}
+
 \section{Motor Control and Communication}
 %responsible: Pedro and Morten
 %
-%Temperature monitoring not implemented due to lack of thin wire (ordered thin wire proved to be non-practical to work with = too fragile).
+The only change in the \ac{MCC} was to re-program the flight controller such that it could operate two motors. 
 %
 %
 \input{design_changes_itpu}
@@ -186,7 +216,8 @@ During testing of a thermal design, one Li-ion battery underwent a heavy dischar
 \section{Communication Subsystem}
 \label{sec:com}
 %responsible: Omair
-There is no change in the design of the \ac{TTC} subsystem from the CDR report \cite{CDR_TTC}. The \ac{U-SPACE} communication protocol was implemented in C language for the on-board computer (Beagle board) and in Lab View, due to its nice graphical environment, for the ground station. A custom \ac{PCB} was designed and developed for the conversion of analogue \acp{TM}. Second \ac{PCB} was designed for the housing and interfacing of the Xbee radio with the Beagle board. \ac{TTC} or communication subsystem provided the interface between the \ac{U-SPACE} and the ground station. This wireless connection is shown in figure \ref{fig:com_setup}. According to the test and verification plan in \cite{CDR_TTC}, testing of the on-board software and the ground station was done in Lab. However, due to one bad solder connection in the voltage level conversion board, first flight testing was not carried out.
+There is no change in the design of the \ac{TTC} subsystem from the CDR report \cite{CDR_TTC}. The \ac{U-SPACE} communication protocol was implemented in C language for the on-board computer (Beagle board) and the ground station in LabView, due to its nice graphical environment. A custom \ac{PCB} was designed and developed for the conversion of analogue \acp{TM}. A second \ac{PCB} was designed for housing and interfacing of the Xbee radio with the \ac{BB}. \ac{TTC} or communication subsystem provided the interface between the \ac{U-SPACE} and the ground station. This wireless connection is shown in figure \ref{fig:com_setup}. According to the test and verification plan in \cite{CDR_TTC}, testing of the on-board software and the ground station was done in the lab.
+%
 \begin{figure}[bht]
 \centering
 \includegraphics[scale=0.5]{figures/com_setup.pdf}
@@ -196,8 +227,7 @@ There is no change in the design of the \ac{TTC} subsystem from the CDR report \
 %
 \subsection{Telemetry}
 \label{Number_of_telemetries}
-In order to implement the \ac{U-SPACE} protocol, the protocol is divided into subsystems according to different functionalities; and  all the important parameters of each subsystem which need to be monitored on the ground station are considered as telemetry. Telemetry implementation details are given in table \ref{tab:telemetry_uspace}. The \ac{U-SPACE} is having a synchronization value ``$0\text{x}0C$''. Therefore for the sync field of \ac{U-SPACE} packet format, every telemetry is having a sync value of ``$0\text{x}0C$''. Power subsystem is having one byte ID $0\text{x}11$. This subsystem ID is followed by one byte parameter ID. Both subsystem ID and parameter ID makes a unique identifier TM ID within U-SPACE telemetry processing. Data size for all the power telemetries is $10$ bytes(char). \ac{OBDH} subsystem has subsystem ID of $ 0\text{x}33 $ and size of $10$ bytes for all the telemetries. The \ac{ADCS} subsystem ID is $0\text{x}55$ and it contains only one telemetry which is the attitude information of 
-the \ac{U-SPACE}. This attitude data contains all the three rotation angles in a single packet of $30$ byte data size. The GPS subsystem ID is $ 0\text{x}77 $ and contains three telemetries; latitude, longitude and altitude of the \ac{U-SPACE}. Data size of each GPS telemetry is $10$ bytes.
+The \ac{U-SPACE} protocol is divided into subsystems according to different functionalities. All important parameters of each subsystem, which need to be monitored on the ground station, are considered as telemetry. Telemetry implementation details are given in table \ref{tab:telemetry_uspace}. \ac{U-SPACE} has synchronization value ``$0\text{x}0C$''. Therefore the \ac{U-SPACE} sync field has the value ``$0\text{x}0C$''. Power subsystem has one byte ID $0\text{x}11$. This subsystem ID is followed by one byte parameter ID. Both subsystem ID and parameter ID makes a unique identifier, TM ID. Data size for all power telemetries is $10$ bytes(char). \ac{OBDH} subsystem ID is $ 0\text{x}33 $ and size of $10$ bytes for all telemetries. \ac{ADCS} subsystem ID is $0\text{x}55$ and contains only one telemetry which is the attitude information. This attitude data contains all the three rotation angles in a single packet of $30$ byte data size. The GPS subsystem ID is $ 0\text{x}77 $ and contains three telemetries; latitude, longitude and altitude. Data size of each GPS telemetry is $10$ bytes.
 
 \begin{table}[bht]
 \centering
@@ -238,7 +268,7 @@ the \ac{U-SPACE}. This attitude data contains all the three rotation angles in a
 
 \subsection{Telecommands}
 \label{subsec:telecommand}
-Table \ref{tab:telecommand_uspace} gives the list of implemented telecommands for the \ac{U-SPACE}. Telecommands can be sent to configure the on board computer for different modes of telemetry or configure a specific subsystem. There are six different modes of the telemetry which are listed in table \ref{tab:TM_modes} along with the data rate for each mode. These modes can be configured by sending telecommands. All these telecommands are implemented under the \ac{OBDH} subsystem. Details of implementation according to the telecommad format are given in table \ref{tab:telecommand_uspace}.
+Table \ref{tab:telecommand_uspace} lists all implemented telecommands. Telecommands can be sent to configure the on-board computer for different modes of telemetry or configure a specific subsystem. There are six different modes of the telemetry which are listed in table \ref{tab:TM_modes} along with the data rate for each mode. All telecommands are implemented under the \ac{OBDH} subsystem. Details of implementation according to the telecommad format are given in table \ref{tab:telecommand_uspace}.
 %
 \begin{table}[bht]
 \centering
@@ -258,7 +288,9 @@ All telemetries	      	  	&		$ 2720 $		 		  \\
 \hline
 \end{tabular}
 \end{table}
-Three telecommands are implemented for the payload (camera). Camera set command is implemented to set the time interval between two successive images. After setting the image interval, camera start command is used to instruct the on-board computer to take picture after the specified time interval. Third is the camera stop command which will stop the camera. In future, if some one implements the real time pulse width modulator using a micro controller or beagle board, commands for speed control of the motor can be incorporated. Then, the use of joystick can be discarded and U-SPACE will be fully controlled by the Xbee radio link only.
+%
+%
+Three telecommands are implemented for the payload (camera). Camera set command is implemented to set the time interval between two successive images. After setting the image interval, camera start command is used to instruct the on-board computer to take picture after the specified time interval. Third is the camera stop command which will stop the camera. In future, if real time \ac{PWM} control is implemented, commands for speed control of the motor can be incorporated. Then, the use of the flight control joystick can be discarded and everything fully controlled via the Xbee radio link.
 
 \begin{table}[bht]
 \centering
@@ -283,8 +315,9 @@ Three telecommands are implemented for the payload (camera). Camera set command 
 \end{table}
 \subsection{Telemetry Conversion Module}
 \label{sec:telemetryConv}
-Type of the telemetry in table \ref{tab:telemetry_uspace} is stated analogue if the sensor does not have a built in \ac{ADC} and requires an external \ac{ADC} for its on board processing. Also, the Beagle board does not have \ac{ADC} chip on board. So a custom \ac{PCB} shown in figure \ref{fig:PCB_conversion_module} has been designed, etched and soldered in the lab which is capable of converting all the analogue telemetries listed in table \ref{tab:telemetry_uspace} into digital domain. In the design of the conversion module, two ADC chips (ad7998) are used from analog devices. AD7998 is a 12 bit \ac{ADC} chip having eight input channels and a multiplexer on a single IC. For the protection of the IC from high input voltage, diodes are added. These diodes get forward biased, if the telemetry voltage goes above $5$V, connecting the input pin to the power supply of the IC.  A second PCB has been designed for the housing of on-board X-bee pro module. This \ac{PCB} will be used to interface the Xbee pro module to 
-the beagle board for transmission and reception of the telecommands and telemetries respectively.\\
+%
+Telemetry Type in table \ref{tab:telemetry_uspace} is stated analogue if the sensor does not have a built-in \ac{ADC} and requires an external \ac{ADC} for on-board processing. The \ac{BB} does not include \ac{ADC}. Instead, a custom \ac{PCB} has been designed and implemented which is capable of converting all analogue telemetries from table \ref{tab:telemetry_uspace} into digital domain. The conversion module includes two ADC AD7998 chips  from Analog Devices. AD7998 is a 12 bit \ac{ADC} chip with eight input channels and a multiplexer on a single IC. Diodes are added to protect the inputs from high voltages exceeding 5 V. A second PCB has been designed for housing the on-board X-bee Pro. This \ac{PCB} will interface the Xbee pro module to 
+the \ac{BB} for transmission and reception of the telecommands and telemetries.\\
 %
 \begin{figure}[bht]
 \centering
@@ -300,7 +333,7 @@ the beagle board for transmission and reception of the telecommands and telemetr
 \label{fig:PCB_conversion_module}
 \end{figure}
 %
-Interfacing of the conversion module with the beagle board is shown in figure \ref{fig:conversion_module}. AD7998 gives the data along with the channel ID on I$2$C bus of $5$V. Beagle board has an I$2$C bus and the conversion board can be easily integrated to it. However, the I$2$C interface of the Beagle board is at a voltage level of $1.8$V so that a voltage conversion board (level converter) has been developed (refer \cite{CDR}) for the conversion of $5.0$V and $3.3$V I$2$C bus to $1.8$V I$2$C bus.
+Interfacing of the conversion module with the \ac{BB} is shown in figure \ref{fig:conversion_module}. AD7998 provides data and channel ID on a $5$V I$2$C bus which is connects to the BB I$2$C bus. However, the \ac{BB} I$2$C bus is at $1.8$V so a level converter has been developed (refer \cite{CDR}) to convert the $5.0$V and $3.3$V I$2$C bus to a $1.8$V I$2$C bus.
 %
 \begin{figure}[bht]
 \centering
@@ -308,10 +341,12 @@ Interfacing of the conversion module with the beagle board is shown in figure \r
 \caption{Conversion module interface with Beagle board}
 \label{fig:conversion_module}
 \end{figure}
-\subsection{U-SPACE Ground Station}
-Programming language for the ground station was Lab View software. The front panel view of the \ac{U-SPACE} ground station is shown in figure \ref{fig:Labview_ground_station}. Here, I will discuss how to use \ac{U-SPACE} ground station. There is serial communication between the computer running the ground station software and the Xbee radio. To configure parameters for this communication, there is one section ''COM'' in the ground station. Here, we can set data rate, parity bit, start and stop bit. These parameters should be the same as configured for the on-board computer. There is also a ``Debug'' window which displays the serial communication data for debugging purposes. \\
 %
-For generating the telecommands, there is one section on the upper left part of the front panel of the ground station. First of all, select the subsystem to which you to want to send the telecommand. This will cause the subsystem to select subsystem ID in the background. Then select the property (parameter) you want to configure. This will cause the selection of property ID of the subsystem. Finally fill data field with the appropriate value in accordance to on-board computer software. On clicking the ``SEND'' button, it will generate the telecommand and send it through the Xbee radio. Concatenated telecommand according to \ac{U-SPACE} communication format can be shown in ``Debug'' window. A separate telecommand section is also dedicated to configure the \ac{U-SPACE} telemtry modes as described in section \ref{subsec:telecommand}. Select the mode from the drop down menu and click ``SEND TM'' button.
+%
+\subsection{U-SPACE Ground Station}
+The ground station is implemented in LabView. The front panel view of the \ac{U-SPACE} ground station is shown in figure \ref{fig:Labview_ground_station}. The following section, describes how to use the ground station. A serial link is established between the computer running the LabView ground station and the Xbee radio. The ''COM'' section configures this serial link. Here, the data rate, parity bit, start and stop bit can be set. These parameters should be the same as configured for the on-board computer. There is also a ``Debug'' window which displays the serial communication data for debugging purposes. \\
+%
+For generating telecommands, there is one section on the upper left part of the front panel of the ground station. First, the subsystem to receive the telecommand is selected. This will select the subsystem ID. Then the property (parameter) to configure is selected thus setting of the subsystem property ID is done. Finally, data field is filled with the appropriate value in accordance to on-board computer software. Clicking the ``SEND'' button generates the telecommand and sends it via the Xbee radio. Concatenated telecommand according to \ac{U-SPACE} communication format can be shown in the ``Debug'' window. A separate telecommand section is also dedicated to configure the \ac{U-SPACE} telemtry modes as described in section \ref{subsec:telecommand}. Select the mode from the drop down menu and click ``SEND TM'' button.
 \\
   %
 \begin{figure}[bht]
@@ -321,6 +356,8 @@ For generating the telecommands, there is one section on the upper left part of 
 \label{fig:Labview_ground_station}
 \end{figure}
 %
-On the front panel of the ground station, telemetries are displayed in groups according to the subsystem. Power telemetries are on the upper right corner. All the eleven telemetries are shown in numerical display. There are three telemetries in the power graphical display; battery voltage, battery current and discharge current. To see the graphical display, go to ``Power graphs'' and then select the telemetry for graphical display from drop down menu.\\ 
-\ac{ADCS} and \ac{OBDH} telemetries are shown in left lower corner. \ac{ADCS} contains three attitude parametrs; roll, pitch and yaw in numerical display. If you want, these to be displayed on the artificial horizon, click the ON/OFF button. Artificial horizon consists of three images: first, for roll; second for pitch; third for heading and moves them relatively according to the input attitude data. All the \ac{OBDH} telemetries are displayed numerically in a separate window which is embedded with the \ac{ADCS} subsystem. However four \ac{OBDH} temperatures: ambient, cargo bay and one of each motor are also displayed in the ``\ac{OBDH} graph window'' Here you can see the rate of change of temperature during different phases of flight of the \ac{U-SPACE}. \\
-For the GPS subsystem, telemetries are shown in numerically in the right lower corner of the front panel view of the ground station. To show the position of the \ac{U-SPACE} on google maps, an internet connection is required. This is a static image implementation of the desired lattitue, longitude, image size and the resolution. Select the \ac{U-SPACE} indicator parameters: character (showing \ac{U-SPACE}), colour and font for display. Also select the type of map and click the google maps ``ON/OFF'' button. This will generate a \ac{URL} according to the selected characteristics and will download the corresponding static image from google maps. To show the route of the \ac{U-SPACE} from starting point, select route characteristics and click show route ``ON/OFF button''. This will track the \ac{U-SPACE} from the starting point.
+On the front panel of the ground station, telemetries are displayed in groups according to the subsystem. Power telemetries are on the upper right corner. All eleven telemetries are shown in numerical display. There are three telemetries in the power graphical display; battery voltage, battery current and discharge current. To see the graphical display, go to ``Power graphs'' and then select the telemetry for graphical display from drop down menu.\\ 
+\ac{ADCS} and \ac{OBDH} telemetries are shown in left lower corner. \ac{ADCS} contains three attitude parametrs; roll, pitch and yaw in numerical display. To display these on the artificial horizon, click the ON/OFF button. Artificial horizon consists of three images: roll, pitch and heading respectively. They move according to attitude input data. All \ac{OBDH} telemetries are displayed numerically in a separate window which is embedded with the \ac{ADCS} subsystem. However, four \ac{OBDH} temperatures: ambient, cargo bay and one of each motor are also displayed in the ``\ac{OBDH} graph window'' Here is also displayed the temperature change rate during different flight phases.\\
+%
+\noindent
+For the GPS subsystem, telemetries are shown in numerically in the right lower corner of the front panel view of the ground station. To show the position on Google Maps, an internet connection is required. This is a static image implementation of the desired latitude, longitude, image size and the resolution. Select the \ac{U-SPACE} indicator parameters: character (showing \ac{U-SPACE}), colour and font for display. Also select the type of map and click the Google Maps ``ON/OFF'' button. This will generate an \ac{URL} according to the selected characteristics and will download the corresponding static image from Google Maps. To show the route from the starting point, select route characteristics and click show route ``ON/OFF button''. This will track the \ac{U-SPACE} from the starting point.
