@@ -10,7 +10,7 @@
 %
 As previously stated in \cite{CDR}, the U-SPACE project was initially substantially delayed due to bureaucratic challenges in course registrations and subsequent release of project budget. This resulted in a reformulation of the system concept going from a custom designed helium envelope to a \ac{COTS} blimp provided by Esrange Space Center.
 
-In June 2012, many of the U-SPACE team members left Kiruna to pursue summer internships and prepare for their 3rd semester outside Sweden. Work on the project over the summer holiday was restricted since Lars Jakobsson (LTU technician) was unavailable thus making ordering of new components impossible. Work on U-SPACE began again in September 2012, when Jan and Pedro returned to Sweden and Omair officially joined the project. At this point, Morten took over the full project management responsibilities and also remained responsible for the power subsystem, Jan became the lead responsible for the attitude sensors and payload, Omair responsible for all on-board telemetry handling, telecommunication and ground station and Pedro responsible for the mechanical structure, thermal design and motors.
+In June 2012, many of the U-SPACE team members left Kiruna to pursue summer internships and prepare for their 3rd semester outside Sweden. Work on the project over the summer holiday was restricted since \ac{LTU} personnel was unavailable thus making ordering of new components impossible. Work on U-SPACE began again in September 2012, when Jan and Pedro returned to Sweden and Omair officially joined the project. At this point, Morten took over the full project management responsibilities and also remained responsible for the power subsystem, Jan became the lead responsible for the attitude sensors and payload, Omair responsible for all on-board telemetry handling, telecommunication and ground station and Pedro responsible for the mechanical structure, thermal design and motors.
 
 During autumn in Kiruna, the sun sits very low on the horizon and is almost completely absent during winter. It was therefore decided, for the first prototype, not to implement the solar array and related electronics. Instead, the goal would be to realize an indoor battery powered flight. This also reduced the work load as was required due to the fewer people now working on the project.
 
@@ -21,11 +21,11 @@ Due to some misunderstandings of the initial budget, it was approved by the supe
 \section{Electrical Power Subsystem}
 %responsible: Morten
 %
-Due to the issues discussed in section \ref{sec:project_changes}, the full amount of solar cells were not ordered. However, it is still believed that the cells tested and discussed in \cite{CDR} are suitable for this project.
+Due to the issues discussed in section \ref{sec:project_changes}, the full amount of solar cells was not ordered. However, it is still believed that the cells tested and discussed in \cite{CDR} are suitable for this project.
 
 One great challenge in the U-SPACE design is to keep the system mass low. Therefore, all custom electronic boards are built on extra thin \ac{PCB}(0.4 mm), using mainly \acp{SMD}, connectors and mechanical mountings made in plastic materials.
 
-In the final circuity layouts, it was decided to place the \ac{BCR} and \ac{SAR} on separate \acp{PCB}. Additionally, a small temperature sensor board was built. The following sections describe the features and circuit diagrams of each of these boards.
+In the final circuit layouts, it was decided to place the \ac{BCR} and \ac{SAR} on separate \acp{PCB}. Additionally, a small temperature sensor board was built. The following sections describe the features and circuit diagrams of each of these boards.
 %
 %
 %
@@ -45,7 +45,7 @@ The \ac{BCR} is responsible for handling safe charging of the \ac{LiPo} battery 
 Max output current & 20 A & All outputs combined \\
 Output voltage & 6-8 V & Unregulated \\
 Input voltage & 9.2-9.5 V & Higher voltage may lead to overheating\\
-Weight & ??? & \\
+%Weight & ??? & \\
 Under voltage protection & $V_{BATT}$ < 6.0 V & Only cuts off motor outputs \\
 Short-circuit protection & $I_{SC}$ > 15 A & Only on motor outputs \\
 Thermal monitor and charge cut-off & & \\
@@ -60,7 +60,7 @@ Battery cells voltage monitoring & & \\
 \end{table} 
 %
 \noindent
-The main changes to the \ac{BCR} include added telemetries, telecommands and protection circuits. The short-circuit and under-voltage protections only work on the motor power outputs. This is based on the philosophy of preventing an error in the motor supply propagating to the supply of the onboard computer which would otherwise result in complete loss of communication, control and monitoring of the system. The logic power supplies have their own short-circuit protection (fuses) and a battery undervoltage situation can be detected onboard and the computer could be programmed to enter a low power consumption mode (sleep mode etc.). At a battery voltage lower than about 5.7 V, the linear regulator will inherently cut off logic supply.\\\\
+The main changes to the \ac{BCR} include added telemetries, telecommands and protection circuits. The short-circuit and under-voltage protections only work on the motor power outputs. This is based on the philosophy of preventing an error in the motor supply propagating to the supply of the onboard computer which would result in complete loss of communication, control and monitoring of the system. The logic power supplies have their own short-circuit protection (fuses) and a battery undervoltage situation can be detected onboard and the computer could be programmed to enter a low power consumption mode (sleep mode etc.). At a battery voltage lower than about 5.7 V, the linear 5 V regulator will inherently cut off logic supply.\\\\
 %
 All \ac{BCR} functionalities have been tested and verified at room temperature conditions.
 %
@@ -76,7 +76,7 @@ All \ac{BCR} functionalities have been tested and verified at room temperature c
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_BCR_bottom}
 \end{minipage}
-\caption{Battery Charge Regulator}
+\caption{\acl{BCR} final board}
 \label{fig:BCR_top_bottom}
 \end{figure}
 %
@@ -91,7 +91,7 @@ All \ac{BCR} functionalities have been tested and verified at room temperature c
 \subsection{Solar Array Regulator}
 %
 %
-As discussed in section \ref{sec:project_changes}, due to some project issues, it was decided not to implement the \ac{MPPT} and DC-DC buck converter for the solar array. The circuit layout of the \ac{SAR} board in  figure \ref{fig:SAR_top_bottom} shows empty space on the \ac{PCB} for later adding on these circuits. Components for implementing the DC-DC converter are already available in the Viking room, but the \ac{MPPT} components must first be ordered.
+As discussed in section \ref{sec:project_changes}, it was decided not to implement the \ac{MPPT} and DC-DC buck converter for the solar array. The circuit layout of the \ac{SAR} board in  figure \ref{fig:SAR_top_bottom} shows empty space on the \ac{PCB} for later adding on these circuits. Components for implementing the DC-DC converter are already available, but the \ac{MPPT} components must first be ordered.
 %
 %
 In this prototype version, the \ac{SAR} thus only works as a logic power supply to the onboard computer and electronics.
@@ -99,7 +99,7 @@ In this prototype version, the \ac{SAR} thus only works as a logic power supply 
 %
 \begin{table}[H]
 \centering
-\caption{\ac{SAR} features}
+\caption{\acl{SAR} features}
 \label{tab:BCR_features}
 \begin{tabular}{p{0.42\textwidth}p{0.18\textwidth}p{0.35\textwidth}}
 \hline
@@ -107,7 +107,7 @@ In this prototype version, the \ac{SAR} thus only works as a logic power supply 
 \hline
 Output voltages & 3.3 V and 5.0 V & Regulated \\
 Maximum output currents & 1.0 A and 1.2 A & Limited by linear regulator and fuse respectively \\
-Weight & ??? & \\
+%Weight & ??? & \\
 Output currents monitoring & & \\
 Output voltage monitoring & & \\
 Short circuit protection & $I_{SC}$ > 1.2 A & Both outputs \\
@@ -127,7 +127,7 @@ Quiescent current (standby) & 14 mA & \\
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig_SAR_bottom}
 \end{minipage}
-\caption{Battery Charge Regulator}
+\caption{\acl{SAR} final board}
 \label{fig:SAR_top_bottom}
 \end{figure}
 %
@@ -141,7 +141,7 @@ Quiescent current (standby) & 14 mA & \\
 %
 \subsection{Temperature Sensor Board}
 %
-When flying U-SPACE outdoors in both warm and cool days, one concern is to maintain the cargo bay temperature within specification of the battery. Even though the first goal was an indoor flight in a heated hangar, a small temperature sensor board was added to monitor temperatures inside and outside the cargo bay. Also temperature monitoring of the motors was planned, however the very thin wires bought to connect to the sensor proved to be impractical when connecting the wire to a connector plug.
+When flying U-SPACE outdoors on both warm and cool days, one concern is to maintain the cargo bay temperature within specification of the battery. Even though the first goal was an indoor flight in a heated hangar, a small temperature sensor board was added to monitor the temperatures inside and outside the cargo bay. Up to eight temperatures can be monitored. Temperature monitoring of the motors was also planned, however not implemented. The reason for this was that, due to mass constraints and the long wires needed to reach the motors, very thin wire was required. The wire bought for this purpose proved to be impractical to connect to a connector plug. Hence it is recommended for future designs only to use connectors and wires which are stated as compatible.
 %
 \begin{figure}[H]
 \centering
@@ -161,53 +161,13 @@ When flying U-SPACE outdoors in both warm and cool days, one concern is to maint
 \subsection*{Battery Handling}
 %
 %
-During testing of a thermal design, one Li-ion battery underwent a heavy discharge and subsequently showed clear indication of damage (swallowing of the battery pack). There was no immediate danger, however the incidence learned us that it is important that everyone working with Li-ion batteries knows about its safe use and limitations. Li-ion fires are almost impossible to put out. Only useful method is to cover the battery in sand why we recommend LTU to put available a bucket of sand and/or establish a fire proof area/table for working with Li-ion batteries.
+During testing of a thermal design, one Li-ion battery underwent a heavy discharge and subsequently showed clear indication of damage (swelling of the battery pack). There was no immediate danger, however the incidence reminded us of the importance that everyone working with Li-ion batteries knows about its safe use and limitations. Li-ion fires are almost impossible to put out. Only useful method is to cover the battery in sand why we recommend LTU to put available a bucket of sand and/or establish a fire proof area/table for working with Li-ion batteries.
 %
-%
-%
-\section{Mechanical Structure and Envelope}
-%responsible: Pedro 
-
-The following section discuss changes made to the \ac{MSE}. The envelope has not suffered any modifications since it is the same Esrange blimp presented in the CDR and they did not allow modifications to it. However the payload box presented in the CDR was discarded and a new one was designed from zero instead. 
-
-\subsection{Cargo Bay}
-Upon retaking the project after the summer break we reach the conclusion that the old payload box was not rigid enough to withstand any moderate compression/traction load or unexpected shock loads, i.e. dropping to the box or a sudden landing when already attached to the blimp.  Therefore we agreed on discarding it and starting again from zero. 
-Since we needed to increase the strength of the structure and at the same time keep it low weight, we decided to build the second frame out of hollow carbon fiber rods with a squared section. To joint them an epoxy glue was used. 
-Upon finishing, the structure seemed quite enhanced compared to the first version. To further reinforce the frame we decided to build aluminum corner pieces that at the same time will serve as a support for the thermal insulating walls as well as for the electronics surface and roof. The final design for the payload box can be summarized as follows:
-
-\begin{itemize}
-\item Rigid carbon fiber frame.
-\item 8 aluminum corner pieces + 3x8 bolts to fasten each corner
-\item 6 Styrofoam insulating walls
-\item Payload surface to house the electronics
-\item Roof section, including the clamps to hold the rod of the motors
-\item 4 clamps at the bottom of the box as support legs
-\end{itemize}
-
-
-
-\section{Thermal Design}
-A thermal insulation is needed in order to keep the payload components within their allowed working temperature ranges. To achieve this, 6 different Styrofoam walls were designed to cover the carbon fiber frame. The walls where cut with the hot wire with a 5 mm thickness and the corresponding dimensions for each wall. 
-The thickness was chosen after an extensive series of experiments and tests to determine the right value that would be able to keep the payload within the expected range of temperatures. The critical component of the payload is the Li-ion battery since it has a much more restricted working temperature range than the electronics. This element constrained the temperature inside the payload box to be always between 50 and -10 degrees Celsius.  To determine the wall thickness that would provide this performance two main tests were performed:
-
-\begin{itemize}
-\item Cold case: in case we had to fly outdoors during the winter in Kiruna, the payload should at least be able to resist under -20 degrees Celsius. Different tests were performed using a refrigerator at approximately - 22 C and outside IRF at - 10 C. 
-\item Warm case: this time the experiment was done at room temperature. Inside the payload box a circuit with 4 resistors was placed inside in order to simulate the dissipated heat we would have on the real flight. The resistors can be connected individually to dissipate different values of heat. 
-\end{itemize}
-
-For both experiments an electronic thermometer was used to monitor the temperature at all times. After different trials with different wall thicknesses we drew the following conclusions:
-
-\begin{itemize}
-\item There was not a single wall thickness value that could accomplish the requirements for both cases. 
-\item Since we were going to flight indoors, we decided to focus on that case and choose the design accordingly. 
-\item Nevertheless, in case we had to fly outdoors for whatever reason, a simple modification can be made to the design, adding the required extra thickness as a second wall on the interior of the box. 
-\item An extra internal Styrofoam wall surrounding the battery proved to be a superb way to isolate the battery from the heat inside the box when the maximum heat was being dissipated. 
-\end{itemize}
-
 \section{Motor Control and Communication}
 %responsible: Pedro and Morten
 %
 The only change in the \ac{MCC} was to re-program the flight controller such that it could operate two motors. 
+%
 %
 %
 \input{design_changes_itpu}
@@ -216,18 +176,18 @@ The only change in the \ac{MCC} was to re-program the flight controller such tha
 \section{Communication Subsystem}
 \label{sec:com}
 %responsible: Omair
-There is no change in the design of the \ac{TTC} subsystem from the CDR report \cite{CDR_TTC}. The \ac{U-SPACE} communication protocol was implemented in C language for the on-board computer (Beagle board) and the ground station in LabView, due to its nice graphical environment. A custom \ac{PCB} was designed and developed for the conversion of analogue \acp{TM}. A second \ac{PCB} was designed for housing and interfacing of the Xbee radio with the \ac{BB}. \ac{TTC} or communication subsystem provided the interface between the \ac{U-SPACE} and the ground station. This wireless connection is shown in figure \ref{fig:com_setup}. According to the test and verification plan in \cite{CDR_TTC}, testing of the on-board software and the ground station was done in the lab.
+There is no change in the design of the \ac{TTC} subsystem from the CDR report \cite{CDR_TTC}. The \ac{U-SPACE} communication protocol was implemented in C language for the on-board computer (Beagle board) and the ground station in LabView, due to its nice graphical environment. A custom \ac{PCB} was designed and developed for the conversion of analogue \acp{TM}. A second \ac{PCB} was designed for housing and interfacing of the Xbee radio with the \ac{BB}. \ac{TTC} or communication subsystem provided the interface between the \ac{U-SPACE} and the ground station. This wireless connection is shown in figure \ref{fig:com_setup}. According to the test and verification plan in \cite{CDR_TTC}, testing of the on-board software and the ground station was successfully executed.
 %
 \begin{figure}[bht]
 \centering
-\includegraphics[scale=0.5]{figures/com_setup.pdf}
+\includegraphics[width=\textwidth]{figures/com_setup.pdf}
 \caption[\ac{U-SPACE}Communication overview]{\ac{U-SPACE} Communication overview}
 \label{fig:com_setup}
 \end{figure}
 %
 \subsection{Telemetry}
 \label{Number_of_telemetries}
-The \ac{U-SPACE} protocol is divided into subsystems according to different functionalities. All important parameters of each subsystem, which need to be monitored on the ground station, are considered as telemetry. Telemetry implementation details are given in table \ref{tab:telemetry_uspace}. \ac{U-SPACE} has synchronization value ``$0\text{x}0C$''. Therefore the \ac{U-SPACE} sync field has the value ``$0\text{x}0C$''. Power subsystem has one byte ID $0\text{x}11$. This subsystem ID is followed by one byte parameter ID. Both subsystem ID and parameter ID makes a unique identifier, TM ID. Data size for all power telemetries is $10$ bytes(char). \ac{OBDH} subsystem ID is $ 0\text{x}33 $ and size of $10$ bytes for all telemetries. \ac{ADCS} subsystem ID is $0\text{x}55$ and contains only one telemetry which is the attitude information. This attitude data contains all the three rotation angles in a single packet of $30$ byte data size. The GPS subsystem ID is $ 0\text{x}77 $ and contains three telemetries; latitude, longitude and altitude. Data size of each GPS telemetry is $10$ bytes.
+The \ac{U-SPACE} protocol is divided into subsystems according to different functionalities. All important parameters of each subsystem, which need to be monitored on the ground station, are considered as telemetry. Telemetry implementation details are given in table \ref{tab:telemetry_uspace}. \ac{U-SPACE} has synchronization value ``$0\text{x}0C$''. Power subsystem has ID $0\text{x}11$. This subsystem ID is followed by one byte parameter ID. Both subsystem ID and parameter ID makes a unique identifier, TM ID. Data size for all power telemetries is $10$ bytes(char). \ac{OBDH} subsystem ID is $ 0\text{x}33 $ and size of $10$ bytes for all telemetries. \ac{ADCS} subsystem ID is $0\text{x}55$ and contains only one telemetry which is the attitude information. This attitude data contains all three rotation angles in a single packet of $30$ byte data size. The GPS subsystem ID is $ 0\text{x}77 $ and contains three telemetries; latitude, longitude and altitude. Data size of each GPS telemetry is $10$ bytes.
 
 \begin{table}[bht]
 \centering
@@ -333,7 +293,7 @@ the \ac{BB} for transmission and reception of the telecommands and telemetries.\
 \label{fig:PCB_conversion_module}
 \end{figure}
 %
-Interfacing of the conversion module with the \ac{BB} is shown in figure \ref{fig:conversion_module}. AD7998 provides data and channel ID on a $5$V I$2$C bus which is connects to the BB I$2$C bus. However, the \ac{BB} I$2$C bus is at $1.8$V so a level converter has been developed (refer \cite{CDR}) to convert the $5.0$V and $3.3$V I$2$C bus to a $1.8$V I$2$C bus.
+Interfacing of the conversion module with the \ac{BB} is shown in figure \ref{fig:conversion_module}. AD7998 provides data and channel ID on a $5$ V I$2$C bus which connects to the BB I$2$C bus. However, the \ac{BB} I$2$C bus is at $1.8$ V so a level converter has been developed (refer \cite{CDR}) to convert the $5.0$ V and $3.3$ V I$2$C bus to a $1.8$ V I$2$C bus.
 %
 \begin{figure}[bht]
 \centering
@@ -346,7 +306,7 @@ Interfacing of the conversion module with the \ac{BB} is shown in figure \ref{fi
 \subsection{U-SPACE Ground Station}
 The ground station is implemented in LabView. The front panel view of the \ac{U-SPACE} ground station is shown in figure \ref{fig:Labview_ground_station}. The following section, describes how to use the ground station. A serial link is established between the computer running the LabView ground station and the Xbee radio. The ''COM'' section configures this serial link. Here, the data rate, parity bit, start and stop bit can be set. These parameters should be the same as configured for the on-board computer. There is also a ``Debug'' window which displays the serial communication data for debugging purposes. \\
 %
-For generating telecommands, there is one section on the upper left part of the front panel of the ground station. First, the subsystem to receive the telecommand is selected. This will select the subsystem ID. Then the property (parameter) to configure is selected thus setting of the subsystem property ID is done. Finally, data field is filled with the appropriate value in accordance to on-board computer software. Clicking the ``SEND'' button generates the telecommand and sends it via the Xbee radio. Concatenated telecommand according to \ac{U-SPACE} communication format can be shown in the ``Debug'' window. A separate telecommand section is also dedicated to configure the \ac{U-SPACE} telemtry modes as described in section \ref{subsec:telecommand}. Select the mode from the drop down menu and click ``SEND TM'' button.
+For generating telecommands, there is one section on the upper left part of the front panel of the ground station. First, the subsystem to receive the telecommand is selected. This will select the subsystem ID. Then the property (parameter) to configure is selected thus setting of the subsystem property ID is done. Finally, data field is filled with the appropriate value in accordance to on-board computer software. Clicking the ``SEND'' button generates the telecommand and sends it via the Xbee radio. The concatenated telecommand according to \ac{U-SPACE} communication format can be shown in the ``Debug'' window. A separate telecommand section is also dedicated to configure the \ac{U-SPACE} telemtry modes as described in section \ref{subsec:telecommand}. Select the mode from the drop down menu and click ``SEND TM'' button.
 \\
   %
 \begin{figure}[bht]
@@ -356,8 +316,55 @@ For generating telecommands, there is one section on the upper left part of the 
 \label{fig:Labview_ground_station}
 \end{figure}
 %
-On the front panel of the ground station, telemetries are displayed in groups according to the subsystem. Power telemetries are on the upper right corner. All eleven telemetries are shown in numerical display. There are three telemetries in the power graphical display; battery voltage, battery current and discharge current. To see the graphical display, go to ``Power graphs'' and then select the telemetry for graphical display from drop down menu.\\ 
+On the front panel of the ground station, telemetries are displayed in groups according to the subsystem. Power telemetries are on the upper right corner. All eleven telemetries are displayed numerically. There are three telemetries in the power graphical display; battery voltage, battery current and discharge current. To see the graphical display, go to ``Power graphs'' and then select the telemetry for graphical display from drop down menu.\\ 
 \ac{ADCS} and \ac{OBDH} telemetries are shown in left lower corner. \ac{ADCS} contains three attitude parametrs; roll, pitch and yaw in numerical display. To display these on the artificial horizon, click the ON/OFF button. Artificial horizon consists of three images: roll, pitch and heading respectively. They move according to attitude input data. All \ac{OBDH} telemetries are displayed numerically in a separate window which is embedded with the \ac{ADCS} subsystem. However, four \ac{OBDH} temperatures: ambient, cargo bay and one of each motor are also displayed in the ``\ac{OBDH} graph window'' Here is also displayed the temperature change rate during different flight phases.\\
 %
 \noindent
 For the GPS subsystem, telemetries are shown in numerically in the right lower corner of the front panel view of the ground station. To show the position on Google Maps, an internet connection is required. This is a static image implementation of the desired latitude, longitude, image size and the resolution. Select the \ac{U-SPACE} indicator parameters: character (showing \ac{U-SPACE}), colour and font for display. Also select the type of map and click the Google Maps ``ON/OFF'' button. This will generate an \ac{URL} according to the selected characteristics and will download the corresponding static image from Google Maps. To show the route from the starting point, select route characteristics and click show route ``ON/OFF button''. This will track the \ac{U-SPACE} from the starting point.
+
+\subsection{Electrical Connectors Layout}
+Figure \ref{fig:Electrical_Connections} shows the electrical connections on block diagram of the complete U-SPACE system.
+%
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_Electrical_Connections_Layout}
+\caption{Electrical connectors layout}
+\label{fig:Electrical_Connections}
+\end{figure}
+
+
+\section{Mechanical Structure and Envelope}
+%responsible: Pedro 
+
+The following section discusses changes made to the \ac{MSE}. The envelope has not suffered any modifications since it is the same Esrange blimp presented in the CDR and modifications to it were not possible. On the other hand, the payload box presented in the CDR was discarded and a new one designed. 
+
+\subsection{Cargo Bay}
+After the summer break we reached the conclusion that the old payload box was not rigid enough to withstand any moderate compression/traction load or unexpected shock loads, i.e. dropping the box or a sudden landing when already attached to the blimp.  Since we needed to increase the strength of the structure and at the same time keep it low weight, we decided to build the frame out of hollow carbon fiber rods with a squared section. To join them, an epoxy glue was used. 
+The final result showed an enhanced structural strength compared with the first cargo bay frame. To further reinforce the frame, we decided to build aluminium corner pieces that at the same time served as a support for the thermal insulating walls, the cargo bay top plate connecting the motor rod and the bottom plate housing the electronics. The final design for the payload box can be summarized as follows:
+
+\begin{itemize}
+\item Rigid carbon fiber frame.
+\item 8 aluminum corner pieces + 3x8 bolts to fasten each corner
+\item 6 Styrofoam insulating walls
+\item Payload surface to house the electronics
+\item Roof section, including the clamps to hold the rod of the motors
+\item 4 clamps at the bottom of the box as support legs
+\end{itemize}
+
+\section{Thermal Design}
+A thermal insulation is needed in order to keep the payload components within their allowed working temperature ranges. To achieve this, 6 different Styrofoam walls were designed to cover the carbon fiber frame. The walls where cut with the hot wire with a 5 mm thickness and the corresponding dimensions for each wall. 
+The thickness was chosen after an extensive series of experiments and tests to determine the right value that would be able to keep the payload within the expected range of temperatures. The critical component of the payload is the Li-ion battery since it has a much more restricted working temperature range than the electronics. This element constrained the temperature inside the payload box to be always between 50 and -10 degrees Celsius.  To determine the wall thickness that would provide this performance two main tests were performed:
+
+\begin{itemize}
+\item Cold case: in case we had to fly outdoors during the winter in Kiruna, the payload should at least be able to resist -20 degrees Celsius. Different tests were performed using a refrigerator at approximately - 22 C and outside IRF at - 10 C. 
+\item Warm case: this time the experiment was done at room temperature. Inside the payload box a circuit with 4 resistors was placed in order to simulate the dissipated heat we would have on the real flight. The resistors can be connected individually to dissipate different values of heat. 
+\end{itemize}
+
+For both experiments an electronic thermometer was used to monitor the temperature at all times. After different trials with different wall thicknesses we drew the following conclusions:
+
+\begin{itemize}
+\item There was not a single wall thickness value that could accomplish the requirements for both cases. 
+\item Since we were going to fly indoors, we decided to focus on that case and choose the design accordingly. 
+\item Nevertheless, in case we had to fly outdoors for whatever reason, a simple modification can be made to the design, adding the required extra thickness as a second wall on the interior of the box. 
+\item An extra internal Styrofoam wall surrounding the battery proved to be a superb way to isolate the battery from the heat inside the box when the maximum heat was being dissipated. 
+\end{itemize}
